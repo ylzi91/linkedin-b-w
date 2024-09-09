@@ -7,18 +7,25 @@ export const TAKE_EXP = 'TAKE_EXP'
 export const ADD_NEW_EXP = 'ADD_NEW_EXP'
 export const TAKE_SPECIFIC_EXP = 'TAKE_SPECIFIC_EXP'
 export const MODIFY_MY_EXP = 'MODIFY_MY_EXP'
+export const GET_ALL_POSTS = 'GET_ALL_POSTS'
+export const CREATE_NEW_POST = 'CREATE_NEW_POST'
+export const MODIFY_POST = 'MODIFY_POST'
+export const DELETE_POST = 'DELETE_POST'
 
-export const getProfile = ( query, myAction ) => {
+
+// PROFILE ------------------------------------------
+
+export const getProfile = (query, myAction) => {
     return async (dispatch, getState) => {
         const myUrl = `https://striveschool-api.herokuapp.com/api/profile/${query}`
         const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYThmZjRkMGRlZjAwMTVjZWYwZjYiLCJpYXQiOjE3MjU4NjgyODcsImV4cCI6MTcyNzA3Nzg4N30.R3sQ4ptlB6MhqVmb4haRgAbtRRjSLZtgviETuqd4rO0'
         try {
-            const response = await fetch (myUrl, {
+            const response = await fetch(myUrl, {
                 headers: {
                     Authorization: `Bearer ${key}`
                 }
             })
-            if(response.ok) {
+            if (response.ok) {
                 const object = await response.json()
                 dispatch({
                     type: myAction,
@@ -30,21 +37,20 @@ export const getProfile = ( query, myAction ) => {
 
             }
         }
-        catch (error)
-        {
+        catch (error) {
             console.log(error)
 
         }
     }
 }
 
-export const modifyProfile = ( objectToModify ) => {
+export const modifyProfile = (objectToModify) => {
 
     return async (dispatch, getState) => {
         const myUrl = `https://striveschool-api.herokuapp.com/api/profile/`
         const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYThmZjRkMGRlZjAwMTVjZWYwZjYiLCJpYXQiOjE3MjU4NjgyODcsImV4cCI6MTcyNzA3Nzg4N30.R3sQ4ptlB6MhqVmb4haRgAbtRRjSLZtgviETuqd4rO0'
         try {
-            const response = await fetch (myUrl, {
+            const response = await fetch(myUrl, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${key}`,
@@ -53,9 +59,9 @@ export const modifyProfile = ( objectToModify ) => {
 
                 body: JSON.stringify(objectToModify)
 
-                
+
             })
-            if(response.ok) {
+            if (response.ok) {
                 const object = await response.json()
                 dispatch({
                     type: MODIFY_MY_PROFILE,
@@ -67,25 +73,26 @@ export const modifyProfile = ( objectToModify ) => {
 
             }
         }
-        catch (error)
-        {
+        catch (error) {
             console.log(error)
 
         }
     }
 }
 
-export const getExperiences = ( id, myAction, idExp = '' ) => {
+// EXPERIENCES ----------------
+
+export const getExperiences = (id, myAction, idExp = '') => {
     return async (dispatch, getState) => {
         const myUrl = `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences/${idExp}`
         const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYThmZjRkMGRlZjAwMTVjZWYwZjYiLCJpYXQiOjE3MjU4NjgyODcsImV4cCI6MTcyNzA3Nzg4N30.R3sQ4ptlB6MhqVmb4haRgAbtRRjSLZtgviETuqd4rO0'
         try {
-            const response = await fetch (myUrl, {
+            const response = await fetch(myUrl, {
                 headers: {
                     Authorization: `Bearer ${key}`
                 }
             })
-            if(response.ok) {
+            if (response.ok) {
                 const object = await response.json()
                 dispatch({
                     type: myAction,
@@ -97,21 +104,20 @@ export const getExperiences = ( id, myAction, idExp = '' ) => {
 
             }
         }
-        catch (error)
-        {
+        catch (error) {
             console.log(error)
 
         }
     }
 }
 
-export const postExperience = (id, objectToModify ) => {
+export const postExperience = (id, objectToModify) => {
 
     return async (dispatch, getState) => {
         const myUrl = `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences`
         const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYThmZjRkMGRlZjAwMTVjZWYwZjYiLCJpYXQiOjE3MjU4NjgyODcsImV4cCI6MTcyNzA3Nzg4N30.R3sQ4ptlB6MhqVmb4haRgAbtRRjSLZtgviETuqd4rO0'
         try {
-            const response = await fetch (myUrl, {
+            const response = await fetch(myUrl, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${key}`,
@@ -120,9 +126,9 @@ export const postExperience = (id, objectToModify ) => {
 
                 body: JSON.stringify(objectToModify)
 
-                
+
             })
-            if(response.ok) {
+            if (response.ok) {
                 const object = await response.json()
                 dispatch({
                     type: ADD_NEW_EXP,
@@ -134,21 +140,20 @@ export const postExperience = (id, objectToModify ) => {
 
             }
         }
-        catch (error)
-        {
+        catch (error) {
             console.log(error)
 
         }
     }
 }
 
-export const modifyExperience = ( id, idExp, objectToModify ) => {
+export const modifyExperience = (id, idExp, objectToModify) => {
 
     return async (dispatch, getState) => {
         const myUrl = `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences/${idExp}`
         const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYThmZjRkMGRlZjAwMTVjZWYwZjYiLCJpYXQiOjE3MjU4NjgyODcsImV4cCI6MTcyNzA3Nzg4N30.R3sQ4ptlB6MhqVmb4haRgAbtRRjSLZtgviETuqd4rO0'
         try {
-            const response = await fetch (myUrl, {
+            const response = await fetch(myUrl, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${key}`,
@@ -157,9 +162,9 @@ export const modifyExperience = ( id, idExp, objectToModify ) => {
 
                 body: JSON.stringify(objectToModify)
 
-                
+
             })
-            if(response.ok) {
+            if (response.ok) {
                 const object = await response.json()
                 dispatch({
                     type: MODIFY_MY_EXP,
@@ -171,21 +176,20 @@ export const modifyExperience = ( id, idExp, objectToModify ) => {
 
             }
         }
-        catch (error)
-        {
+        catch (error) {
             console.log(error)
 
         }
     }
 }
 
-export const deleteExperience = ( id, idExp ) => {
+export const deleteExperience = (id, idExp) => {
 
     return async (dispatch, getState) => {
         const myUrl = `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences/${idExp}`
         const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYThmZjRkMGRlZjAwMTVjZWYwZjYiLCJpYXQiOjE3MjU4NjgyODcsImV4cCI6MTcyNzA3Nzg4N30.R3sQ4ptlB6MhqVmb4haRgAbtRRjSLZtgviETuqd4rO0'
         try {
-            const response = await fetch (myUrl, {
+            const response = await fetch(myUrl, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${key}`,
@@ -193,9 +197,9 @@ export const deleteExperience = ( id, idExp ) => {
                 },
 
 
-                
+
             })
-            if(response.ok) {
+            if (response.ok) {
                 const object = await response.json()
                 dispatch({
                     type: MODIFY_MY_EXP,
@@ -207,8 +211,46 @@ export const deleteExperience = ( id, idExp ) => {
 
             }
         }
-        catch (error)
-        {
+        catch (error) {
+            console.log(error)
+
+        }
+    }
+}
+
+// POST ----------
+
+export const getOrModifyPost = (myMethod = 'GET', myAction = GET_ALL_POSTS, objectToModify = '', postID = '') => {
+    return async (dispatch, getState) => {
+        const myUrl = `https://striveschool-api.herokuapp.com/api/posts/${postID}`
+        const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYThmZjRkMGRlZjAwMTVjZWYwZjYiLCJpYXQiOjE3MjU4NjgyODcsImV4cCI6MTcyNzA3Nzg4N30.R3sQ4ptlB6MhqVmb4haRgAbtRRjSLZtgviETuqd4rO0'
+        try {
+            const response = await fetch(myUrl, {
+                method: myMethod,
+                headers: {
+                    Authorization: `Bearer ${key}`,
+                    'Content-Type': 'application/json'
+                },
+
+
+                ...((myMethod !== 'GET' && myMethod !== 'DELETE') && { body: JSON.stringify(objectToModify) })
+            })
+
+            if (response.ok) {
+                const object = await response.json()
+                dispatch({
+                    type: myAction,
+                    payload: object
+                })
+            }
+
+            else {
+                alert('Errrore Fetch')
+
+            }
+
+        }
+        catch (error) {
             console.log(error)
 
         }
