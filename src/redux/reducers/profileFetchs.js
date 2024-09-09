@@ -1,4 +1,4 @@
-import { TAKE_MY_PROFILE, TAKE_ALL_PROFILE, TAKE_ID_PROFILE } from "../actions"
+import { TAKE_MY_PROFILE, TAKE_ALL_PROFILE, TAKE_ID_PROFILE, MODIFY_MY_PROFILE } from "../actions"
 
 
 
@@ -24,6 +24,12 @@ const profileReducers = (state = initialState, action) => {
             }
         }
         case TAKE_ID_PROFILE: {
+            return{
+                ...state,
+                specificProfile: action.payload
+            }
+        }
+        case MODIFY_MY_PROFILE: {
             return{
                 ...state,
                 specificProfile: action.payload
