@@ -11,6 +11,10 @@ export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const CREATE_NEW_POST = 'CREATE_NEW_POST'
 export const MODIFY_POST = 'MODIFY_POST'
 export const DELETE_POST = 'DELETE_POST'
+export const GET_SEARCH = 'GET_SEARCH'
+export const GET_COMPANY = 'GET_COMPANY'
+export const GET_CATEGORY = 'GET_CATEGORY'
+
 
 
 // PROFILE ------------------------------------------
@@ -249,6 +253,75 @@ export const getOrModifyPost = (myMethod = 'GET', myAction = GET_ALL_POSTS, obje
 
             }
 
+        }
+        catch (error) {
+            console.log(error)
+
+        }
+    }
+}
+
+// JOB ------------
+
+export const getSearch = ( query ) => {
+    return async (dispatch, getState) => {
+        const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=${query}`
+        try {
+            const response = await fetch (myUrl)
+            if(response.ok){
+                const {data} = await response.json()
+                dispatch({
+                    type: GET_SEARCH,
+                    payload: data
+                })
+            }
+            else {
+                alert ('Errore nella Fetch')
+            }
+        }
+        catch (error) {
+            console.log(error)
+
+        }
+    }
+}
+export const getCompany = ( query ) => {
+    return async (dispatch, getState) => {
+        const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?company=${query}`
+        try {
+            const response = await fetch (myUrl)
+            if(response.ok){
+                const {data} = await response.json()
+                dispatch({
+                    type: GET_COMPANY,
+                    payload: data
+                })
+            }
+            else {
+                alert ('Errore nella Fetch')
+            }
+        }
+        catch (error) {
+            console.log(error)
+
+        }
+    }
+}
+export const getCategory = ( query ) => {
+    return async (dispatch, getState) => {
+        const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?category=${query}&limit=10`
+        try {
+            const response = await fetch (myUrl)
+            if(response.ok){
+                const {data} = await response.json()
+                dispatch({
+                    type: GET_CATEGORY,
+                    payload: data
+                })
+            }
+            else {
+                alert ('Errore nella Fetch')
+            }
         }
         catch (error) {
             console.log(error)
