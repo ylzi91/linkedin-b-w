@@ -1,16 +1,97 @@
-header {
-  background-color: #424548 !important;
-  height: 52px;
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
-p {
-  margin: 0 !important;
-  padding: 0 !important;
+
+.experience-section {
+  text-align: left;
 }
 
+.experience-item {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
 
-/* NAVBAR */
+.experience-item:last-child {
+  border-bottom: none;
+}
 
-#custom-navbar {
-width: 71% !important;
+.company-logo {
+  max-width: 48px;
+  max-height: 48px;
+}
+
+.company-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.role {
+  font-weight: 600;
+}
+
+.duration, .location {
+  font-size: 0.9rem;
+}
+
+.description {
+  font-size: 0.95rem;
+}
+
+.see-more {
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.see-more:hover {
+  text-decoration: underline;
+}
+
+.experience-section .card-footer {
+  padding-top: 0;
+}
+
+.experience-section .card-footer .btn-link {
+  color: #0a66c2;  /* Colore blu di LinkedIn */
+  font-weight: 600;
+}
+
+.experience-section .card-footer .btn-link:hover {
+  color: #004182;  /* Colore blu scuro per l'hover */
+  text-decoration: underline;
+}
+
+.experience-section .show-all-experiences {
+  transition: background-color 0.3s ease;
+  border-top: 1px solid #e0e0e0;
+}
+
+.experience-section .show-all-experiences:hover {
+  background-color: #F3F3F3;
+}
+
+.user {
+  width: 80px;
+  height: 80px;
+  font-size: 45px;
+}
+
+.experience-section .show-all-experiences:hover button {
+  color: #000 !important;
+}
+
+.experience-section .show-all-experiences button {
+  color: #666;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: color 0.3s ease;
+}
+
+.experience-section .show-all-experiences button span {
+  margin-left: 4px;
 }
