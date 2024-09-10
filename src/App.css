@@ -50,26 +50,59 @@ main {
 
 /* NAVBAR */
 
-#custom-navbar {
+/* MEDIA QUERY */
 
+@media screen and (min-width: 400px) {
+
+  #home,
+  #custom-navbar {
+    width: 100% !important;
+  }
 }
 
 
 @media screen and (min-width: 576px) {
-  #home, #custom-navbar  {
+
+  #home,
+  #custom-navbar {
     width: 90% !important;
   }
 }
 
 @media screen and (min-width: 768px) {
-  #home, #custom-navbar  {
+  #home {
     width: 85% !important;
+  }
+
+  #custom-navbar {
+
+    width: 90% !important;
+  }
+}
+
+@media screen and (min-width: 960px) {
+
+  #home,
+  #custom-navbar {
+    width: 80% !important;
   }
 }
 
 @media screen and (min-width: 992px) {
-  #home, #custom-navbar  {
-    width: 92% !important;
+
+  #home,
+  #custom-navbar {
+    width: 80% !important;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #home {
+    width: 96% !important;
+  }
+
+  #custom-navbar {
+    width: 96% !important;
   }
 }
 @media screen and (min-width: 1000px) {
@@ -217,4 +250,13 @@ input::placeholder {
 /*BODY*/
 main {
 background-color: black;
+}
+@media screen and (min-width: 1200) {
+  #home {
+    width: 96% !important;
+  }
+
+  #custom-navbar {
+    width: 96% !important;
+  }
 }
