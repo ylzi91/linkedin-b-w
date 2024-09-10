@@ -55,13 +55,14 @@ const AllPosts = () => {
                     <div className="card-create px-3 py-3 mb-3" key={post.id}>
                         <div className="body-input mb-3">
                             <div className="post-img">
-                                <img src={getProfileImage(post.username)} alt={post.username} />
+                                <img className=" rounded-circle" src={getProfileImage(post.username)} alt={post.username} />
                             </div>
                             <div className="user-post w-100 h-100">
                                 <div>{post.username}</div>
                                 <div>{timeAgo(post.createdAt)}</div>
                             </div>
                         </div>
+                            <div className=" text-light">{post.text}</div>
                     </div>
                 )) : <p>No posts available</p>
             }

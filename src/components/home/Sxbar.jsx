@@ -31,7 +31,7 @@ export const Sxbar = () => {
 
         </div>
         <Card.Body className=" d-flex flex-column justify-content-center">
-          <Link to = '/myprofile' className=" list-group-item card-Title text-center fs-4">
+          <Link to = '/myprofile' className=" list-group-item card-Title text-center fs-6 fw-bolder">
             {myProfile.name} {myProfile.surname}
           </Link>
           <Card.Text className=" text-center opacity-75" style={{ fontSize: '0.6em' }}>{myProfile.title}</Card.Text>
@@ -40,7 +40,7 @@ export const Sxbar = () => {
         <ListGroup onClick={()=>{setSpider(!spider)}} className="list-group-flush">
           <ListGroup.Item action style={{ fontSize: "0.7em" }}>
             Espandi la tua rete
-            {spider && <img src = 'http://www.amazingcomics.it/spiderman/gif_spiderman_sd_3.gif'/>}
+            {spider && <img className=" w-75 mx-auto" src = 'http://www.amazingcomics.it/spiderman/gif_spiderman_sd_3.gif'/>}
           </ListGroup.Item>
           <ListGroup.Item
             className=" d-flex align-items-center"

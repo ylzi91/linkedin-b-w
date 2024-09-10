@@ -1,6 +1,8 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { Sxbar } from "./Sxbar";
 import { Dxbar } from "./Dxbar";
+import CreatePost from "./CreatePost";
+import AllPosts from "./AllPosts";
 
 const Home = () => {
     return (
@@ -11,7 +13,8 @@ const Home = () => {
                         <Sxbar />
                     </Col>
                     <Col xs={12} sm={8} md={5} lg={6} className=" p-1" >
-                        <p className="border"> CIAO CIAO 2</p>
+                        <CreatePost/>
+                        <AllPosts/>
                     </Col>
                     <Col xs={0} sm={0} md={3} lg={4} className=" p-1 d-none d-md-block">
                         <Dxbar />

@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TAKE_MY_PROFILE, getProfile } from "../../redux/actions";
+import { CREATE_NEW_POST, TAKE_MY_PROFILE, getOrModifyPost, getProfile } from "../../redux/actions";
 import { GrMultimedia } from "react-icons/gr";
 import { MdEvent } from "react-icons/md";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Form } from "react-bootstrap";
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const CreatePost = () => {
 
     const dispatch = useDispatch();
     const profile = useSelector(store => store.profile.myProfile)
+    const [post, setPost] = useState ('')
 
     useEffect(() => {
         dispatch(getProfile('me', TAKE_MY_PROFILE))
@@ -22,7 +24,15 @@ const CreatePost = () => {
                         <img src={profile.image} alt="profile-image" />
                     </div>
                     <div className="body-input-text w-100 h-100">
-                        <div className="div-input"> Crea un post</div>
+                        <form onSubmit={(e) =>{
+                            e.preventDefault()
+                            dispatch(getOrModifyPost('POST', CREATE_NEW_POST, {text: post}))
+                        } }>
+                            <input value={post} onChange={(e)=> {
+                                setPost(e.target.value)
+                                window.location.reload()
+                            }} type="text" placeholder="Crea un post" className="div-input w-100 bg-dark" />
+                        </form>
                     </div>
                 </div>
                 <Container fluid className="p-0 w-100">
