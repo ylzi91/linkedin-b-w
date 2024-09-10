@@ -16,8 +16,8 @@ const CreatePost = () => {
 
     return (
         <>
-            <div className="card-create px-3 py-3 mb-3">
-                <div className="body-input mb-3">
+            <div className="card-create px-3 pt-2 mb-3">
+                <div className="body-input mb-2">
                     <div className="body-input-img">
                         <img src={profile.image} alt="profile-image" />
                     </div>
