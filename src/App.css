@@ -213,12 +213,20 @@
   
   }
   
+  input::placeholder {
+    color: grey !important;
+    font-size: large !important;
+    opacity: 0.7 !important;
+  }
+
   #root{
-    background-color: black ;
+    background-color: #000000 !important;
   }
   
   .profile{
     width: 100px !important;
+    height: 100px !important;
+    object-fit: cover !important;
     transform: translateY(-75px);
   }
   .profileo{

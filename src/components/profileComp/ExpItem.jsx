@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from "react";
 import { Row, Col, Image } from "react-bootstrap";
+import { getExperiences, TAKE_EXP } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const ExpItem = ({
   company,
@@ -13,25 +15,27 @@ const ExpItem = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
 
+
   const toggleDescription = () => {
     setExpanded(!expanded);
   };
 
   useEffect(() => {
     console.log("ciaooooo");
+
   }, []);
 
   return (
     <Row className="experience-item mb-4">
       <Col xs={2} md={1}>
-        <Image
+       {logo && ( <Image
           src={logo}
           alt={`${company} logo`}
           fluid
           className="company-logo"
-        />
+        />)}
       </Col>
-      <Col xs={10} md={11}>
+      <Col>
         <h3 className="company-name mb-0">{company}</h3>
         <p className="role mb-0">{role}</p>
         <p className="duration text-muted mb-0">{duration}</p>

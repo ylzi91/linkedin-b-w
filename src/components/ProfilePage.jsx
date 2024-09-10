@@ -4,18 +4,27 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { CiCamera } from "react-icons/ci";
 import { IoPencilOutline } from "react-icons/io5";
 import { getProfile, TAKE_MY_PROFILE } from "../redux/actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OtherProfile from "./profileComp/OtherProfile";
+import FormModProfile from "./profileComp/FormModProfile";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const myprofile = useSelector((s) => s.profile.myProfile);
+  const [modProfile, setModProfile] = useState(false)
+    const [change, setChange] = useState(true)
+  const closeForm = () => {
+    setModProfile(false)
+  }
+  const changes = () => {
+    setChange(false)
+  }
 
   useEffect(() => {
     dispatch(getProfile("me", TAKE_MY_PROFILE));
-    console.log(myprofile);
-  }, [dispatch]);
+    setChange(true)
+  }, [change]);
 
   return (
     <>
@@ -32,7 +41,8 @@ const ProfilePage = () => {
                {myprofile.name} {myprofile.surname}
                   <span className="position-absolute end-0">
                     <Badge
-                      className="rounded rounded-circle bg-transparent text-dark"
+                    onClick={()=> setModProfile(!modProfile)}
+                      className="rounded rounded-circle bg-transparent"
                     >
                       <IoPencilOutline />
                     </Badge>
@@ -77,10 +87,11 @@ const ProfilePage = () => {
                   >
                     Altro
                   </Button>
+                  {modProfile && <FormModProfile close={closeForm} changes={changes} />}
                 </Card.Text>
               </Card.Body>
             </Card>{" "}
-            <ExpCard />
+            <ExpCard id={myprofile._id} />
           </Col>
           <Col xs={12} md={4}>
           <Card className="experience-section bg-dark text-light mb-3 w-100" >

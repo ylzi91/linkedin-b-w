@@ -17,7 +17,7 @@ function OtherProfile (){
       <ListGroup >
         {AllProfile.slice(4, 9).map((p)=>{
             return(
-                <ListGroup.Item className="bg-dark border-0 border-black border-bottom d-flex">
+                <ListGroup.Item key={p._id} className="bg-dark border-0 border-black border-bottom d-flex">
                     <div>
                         <img src={p.image} className="profileo rounded-circle" alt="profile" />
                     </div>
