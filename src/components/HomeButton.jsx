@@ -1,6 +1,6 @@
 const HomeButton = () => {
     return (
-      <div className="ms-4 ps-3 d-flex flex-column justify-content-center align-items-center">
+      <div>
         <svg xmlns="http://www.w3.org/2000/svg" 
         fill="white"  
         width="24" 

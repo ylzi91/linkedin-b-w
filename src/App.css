@@ -119,7 +119,9 @@ main {
 }
 
 .companies-dropdown {
-  border-left: 0.5px solid rgba(255, 255, 255, 0.2)
+  border-left: 0.5px solid rgba(255, 255, 255, 0.2);
+  padding-left: 30%;
+
 }
 
 .custom-arrow {
