@@ -168,6 +168,7 @@ main {
   min-width: 250px;
 }
 
+
 .user-dropdown .dropdown-item,
 .user-dropdown .dropdown-item:hover {
   background-color: #212529;
@@ -186,6 +187,16 @@ main {
 
 .title {
   font-size: 0.9rem;
+}
+
+.ul:hover{
+  text-decoration: underline;
+  text-decoration-color: grey;
+  text-decoration-thickness: 1px;
+}
+
+.try:hover {
+  color: #0a66c2 !important;
 }
 
 .hover-drop:hover {
@@ -220,11 +231,15 @@ input::placeholder {
 }
 
 .btnProfile {
-  display: block !important;
   border: 1px solid #71b7fb !important;
-  padding: 3px, 5px !important;
   color: #71b7fb !important;
   background-color: transparent !important;
+  width: 90% !important;
+
+}
+
+.dots-dropdown .dropdown-toggle::after {
+  display: none; 
 }
 
 /*BODY*/

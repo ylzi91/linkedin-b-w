@@ -5,6 +5,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { getProfile, TAKE_MY_PROFILE } from "../redux/actions/index";
 import { TiArrowSortedDown } from "react-icons/ti";
 import "../App.css";
+import { FcSimCardChip } from "react-icons/fc";
 
 const UserDropdown = () => {
   const dispatch = useDispatch();
@@ -41,22 +42,29 @@ const UserDropdown = () => {
       }
       id="collapsible-nav-dropdown"
     >
-      <NavDropdown.Item>
-        <div className="containerUserDropdown d-flex   ">
-          {profile.image ? (
-            <img
-              src={profile.image}
-              alt="User Profile"
-              className="profile-image rounded-circle mb-1"
-              style={{ width: "60px", height: "60px", objectFit: "cover" }}
-            />
-          ) : (
-            <FaRegUserCircle className="profile-icon fs-1 me-3" />
-          )}
-          <div>
-            <h5>{profile.name}</h5>
-            <p>{profile.title}</p>
-            <Button variant="outline" className="rounded rounded-pill mt-2 btnProfile">
+      <NavDropdown.Item >
+        <div className="p-2">
+          <div className="containerUserDropdown d-flex">
+            {profile.image ? (
+              <img
+                src={profile.image}
+                alt="User Profile"
+                className="profile-image rounded-circle mb-1"
+                style={{ width: "60px", height: "60px", objectFit: "cover" }}
+              />
+            ) : (
+              <FaRegUserCircle className="profile-icon fs-1 me-3" />
+            )}
+            <div>
+              <h5>{profile.name}</h5>
+              <p>{profile.title}</p>
+            </div>
+          </div>
+          <div className="text-center">
+            <Button
+              variant="outline"
+              className="rounded rounded-pill mt-2 btnProfile py-0"
+            >
               Visualizza profilo
             </Button>{" "}
           </div>
@@ -65,33 +73,37 @@ const UserDropdown = () => {
 
       <NavDropdown.Divider className="nav-dropdown-divider" />
 
-      <NavDropdown.Item>
-        <h6>Account</h6>
-      </NavDropdown.Item>
+      <div className="px-3">
+        <NavDropdown.Item>
+          <h5>Account</h5>
+        </NavDropdown.Item>
 
-      <NavDropdown.Item>Prova 1 mese du Premium per 0 EUR</NavDropdown.Item>
+        <NavDropdown.Item className="text-secondary try"> <FcSimCardChip />Prova 1 mese di Premium per 0 EUR</NavDropdown.Item>
 
-      <NavDropdown.Item>Impostazioni e privacy</NavDropdown.Item>
+        <NavDropdown.Item className="text-secondary ul">Impostazioni e privacy</NavDropdown.Item>
 
-      <NavDropdown.Item>Guida</NavDropdown.Item>
+        <NavDropdown.Item className="text-secondary ul">Guida</NavDropdown.Item>
 
-      <NavDropdown.Item>Lingua</NavDropdown.Item>
+        <NavDropdown.Item className="pb-1 text-secondary ul">Lingua</NavDropdown.Item>
 
-      <NavDropdown.Divider className="nav-dropdown-divider" />
+        <NavDropdown.Divider className="nav-dropdown-divider" />
+      </div>
+      <div className="px-3">
+        <NavDropdown.Item>
+          <h5 className="pt-1">Gestisci</h5>
+        </NavDropdown.Item>
 
-      <NavDropdown.Item>
-        <h6>Gestisci</h6>
-      </NavDropdown.Item>
+        <NavDropdown.Item className="text-secondary ul">Post e attivitá</NavDropdown.Item>
 
-      <NavDropdown.Item>Post e attivitá</NavDropdown.Item>
+        <NavDropdown.Item className="pb-1 text-secondary ul">
+          Account per la pubblicazione di offerte
+        </NavDropdown.Item>
 
-      <NavDropdown.Item>
-        Account per la pubblicazione di offerte
-      </NavDropdown.Item>
-
-      <NavDropdown.Divider className="nav-dropdown-divider" />
-
-      <NavDropdown.Item>Esci</NavDropdown.Item>
+        <NavDropdown.Divider className="nav-dropdown-divider" />
+      </div>
+      <div className="px-3">
+        <NavDropdown.Item className="pb-4 text-secondary ul">Esci</NavDropdown.Item>
+      </div>
     </NavDropdown>
   );
 };
