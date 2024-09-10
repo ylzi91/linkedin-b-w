@@ -6,7 +6,7 @@ import { CREATE_NEW_POST, DELETE_POST, MODIFY_POST, getCategory, getCompany, get
 import CustomNavbar from './components/CustomNavbar';
 import ExpCard from './components/profileComp/ExpCard';
 import ProfilePage from './components/ProfilePage';
-import Home from './components/Home';
+import Home from './components/home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -28,10 +28,11 @@ function App() {
         <main className='d-flex justify-content-center'>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/myprofile' element={<ProfilePage />} />
           </Routes>
         </main>
+      
       </BrowserRouter>
-      <ProfilePage />
     </>
   );
 }

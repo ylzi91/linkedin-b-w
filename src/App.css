@@ -72,6 +72,21 @@ main {
     width: 92% !important;
   }
 }
+@media screen and (min-width: 1000px) {
+  #home, #custom-navbar  {
+    width: 75% !important;
+  }
+}
+
+.card-box { 
+  width: 72px;
+  height: 72px;
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+  }
+}
 
 
 #search {
