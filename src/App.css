@@ -8,9 +8,33 @@ p {
   padding: 0 !important;
 }
 
+main {
+  background-color: black !important;
+  height: 100vh;
+}
+
 
 /* NAVBAR */
 
 #custom-navbar {
-width: 71% !important;
+border: 4px solid black !important;
+}
+
+
+@media screen and (min-width: 576px) {
+  #home, #custom-navbar  {
+    width: 90% !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #home, #custom-navbar  {
+    width: 85% !important;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #home, #custom-navbar  {
+    width: 92% !important;
+  }
 }
