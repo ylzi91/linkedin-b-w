@@ -6,13 +6,13 @@ import { IoPencilOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getExperiences, TAKE_EXP, TAKE_MY_PROFILE } from "../../redux/actions";
 
-const ExpCard = () => {
+const ExpCard = ({id}) => {
   const myprofile = useSelector((s) => s.profile.myProfile);
   const dispatch = useDispatch()
   const experiences = useSelector((s)=>s.experience.allExperiences)
   
   useEffect(()=>{
-    dispatch(getExperiences(`${myprofile._id}`, TAKE_EXP))
+    dispatch(getExperiences(`${id}`, TAKE_EXP))
   },[])
   
   const experience  = [

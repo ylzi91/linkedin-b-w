@@ -30,7 +30,7 @@ const ProfilePage = () => {
     <>
       <Container className="mt-4" fluid>
         <Row>
-          <Col xs={12} md={8}>
+          <Col xs={12} md={8} className="pe-4">
             <Card className="experience-section mb-4 bg-dark text-light">
               <Card.Img variant="top" src="https://placedog.net/636x159" />
               
