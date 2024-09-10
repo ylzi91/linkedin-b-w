@@ -22,7 +22,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <header className='d-flex align-items-center justify-content-center'>
+        <header className='d-flex bg-dark align-items-center justify-content-center'>
           <CustomNavbar />
         </header>
         <main className='d-flex justify-content-center'>
