@@ -3,9 +3,39 @@ header {
  border-bottom: 0.5px solid rgba(255, 255, 255, 0.2)
 }
 
-p {
-  margin: 0 !important;
-  padding: 0 !important;
+.company-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.role {
+  font-weight: 600;
+}
+
+.duration, .location {
+  font-size: 0.9rem;
+}
+
+.description {
+  font-size: 0.95rem;
+}
+
+.see-more {
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.see-more:hover {
+  text-decoration: underline;
+}
+
+.experience-section .card-footer {
+  padding-top: 0;
+}
+
+.experience-section .card-footer .btn-link {
+  color: #0a66c2;  /* Colore blu di LinkedIn */
+  font-weight: 600;
 }
 
 
