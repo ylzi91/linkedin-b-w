@@ -1,22 +1,14 @@
-
-
-
-.experience-section {
-  text-align: left;
+.row {
+  --bs-gutter-x: 0 !important; 
 }
 
-.experience-item {
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 1rem;
+header {
+ border-bottom: 0.5px solid rgba(255, 255, 255, 0.2)
 }
 
-.experience-item:last-child {
-  border-bottom: none;
-}
-
-.company-logo {
-  max-width: 48px;
-  max-height: 48px;
+p, a {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .company-name {
@@ -54,62 +46,96 @@
   font-weight: 600;
 }
 
-.experience-section .card-footer .btn-link:hover {
-  color: #004182;  /* Colore blu scuro per l'hover */
-  text-decoration: underline;
+main {
+  background-color: black !important;
+  height: 100vh;
 }
 
-.experience-section .show-all-experiences {
-  transition: background-color 0.3s ease;
-  border-top: 1px solid #e0e0e0;
-}
-
-.experience-section .show-all-experiences:hover {
-  background-color: #F3F3F3;
-}
-
-.user {
-  width: 80px;
-  height: 80px;
-  font-size: 45px;
-}
-
-.experience-section .show-all-experiences:hover button {
-  color: #000 !important;
-}
-
-.experience-section .show-all-experiences button {
-  color: #666;
-  font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: color 0.3s ease;
-}
-
-.experience-section .show-all-experiences button span {
-  margin-left: 4px;
-}
 
 /* NAVBAR */
 
-#custom-navbar {
-  height: 60px !important;
+/* MEDIA QUERY */
+
+
+@media screen and (min-width: 400px) {
+
+  #home,
+  #custom-navbar {
+    width: 100% !important;
   }
-  
-  #search {
-    width: 280px;
-    height: 35px;
+}
+
+@media screen and (min-width: 576px) {
+
+  #home,
+  #custom-navbar {
+    width: 90% !important;
   }
-  
-  #search .input-group-text {
-    background-color: #38434f !important; 
-    color: white !important; 
-    border: none; 
+}
+
+@media screen and (min-width: 768px) {
+  #home {
+    width: 85% !important;
   }
-  
-  main {
-    background-color: black;
-    }
+
+  #custom-navbar {
+
+    width: 90% !important;
+  }
+}
+
+@media screen and (min-width: 960px) {
+
+  #home,
+  #custom-navbar {
+    width: 80% !important;
+  }
+}
+
+@media screen and (min-width: 992px) {
+
+  #home,
+  #custom-navbar {
+    width: 80% !important;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #home {
+    width: 85% !important;
+  }
+
+  #custom-navbar {
+    width: 85% !important;
+  }
+}
+@media screen and (min-width: 1000px) {
+  #home, #custom-navbar  {
+    width: 75% !important;
+  }
+}
+
+.card-box { 
+  width: 72px;
+  height: 72px;
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+  }
+}
+
+
+#search {
+  width: 280px;
+  height: 35px;
+}
+
+#search .input-group-text {
+  background-color: #38434f; 
+  color: white; 
+  border: none; 
+}
 
   #search .form-control {
     background-color: #38434f !important; 

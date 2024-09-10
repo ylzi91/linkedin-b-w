@@ -13,12 +13,12 @@ const CustomNavbar = () => {
     <>
       <div
         id="custom-navbar"
-        className="d-flex justify-content-center align-items-center container-fluid flex-nowrap"
+        className="d-flex justify-content-around align-items-center"
       >
+        <Nav className="d-flex align-items-center justify-content-around w-100">
         <Navbar.Brand>
           <LinkedinIcon />
         </Navbar.Brand>
-        <Nav className="d-flex align-items-center">
           <Nav.Link className="ps-1">
             <SearchBar />
           </Nav.Link>

@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { CREATE_NEW_POST, DELETE_POST, MODIFY_POST, getCategory, getCompany, getOrModifyPost, getSearch } from './redux/actions';
 import CustomNavbar from './components/CustomNavbar';
 import ProfilePage from './components/ProfilePage';
+import Home from './components/home/Home';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   const dispatch = useDispatch()
@@ -18,10 +20,18 @@ function App() {
 
   return (
     <>
-      <header className='d-flex align-items-center justify-content-center bg-dark container-fluid'>
-        <CustomNavbar />
-      </header>
-      <ProfilePage />
+      <BrowserRouter>
+        <header className='d-flex bg-dark align-items-center justify-content-center'>
+          <CustomNavbar />
+        </header>
+        <main className='d-flex justify-content-center'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/myprofile' element={<ProfilePage />} />
+          </Routes>
+        </main>
+      
+      </BrowserRouter>
     </>
   );
 }
