@@ -1,97 +1,147 @@
+header {
+ height: 52px;
+ border-bottom: 0.5px solid rgba(255, 255, 255, 0.2)
+}
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+/* NAVBAR */
+
+#custom-navbar {
+width: 65% !important;
+height: 52px !important;
+}
+
+#search {
+  width: 280px;
+  height: 35px;
+}
+
+#search .input-group-text {
+  background-color: #38434f; 
+  color: white; 
+  border: none; 
+}
+
+#search .form-control {
+  background-color: #38434f; 
+  color: white;
+  border: none;
+  padding-left: 0; 
+  font-size: small;
+}
+
+#search .form-control:focus {
+  background-color: #38434f; 
+  color: white; 
+  outline: none; 
+  box-shadow: none; 
+}
+
+#search .input-group-text {
+  border-radius: 1;
+}
+
+#search .form-control {
+  border-radius: 1;
+}
+
+.iconNames {
+  font-size: small;
+  margin-top: 0;
+}
+
+.user-dropdown > .dropdown-toggle::after {
+  display: none !important; 
+}
+
+.companies-dropdown .dropdown-toggle::after {
+  display: none; 
+}
+
+.companies-dropdown {
+  border-left: 0.5px solid rgba(255, 255, 255, 0.2)
+}
+
+.custom-arrow {
+  font-size: medium;
+}
+
+.premium {
+  color: #e9a53f;
+  text-decoration: underline;
+  font-size: small;
+  width: 130px;
   text-align: center;
+  
+}
+
+.nav-dropdown-divider {
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  
 }
 
 
-.experience-section {
-  text-align: left;
+.user-dropdown .dropdown-menu {
+  background-color: #212529; 
+  color: #fff; 
+  border: none; 
+  min-width: 250px;
 }
 
-.experience-item {
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 1rem;
+.user-dropdown .dropdown-item,
+.user-dropdown .dropdown-item:hover {
+  background-color: #212529; 
+  color: #fff;
 }
 
-.experience-item:last-child {
-  border-bottom: none;
+
+
+.containerUserDropdown {
+  display: flex; 
+  align-items: center; 
+  padding: 10px; 
+  color: #fff; 
 }
 
-.company-logo {
-  max-width: 48px;
-  max-height: 48px;
+
+.containerUserDropdown .profile-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 15px; 
 }
 
-.company-name {
-  font-size: 1.1rem;
-  font-weight: 600;
+
+.containerUserDropdown h5, .containerUserDropdown p {
+  margin: 0; 
+  color: #fff; 
 }
 
-.role {
-  font-weight: 600;
+input::placeholder {
+  font-size: 1.2em;
+  color: #fff !important;
+
+
 }
 
-.duration, .location {
-  font-size: 0.9rem;
+
+
+.btnProfile {
+  display: block;
+  width: 190px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #71b7fb;
+  color: #71b7fb;
+  background-color: transparent;
 }
 
-.description {
-  font-size: 0.95rem;
-}
-
-.see-more {
-  font-size: 0.9rem;
-  text-decoration: none;
-}
-
-.see-more:hover {
-  text-decoration: underline;
-}
-
-.experience-section .card-footer {
-  padding-top: 0;
-}
-
-.experience-section .card-footer .btn-link {
-  color: #0a66c2;  /* Colore blu di LinkedIn */
-  font-weight: 600;
-}
-
-.experience-section .card-footer .btn-link:hover {
-  color: #004182;  /* Colore blu scuro per l'hover */
-  text-decoration: underline;
-}
-
-.experience-section .show-all-experiences {
-  transition: background-color 0.3s ease;
-  border-top: 1px solid #e0e0e0;
-}
-
-.experience-section .show-all-experiences:hover {
-  background-color: #F3F3F3;
-}
-
-.user {
-  width: 80px;
-  height: 80px;
-  font-size: 45px;
-}
-
-.experience-section .show-all-experiences:hover button {
-  color: #000 !important;
-}
-
-.experience-section .show-all-experiences button {
-  color: #666;
-  font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: color 0.3s ease;
-}
-
-.experience-section .show-all-experiences button span {
-  margin-left: 4px;
+/*BODY*/
+main {
+background-color: black;
 }
