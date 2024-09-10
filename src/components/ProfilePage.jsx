@@ -21,7 +21,7 @@ const ProfilePage = () => {
             Mario Rossi
             <span className="position-absolute end-0">
               <Badge
-                className="rounded rounded-circle bg-white text-dark"
+                className="rounded rounded-circle bg-transparent text-dark"
                 bg="secondary"
               >
                 <IoPencilOutline />
@@ -38,16 +38,16 @@ const ProfilePage = () => {
                 </a>
               </span>
             </p>
-            <Button variant="primary" size="md" active>
+            <Button variant="primary" className="rounded rounded-pill" size="md" active>
               Disponibile per
             </Button>
-            <Button variant="outline-primary" className="mx-2" size="md">
+            <Button variant="outline-primary" className="mx-2 rounded rounded-pill" size="md">
               Aggiungi sezione del profilo
             </Button>
-            <Button variant="outline-primary" size="md">
+            <Button variant="outline-primary" className="rounded rounded-pill" size="md">
               modifica profilo
             </Button>
-            <Button variant="outline-secondary" className="ms-2" size="md">
+            <Button variant="outline-secondary" className="ms-2 rounded rounded-pill" size="md">
               Altro
             </Button>
           </Card.Text>
