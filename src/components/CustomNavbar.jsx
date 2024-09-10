@@ -1,4 +1,4 @@
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import LinkedinIcon from "./LinkedinIcon";
 import SearchBar from "./SearchBar";
 import HomeButton from "./HomeButton";
@@ -15,6 +15,7 @@ const CustomNavbar = () => {
         id="custom-navbar"
         className="d-flex justify-content-around align-items-center"
       >
+       
         <Nav className="d-flex align-items-center justify-content-around w-100">
         <Navbar.Brand>
           <LinkedinIcon />
