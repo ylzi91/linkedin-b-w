@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { CREATE_NEW_POST, DELETE_POST, MODIFY_POST, getCategory, getCompany, getOrModifyPost, getSearch } from './redux/actions';
 import CustomNavbar from './components/CustomNavbar';
 
+
+
 function App() {
   const dispatch = useDispatch()
 
@@ -18,6 +20,9 @@ function App() {
       <header className='d-flex align-items-center justify-content-center'>
         <CustomNavbar />
       </header>
+      <main>
+     
+      </main>
     </>
   );
 }
