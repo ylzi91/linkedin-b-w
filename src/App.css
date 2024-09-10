@@ -48,7 +48,7 @@ p, a {
 
 main {
   background-color: black !important;
-  height: 100vh;
+  height: 100vh !important;
 }
 
 
@@ -111,7 +111,7 @@ main {
 }
 @media screen and (min-width: 1000px) {
   #home, #custom-navbar  {
-    width: 75% !important;
+    width: 80% !important;
   }
 }
 
