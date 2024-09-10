@@ -109,7 +109,152 @@ main {
     width: 85% !important;
   }
 }
+@media screen and (min-width: 1000px) {
+  #home, #custom-navbar  {
+    width: 75% !important;
+  }
+}
 
+.card-box { 
+  width: 72px;
+  height: 72px;
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+  }
+}
+
+
+#search {
+  width: 280px;
+  height: 35px;
+}
+
+#search .input-group-text {
+  background-color: #38434f; 
+  color: white; 
+  border: none; 
+}
+
+#search .form-control {
+  background-color: #38434f; 
+  color: white;
+  border: none;
+  padding-left: 0; 
+  font-size: small;
+}
+
+#search .form-control:focus {
+  background-color: #38434f; 
+  color: white; 
+  outline: none; 
+  box-shadow: none; 
+}
+
+#search .input-group-text {
+  border-radius: 1;
+}
+
+#search .form-control {
+  border-radius: 1;
+}
+
+.iconNames {
+  font-size: small;
+  margin-top: 0;
+}
+
+.user-dropdown > .dropdown-toggle::after {
+  display: none !important; 
+}
+
+.companies-dropdown .dropdown-toggle::after {
+  display: none; 
+}
+
+.companies-dropdown {
+  border-left: 0.5px solid rgba(255, 255, 255, 0.2)
+}
+
+.custom-arrow {
+  font-size: medium;
+}
+
+.premium {
+  color: #e9a53f;
+  text-decoration: underline;
+  font-size: small;
+  width: 130px;
+  text-align: center;
+  
+}
+
+.nav-dropdown-divider {
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  
+}
+
+
+.user-dropdown .dropdown-menu {
+  background-color: #212529; 
+  color: #fff; 
+  border: none; 
+  min-width: 250px;
+}
+
+.user-dropdown .dropdown-item,
+.user-dropdown .dropdown-item:hover {
+  background-color: #212529; 
+  color: #fff;
+}
+
+
+
+.containerUserDropdown {
+  display: flex; 
+  align-items: center; 
+  padding: 10px; 
+  color: #fff; 
+}
+
+
+.containerUserDropdown .profile-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 15px; 
+}
+
+
+.containerUserDropdown h5, .containerUserDropdown p {
+  margin: 0; 
+  color: #fff; 
+}
+
+input::placeholder {
+  font-size: 1.2em;
+  color: #fff !important;
+
+
+}
+
+
+
+.btnProfile {
+  display: block;
+  width: 190px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #71b7fb;
+  color: #71b7fb;
+  background-color: transparent;
+}
+
+/*BODY*/
+main {
+background-color: black;
+}
 @media screen and (min-width: 1200) {
   #home {
     width: 85% !important;
@@ -151,7 +296,7 @@ main {
 }
 
 .card-create {
-  background-color: rgb(60, 60, 60);
+  background-color: #212529;
   border-radius: 8px;
 }
 
