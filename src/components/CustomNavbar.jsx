@@ -46,7 +46,7 @@ const CustomNavbar = () => {
           <Nav.Link  >
             <NotificheButton />
           </Nav.Link>
-          <Nav.Link className="me-5" >
+          <Nav.Link className="me-4" >
             <UserDropdown />
           </Nav.Link>
           </div>

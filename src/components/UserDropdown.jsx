@@ -18,19 +18,19 @@ const UserDropdown = () => {
     <NavDropdown
       className=" user-dropdown d-flex flex-column justify-content-center align-items-center"
       title={
-        <div className="d-flex flex-column align-items-center text-white">
+        <div className="d-flex flex-column align-items-center text-white py-2">
           {profile.image ? (
             <img
               src={profile.image}
               alt="User Profile"
-              className="profile-image rounded-circle mb-1"
-              style={{ width: "40px", height: "40px", objectFit: "cover" }}
+              className="profile-image rounded-circle"
+              style={{ width: "30px", height: "30px", objectFit: "cover" }}
             />
           ) : (
             <FaRegUserCircle className="profile-icon fs-4 mb-0" />
           )}
-          <div className="d-flex align-items-center">
-            <p className="text-center m-0 iconNames">
+          <div className="d-flex align-items-center ">
+            <p className="text-center iconNames d-none d-lg-flex">
               Tu
               <span className="custom-arrow iconNames  ">
                 <TiArrowSortedDown />
@@ -56,7 +56,7 @@ const UserDropdown = () => {
           <div>
             <h5>{profile.name}</h5>
             <p>{profile.title}</p>
-            <Button variant="outline" className="btnProfile">
+            <Button variant="outline" className="rounded rounded-pill mt-2 btnProfile">
               Visualizza profilo
             </Button>{" "}
           </div>

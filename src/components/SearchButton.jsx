@@ -4,7 +4,7 @@ const SearchButton = () => {
   return (
     <div>
       <FaSearch />
-      <p className="text-white iconNames">Rete</p>
+      <p className="text-white iconNames d-none d-lg-flex">Rete</p>
     </div>
   );
 };
