@@ -1,6 +1,8 @@
 import { Card } from "react-bootstrap";
 import ExpItem from "./ExpItem";
 import { useEffect } from "react";
+import { IoMdAdd } from "react-icons/io";
+import { IoPencilOutline } from "react-icons/io5";
 
 const ExpCard = () => {
   const experiences = [
@@ -122,10 +124,15 @@ const ExpCard = () => {
 
   return (
     <>
-      <Card className="experience-section mb-4">
+      <Card className="experience-section mb-4 bg-dark text-light">
         <Card.Body>
-          <Card.Title as="h2" className="mb-4">
-            Experience
+          <Card.Title className="mb-4">
+            <div className="d-flex flex-row justify-content-between flex-nowrap">
+              <p>Experience</p>
+              <div>
+                <IoMdAdd /> <IoPencilOutline />
+              </div>
+            </div>
           </Card.Title>
 
           {experiences.map((exp, idx) => {

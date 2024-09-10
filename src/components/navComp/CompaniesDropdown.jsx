@@ -1,6 +1,5 @@
 import { NavDropdown } from "react-bootstrap";
 import { TiArrowSortedDown } from "react-icons/ti";
-import "../App.css";
 
 const CompaniesDropdown = () => {
   return (

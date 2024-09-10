@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, NavDropdown } from "react-bootstrap";
 import { FaRegUserCircle } from "react-icons/fa";
-import { getProfile, TAKE_MY_PROFILE } from "../redux/actions/index";
+import { getProfile, TAKE_MY_PROFILE } from "../../redux/actions/index";
 import { TiArrowSortedDown } from "react-icons/ti";
-import "../App.css";
 
 const UserDropdown = () => {
   const dispatch = useDispatch();
@@ -56,7 +55,7 @@ const UserDropdown = () => {
           <div>
             <h5>{profile.name}</h5>
             <p>{profile.title}</p>
-            <Button variant="outline" className="btnProfile">
+            <Button variant="outline" className="btnProfile rounded rounded-pill mt-2">
               Visualizza profilo
             </Button>{" "}
           </div>

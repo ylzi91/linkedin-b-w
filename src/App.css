@@ -1,10 +1,4 @@
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
 
 .experience-section {
@@ -95,3 +89,148 @@
 .experience-section .show-all-experiences button span {
   margin-left: 4px;
 }
+
+/* NAVBAR */
+
+#custom-navbar {
+  height: 60px !important;
+  }
+  
+  #search {
+    width: 280px;
+    height: 35px;
+  }
+  
+  #search .input-group-text {
+    background-color: #38434f !important; 
+    color: white !important; 
+    border: none; 
+  }
+  
+  main {
+    background-color: black;
+    }
+
+  #search .form-control {
+    background-color: #38434f !important; 
+    color: white !important;
+    border: none !important;
+    padding-left: 0 !important; 
+    font-size: small !important;
+  }
+  
+  #search .form-control:focus {
+    background-color: #38434f !important; 
+    color: white !important; 
+    outline: none !important; 
+    box-shadow: none !important; 
+  }
+  
+  #search .input-group-text {
+    border-radius: 1 !important; 
+  }
+  
+  #search .form-control {
+    border-radius: 1 !important;
+  }
+  
+  .iconNames {
+    font-size: small;
+    margin-top: 0;
+  }
+  
+  .user-dropdown > .dropdown-toggle::after {
+    display: none !important; 
+  }
+  
+  .companies-dropdown .dropdown-toggle::after {
+    display: none; 
+  }
+  
+  .companies-dropdown {
+    border-left: 0.5px solid rgba(255, 255, 255, 0.2) !important
+  }
+  
+  .custom-arrow {
+    font-size: medium;
+  }
+  
+  .premium {
+    color: #e9a53f;
+    text-decoration: underline;
+    font-size: small;
+    width: 130px;
+    text-align: center;
+    
+  }
+  
+  .nav-dropdown-divider {
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+    
+  }
+  
+  
+  .user-dropdown .dropdown-menu {
+    background-color: #212529 !important; 
+    color: #fff !important; 
+    border: none !important; 
+    min-width: 250px !important;
+  }
+  
+  .user-dropdown .dropdown-item,
+  .user-dropdown .dropdown-item:hover {
+    background-color: #212529 !important; 
+    color: #fff !important;
+  }
+  
+  
+  
+  .containerUserDropdown {
+    display: flex !important; 
+    align-items: center !important; 
+    padding: 10px !important; 
+    color: #fff !important; 
+  }
+  
+  
+  .containerUserDropdown .profile-image {
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: cover !important;
+    margin-right: 15px !important; 
+  }
+  
+  
+  .containerUserDropdown h5, .containerUserDropdown p {
+    margin: 0 !important; 
+    color: #fff !important; 
+  }
+  
+  input::placeholder {
+    font-size: 1.2em !important;
+    color: #fff !important;
+  
+  
+  }
+  
+  #root{
+    background-color: black ;
+  }
+  
+  .profile{
+    width: 100px !important;
+    transform: translateY(-75px);
+  }
+  .profileo{
+    width: 50px !important;
+    height: 50px !important;
+    object-fit: fill !important;
+  }
+  
+  .btnProfile {
+    display: block !important;
+    border: 1px solid #71b7fb !important;
+    padding: 3px, 5px !important;
+    color: #71b7fb !important;
+    background-color: transparent !important;
+  }
