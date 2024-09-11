@@ -81,7 +81,7 @@ main {
 
   #custom-navbar {
 
-    width: 90% !important;
+    width: 85% !important;
   }
 }
 
@@ -97,24 +97,20 @@ main {
 
   #home,
   #custom-navbar {
-    width: 80% !important;
+    width: 92% !important;
   }
 }
 
 @media screen and (min-width: 1000px) {
   #home {
-    width: 85% !important;
+    width: 92% !important;
   }
 
   #custom-navbar {
-    width: 85% !important;
+    width: 92% !important;
   }
 }
-@media screen and (min-width: 1000px) {
-  #home, #custom-navbar  {
-    width: 75% !important;
-  }
-}
+
 
 .card-box { 
   width: 72px;

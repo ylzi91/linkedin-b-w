@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import CustomNavbar from './components/CustomNavbar';
-import ExpCard from './components/profileComp/ExpCard';
+
 import ProfilePage from './components/ProfilePage';
 import Home from './components/home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
