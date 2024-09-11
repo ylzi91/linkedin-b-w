@@ -272,6 +272,11 @@ input::placeholder {
   background-color: transparent;
 }
 
+.search-button:focus {
+  border: none !important;
+  outline: none !important;
+}
+
 .search-button.open {
   width: 100%;
 }
