@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+
 import { Button } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 
-const SearchButton = () => {
-  const [showInput, setShowInput] = useState(false);
-  const handleIconClick = () => {
-    setShowInput(true);
-  
-  };
+const SearchButton = ( {showInput, handleIconClick}) => {
+ 
   return (
     <div>
        {!showInput && (
@@ -15,8 +11,8 @@ const SearchButton = () => {
         handleIconClick} />
       )}
       {showInput && (
-        <div>
-          <Button className="bg-dark text-white border-0">
+        <div className="d-flex">
+          <Button className="bg-dark text-white border-0 ">
           <FaSearch />
          <input
            type="text"

@@ -1,5 +1,5 @@
 import { Navbar, Nav } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LinkedinIcon from "./navComp/LinkedinIcon";
 import SearchBar from "./navComp/SearchBar";
 import HomeButton from "./navComp/HomeButton";
@@ -13,10 +13,28 @@ import SearchButton from "./navComp/SearchButton";
 import Dots from "./navComp/Dots";
 
 const CustomNavbar = () => {
-  const [showButtons, setShowButtons] = useState(true);
-  const handleSearchButtonClick = () => {
-    setShowButtons(false);
+  const [showInput, setShowInput] = useState(false);
+
+  const handleIconClick = () => {
+    setShowInput(true);
   };
+
+ 
+  useEffect(() => {
+    const handleResize = () => {
+    
+      if (window.innerWidth >= 992) {
+        setShowInput(false); 
+      }
+    };
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div
@@ -24,24 +42,22 @@ const CustomNavbar = () => {
       className="d-flex justify-content-around align-items-center"
     >
       <Nav className="d-flex align-items-center justify-content-between w-100">
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center flex-grow-1"> 
           <Navbar.Brand>
             <LinkedinIcon />
           </Navbar.Brand>
 
-          <Nav.Link className="ps-1 d-flex d-lg-none underl">
-          <SearchButton onClick={handleSearchButtonClick} />
+          <Nav.Link className="ps-1 d-flex d-lg-none underl w-100">
+            <SearchButton showInput={showInput} handleIconClick={handleIconClick} />
           </Nav.Link>
           <Nav.Link className="d-none d-lg-flex ps-1 underl">
-          <SearchBar />
+            <SearchBar />
           </Nav.Link>
-          </div>
-        {showButtons ? (
+        </div>
+        {!showInput && (
           <>
             <div className="d-flex align-items-center justify-content-around flex-grow-1">
-              <Nav.Link className="text-light d-flex d-lg-none underl">
-               
-              </Nav.Link>
+              <Nav.Link className="text-light d-flex d-lg-none underl"></Nav.Link>
               <Nav.Link className="underl">
                 <HomeButton />
               </Nav.Link>
@@ -74,10 +90,6 @@ const CustomNavbar = () => {
               </Nav.Link>
             </div>
           </>
-        ) : (
-          <div className="w-100 d-flex justify-content-center">
-            <SearchBar />
-          </div>
         )}
       </Nav>
     </div>
