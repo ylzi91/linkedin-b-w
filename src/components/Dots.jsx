@@ -1,39 +1,66 @@
-import { NavDropdown, Dropdown, Nav } from 'react-bootstrap';
-import { HiOutlineDotsHorizontal } from 'react-icons/hi';
-import UserDropdown from './UserDropdown';
-import CompaniesDropdown from './CompaniesDropdown';
+import React, { useState, useEffect, useRef } from "react";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import UserDropdown from "./UserDropdown";
+import CompaniesDropdown from "./CompaniesDropdown";
 
 const Dots = () => {
-  return (
-    <NavDropdown
-      className="dots-dropdown"
-      title={
-        <div className="text-light">
-          <HiOutlineDotsHorizontal />
-        </div>
+  const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef(null);
+
+  const toggleMenu = () => {
+    setShowMenu((prev) => !prev);
+  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
       }
-      id="basic-nav-dropdown"
-    >
-      <div className="d-flex flex-md-row bg-dark text-light px-5 nav-dropdown-divider align-items-center rounded-start-4 rounded-bottom-4 ov">
-        <NavDropdown.Item className="px-2" href="#action/3.1">
-          <Dropdown>
-            <Dropdown.Toggle variant="link" id="user-dropdown">
-              <UserDropdown />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#user-action-1">User Action 1</Dropdown.Item>
-              <Dropdown.Item href="#user-action-2">User Action 2</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </NavDropdown.Item>
-        <NavDropdown.Item className="px-2" href="#action/3.2">
-          <CompaniesDropdown />
-        </NavDropdown.Item>
-        <NavDropdown.Item className="px-2" href="#action/3.3">
-          <Nav.Link className="premium">Prova Premium per 0 EUR</Nav.Link>
-        </NavDropdown.Item>
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className="dots-container" style={{ position: "relative" }}>
+      <div
+        onClick={toggleMenu}
+        className="dots-icon"
+        role="button"
+        aria-label="Toggle dropdown content"
+      >
+        <HiOutlineDotsHorizontal size={24} />
       </div>
-    </NavDropdown>
+
+      {showMenu && (
+        <div
+          ref={menuRef}
+          className="custom-dropdown-menu bg-dark"
+          style={{
+            position: "absolute",
+            top: "35px",
+            right: "0",
+            borderRadius: "8px",
+            zIndex: 1000,
+            padding: "10px 30px",
+          }}
+        >
+          <div className="d-flex align-items-center">
+            <div className="dropdown-item px-2">
+              <UserDropdown />
+            </div>
+            <div className="dropdown-item px-2">
+              <CompaniesDropdown />
+            </div>
+            <div className="dropdown-item px-2">
+              <p className="premium">Prova Premium per 0 EUR</p>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
