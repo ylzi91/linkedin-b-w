@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import CompaniesDropdown from "./navComp/CompaniesDropdown";
-import UserDropdown from "./navComp/UserDropdown";
+import CompaniesDropdown from "./CompaniesDropdown";
+import UserDropdown from "./UserDropdown";
 
 
 const Dots = () => {

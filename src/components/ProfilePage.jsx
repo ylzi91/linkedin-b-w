@@ -8,22 +8,23 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OtherProfile from "./profileComp/OtherProfile";
 import FormModProfile from "./profileComp/FormModProfile";
+import PostCard from "./profileComp/PostCard";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const myprofile = useSelector((s) => s.profile.myProfile);
-  const [modProfile, setModProfile] = useState(false)
-    const [change, setChange] = useState(true)
+  const [modProfile, setModProfile] = useState(false);
+  const [change, setChange] = useState(true);
   const closeForm = () => {
-    setModProfile(false)
-  }
+    setModProfile(false);
+  };
   const changes = () => {
-    setChange(false)
-  }
+    setChange(false);
+  };
 
   useEffect(() => {
     dispatch(getProfile("me", TAKE_MY_PROFILE));
-    setChange(true)
+    setChange(true);
   }, [change]);
 
   return (
@@ -33,16 +34,23 @@ const ProfilePage = () => {
           <Col xs={12} md={8}>
             <Card className="experience-section mb-4 bg-dark text-light">
               <Card.Img variant="top" src="https://placedog.net/636x159" />
-              
+
               <Card.Body>
                 <Card.Title as="h2" className="mb-4">
-                
-                <img src={myprofile.image} className="w-100 rounded rounded-circle profile me-3" alt="profile" />
-               {myprofile.name} {myprofile.surname}
+                  <img
+                    src={myprofile.image}
+                    className="w-100 rounded rounded-circle profile me-3"
+                    alt="profile"
+                  />
+                  {myprofile.name} {myprofile.surname}
                   <span className="position-absolute end-0">
                     <Badge
-                    onClick={()=> setModProfile(!modProfile)}
-                      className={modProfile ? "rounded rounded-circle bg-transparent text-white-50" : "rounded rounded-circle bg-transparent"}
+                      onClick={() => setModProfile(!modProfile)}
+                      className={
+                        modProfile
+                          ? "rounded rounded-circle bg-transparent text-white-50"
+                          : "rounded rounded-circle bg-transparent"
+                      }
                     >
                       <IoPencilOutline />
                     </Badge>
@@ -52,9 +60,12 @@ const ProfilePage = () => {
                   <p>
                     {myprofile.title} <br />
                     <span>
-                      {myprofile.area} - 
-                      <a href={`mailto:${myprofile.email}`} className="text-decoration-none">
-                         Informazioni di contatto
+                      {myprofile.area} -
+                      <a
+                        href={`mailto:${myprofile.email}`}
+                        className="text-decoration-none"
+                      >
+                        Informazioni di contatto
                       </a>
                     </span>
                   </p>
@@ -74,7 +85,7 @@ const ProfilePage = () => {
                     Aggiungi sezione del profilo
                   </Button>
                   <Button
-                  onClick={()=> setModProfile(!modProfile)}
+                    onClick={() => setModProfile(!modProfile)}
                     variant="outline-primary"
                     className="rounded rounded-pill"
                     size="md"
@@ -88,45 +99,49 @@ const ProfilePage = () => {
                   >
                     Altro
                   </Button>
-                  {modProfile && <FormModProfile close={closeForm} changes={changes} />}
+                  {modProfile && (
+                    <FormModProfile close={closeForm} changes={changes} />
+                  )}
                 </Card.Text>
               </Card.Body>
             </Card>{" "}
+            <PostCard id={myprofile._id} />
             <ExpCard id={myprofile._id} />
           </Col>
           <Col xs={12} md={4}>
-          <Card className="experience-section bg-dark text-light mb-3 w-100" >
-        <Card.Body>
-          <Card.Title className="mb-4">
-            <div className="d-flex flex-row justify-content-between flex-nowrap">
-              <div>
-                <h4>Lingua del profilo</h4>
-                <br/> Italiano
-              </div>
-              <div>
-                <IoPencilOutline />
-              </div>
-            </div>
-          </Card.Title>
-<hr/>
-        </Card.Body>
-        <Card.Body >
-          <Card.Title className="mb-4">
-            <div className="d-flex flex-row justify-content-between flex-nowrap text-wrap">
-              <div>
-                <h4>Profilo pubblico e URL</h4>
-                <br/> <a className="text-decoration-underline text-white-50">{myprofile.email}</a>
-              </div>
-              <div>
-                <IoPencilOutline />
-              </div>
-            </div>
-          </Card.Title>
-
-        </Card.Body>
-      </Card>
-      <OtherProfile />
-
+            <Card className="experience-section bg-dark text-light mb-3 w-100">
+              <Card.Body>
+                <Card.Title className="mb-4">
+                  <div className="d-flex flex-row justify-content-between flex-nowrap">
+                    <div>
+                      <h4>Lingua del profilo</h4>
+                      <br /> Italiano
+                    </div>
+                    <div>
+                      <IoPencilOutline />
+                    </div>
+                  </div>
+                </Card.Title>
+                <hr />
+              </Card.Body>
+              <Card.Body>
+                <Card.Title className="mb-4">
+                  <div className="d-flex flex-row justify-content-between flex-nowrap text-wrap">
+                    <div>
+                      <h4>Profilo pubblico e URL</h4>
+                      <br />{" "}
+                      <a className="text-decoration-underline text-white-50">
+                        {myprofile.email}
+                      </a>
+                    </div>
+                    <div>
+                      <IoPencilOutline />
+                    </div>
+                  </div>
+                </Card.Title>
+              </Card.Body>
+            </Card>
+            <OtherProfile />
           </Col>
         </Row>
       </Container>

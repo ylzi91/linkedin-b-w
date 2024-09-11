@@ -22,7 +22,7 @@ const SearchButton = () => {
           placeholder="Cerca..."
           value={searchQuery}
           onChange={handleInputChange}
-          className="bg-dark text-white"
+          className="bg-dark text-white "
         />
       </Dropdown.Menu>
     </Dropdown>
