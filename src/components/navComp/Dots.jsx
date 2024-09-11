@@ -32,7 +32,7 @@ const Dots = () => {
         role="button"
         aria-label="Toggle dropdown content"
       >
-        <HiOutlineDotsHorizontal size={24} />
+        <HiOutlineDotsHorizontal size={24} className="text-light" />
       </div>
 
       {showMenu && (

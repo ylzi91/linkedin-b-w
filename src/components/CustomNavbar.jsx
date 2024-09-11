@@ -1,15 +1,16 @@
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import LinkedinIcon from "./navComp/LinkedinIcon";
 import SearchBar from "./navComp/SearchBar";
 import HomeButton from "./navComp/HomeButton";
-import ReteButton from "./ReteButton";
+import ReteButton from "./navComp/ReteButton";
 import LavoroButton from "./navComp/LavoroButton";
 import MessaggiButton from "./navComp/MessaggiButton";
-import NotificheButton from "./NotificheButton";
-import CompaniesDropdown from "./navComp/CompaniesDropdown";
+import NotificheButton from "./navComp/NotificheButton";
 import UserDropdown from "./navComp/UserDropdown";
-import Dots from "./Dots";
-import { Link } from "react-router-dom";
+import CompaniesDropdown from "./navComp/CompaniesDropdown";
+import SearchButton from "./navComp/SearchButton";
+import Dots from "./navComp/Dots";
+
 const CustomNavbar = () => {
   return (
     <div
@@ -27,10 +28,10 @@ const CustomNavbar = () => {
         </div>
         <div className="d-flex align-items-center justify-content-around flex-grow-1">
           <Nav.Link className="text-light d-flex d-lg-none">
-            {/* <SearchButton /> */}
+            <SearchButton />
           </Nav.Link>
           <Nav.Link>
-            <Link to = '/'><HomeButton /></Link> 
+            <HomeButton />
           </Nav.Link>
           <Nav.Link>
             <ReteButton />
@@ -44,7 +45,7 @@ const CustomNavbar = () => {
           <Nav.Link>
             <NotificheButton />
           </Nav.Link>
-          <Nav.Link className="me-4 d-none d-md-block">
+          <Nav.Link className="me-2 d-none d-md-flex">
             <UserDropdown />
           </Nav.Link>
           <Nav.Link className="d-flex d-md-none">
@@ -52,10 +53,10 @@ const CustomNavbar = () => {
           </Nav.Link>
         </div>
         <div className="d-flex align-items-center">
-          <Nav.Link className="d-none d-md-block">
+          <Nav.Link className="d-none d-md-flex mx-2">
             <CompaniesDropdown />
           </Nav.Link>
-          <Nav.Link className="d-none d-md-block">
+          <Nav.Link className="d-none d-md-flex">
             <p className="premium">Prova Premium per 0 EUR</p>
           </Nav.Link>
         </div>

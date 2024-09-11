@@ -322,6 +322,11 @@ input::placeholder {
   display: none; 
 }
 
+#search-dropdown::after {
+  display: none;
+}
+
+
 /*BODY*/
 main {
 background-color: black;
