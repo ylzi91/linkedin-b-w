@@ -1,16 +1,13 @@
-import { Navbar, Nav } from "react-bootstrap";
-import LinkedinIcon from "./LinkedinIcon";
-import SearchBar from "./SearchBar";
-import HomeButton from "./HomeButton";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import LinkedinIcon from "./navComp/LinkedinIcon";
+import SearchBar from "./navComp/SearchBar";
+import HomeButton from "./navComp/HomeButton";
 import ReteButton from "./ReteButton";
-import LavoroButton from "./LavoroButton";
-import MessaggiButton from "./MessaggiButton";
+import LavoroButton from "./navComp/LavoroButton";
+import MessaggiButton from "./navComp/MessaggiButton";
 import NotificheButton from "./NotificheButton";
-import UserDropdown from "./UserDropdown";
-import CompaniesDropdown from "./CompaniesDropdown";
-import SearchButton from "./SearchButton";
-import Dots from "./Dots";
-
+import CompaniesDropdown from "./navComp/CompaniesDropdown";
+import UserDropdown from "./navComp/UserDropdown";
 const CustomNavbar = () => {
   return (
     <div
