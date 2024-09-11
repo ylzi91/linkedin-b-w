@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Dropdown, FormControl } from "react-bootstrap";
+import { Button, FormControl } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 
 const SearchButton = () => {
  const [isSearchActive, setIsSearchActive] = useState (false);
  const [searchQuery, setSearchQuery] = useState ("");
 
-const handleSearchClick = () => {
+const handleToggle = () => {
   setIsSearchActive(!isSearchActive);
 
 };
@@ -16,25 +16,34 @@ const handleInputChange = (e) => {
 };
 return (
   <div align="end">
-    <Dropdown.Toggle variant="link" onClick={handleSearchClick}>
-      {isSearchActive ? (
+    {isSearchActive ? (
+      <div className="d-flex align-items-center">
         <FormControl
-        type="text"
-        placeholder="cerca..."
-        value={searchQuery}
-        onChange={handleInputChange}
-        className="bg-dark text-white"
-        autoFocus
+          type="text"
+          placeholder="Cerca..."
+          value={searchQuery}
+          onChange={handleInputChange}
+          className="bg-dark text-white"
         />
-      ) : (
-        <>
-        <FaSearch className="text-white"/>
-        <p className="text-white iconNames d-none d-lg-flex">Cerca</p>
-        </>
-
-      
-      )}
-    </Dropdown.Toggle>
+        <Button
+          variant="link"
+          onClick={handleToggle}
+          className="text-white ms-2"
+        >
+          <FaSearch />
+        </Button>
+      </div>
+    ) : (
+      <div className="d-flex align-items-center">
+        <Button
+          variant="link"
+          onClick={handleToggle}
+          className="d-md-none text-white bg-dark" 
+        >
+          <FaSearch />
+        </Button>
+      </div>
+    )}
   </div>
   );
 };
