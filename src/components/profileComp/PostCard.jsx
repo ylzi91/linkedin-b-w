@@ -1,7 +1,7 @@
-import { Card } from "react-bootstrap";
+import { Card, Modal } from "react-bootstrap";
 import ExpItem from "./ExpItem";
 import { useEffect, useState } from "react";
-import { IoMdAdd } from "react-icons/io";
+import { IoMdAdd, IoMdClose } from "react-icons/io";
 import { IoPencilOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -43,7 +43,7 @@ const PostCard = ({ id }) => {
     <>
       {add2 ? (
         <Card className="experience-section mb-4 bg-dark text-light">
-          <FormPost id={id} close={close} post={posts} />
+          <Modal show><Modal.Header className="bg-dark text-light justify-content-end border-0 pb-0"><IoMdClose className="fs-2" onClick={(e)=>{e.preventDefault(); close()}} /> </Modal.Header><FormPost id={id} close={close} post={posts} /></Modal>
         </Card>
       ) : (
         <Card className="experience-section mb-4 bg-dark text-light">

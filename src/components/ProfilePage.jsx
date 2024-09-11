@@ -1,4 +1,4 @@
-import { Badge, Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Badge, Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
 import ExpCard from "./profileComp/ExpCard";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { CiCamera } from "react-icons/ci";
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import OtherProfile from "./profileComp/OtherProfile";
 import FormModProfile from "./profileComp/FormModProfile";
 import PostCard from "./profileComp/PostCard";
+import { IoMdClose } from "react-icons/io";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <Container className="mt-4" fluid>
+      <Container className="mt-4">
         <Row>
           <Col xs={12} md={8}>
             <Card className="experience-section mb-4 bg-dark text-light">
@@ -100,7 +101,7 @@ const ProfilePage = () => {
                     Altro
                   </Button>
                   {modProfile && (
-                    <FormModProfile close={closeForm} changes={changes} />
+                  <FormModProfile close={closeForm} changes={changes} />
                   )}
                 </Card.Text>
               </Card.Body>

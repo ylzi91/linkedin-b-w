@@ -1,7 +1,7 @@
-import { Card } from "react-bootstrap";
+import { Button, Card, Modal } from "react-bootstrap";
 import ExpItem from "./ExpItem";
 import { useEffect, useState } from "react";
-import { IoMdAdd } from "react-icons/io";
+import { IoMdAdd, IoMdClose } from "react-icons/io";
 import { IoPencilOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getExperiences, TAKE_EXP, TAKE_MY_PROFILE } from "../../redux/actions";
@@ -37,9 +37,7 @@ const ExpCard = ({ id }) => {
   return (
     <>
       {add ? (
-        <Card className="experience-section mb-4 bg-dark text-light">
-          <FormExp id={id} close={close} expid={exp} add={add}/>
-        </Card>
+          <Modal show><Modal.Header className="bg-dark text-light justify-content-end"><IoMdClose onClick={(e)=>{e.preventDefault(); close()}} /> </Modal.Header><FormExp id={id} close={close} expid={exp} add={add}/></Modal>
       ) : (
         <Card className="experience-section mb-4 bg-dark text-light">
           <Card.Body>

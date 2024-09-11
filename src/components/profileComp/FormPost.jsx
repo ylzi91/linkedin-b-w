@@ -27,7 +27,7 @@ const FormExp = ({ id, close, post = {}, add }) => {
   return (
     <>
       <Form
-        className="p-3"
+        className="p-3 bg-dark text-light"
         onSubmit={(e) => {
           e.preventDefault();
           if (post._id)
@@ -41,7 +41,7 @@ const FormExp = ({ id, close, post = {}, add }) => {
         }}
       >
         <Form.Group className="mb-3" controlId="formDescription">
-          <Form.Label>Insert Text...</Form.Label>
+          <Form.Label>Insert your post...</Form.Label>
           <Form.Control
             value={posts}
             placeholder="Enter the description of your post"

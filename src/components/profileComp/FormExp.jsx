@@ -51,7 +51,7 @@ const FormExp = ({ id, close, expid ,add }) => {
   return (
     <>
       <Form
-      className="p-3"
+      className="p-3 bg-dark text-light"
         onSubmit={(e) => {
           e.preventDefault();
           if (exp._id) {

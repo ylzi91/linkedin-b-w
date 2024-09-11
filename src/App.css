@@ -2,6 +2,35 @@
   --bs-gutter-x: 0 !important; 
   }  */
 
+/* Profile*/
+
+.formProfile input{
+  background-color: #1b1f23 !important;
+  color: whitesmoke !important;
+  font-size: small;
+  padding: 6px 8px !important;
+  border-radius: 5px !important;
+}
+
+.btn-close{
+  color: white !important;
+}
+.modal-dialog{
+}
+.modal-body{
+  height: 500px !important;
+  display: block !important; /* I added this to see the modal, you don't need this */
+  overflow-y: scroll !important;
+  scrollbar-color: rgb(125, 124, 124) rgb(50, 49, 49);
+  scrollbar-width: none;
+}
+
+.modali{
+  background-color: #1b1f23 !important;
+}
+
+
+/***********************************************************/
 header {
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
 }
