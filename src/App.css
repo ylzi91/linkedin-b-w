@@ -378,6 +378,14 @@ main {
   height: 45px !important;
 }
 
+.form-control::placeholder {
+    color: white;
+}
+
+.form-control:focus{
+  outline: none !important;
+}
+
 .body-input-text {
   color: white;
   border: 1px solid lightgray;

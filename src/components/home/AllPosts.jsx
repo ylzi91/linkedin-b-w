@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { TAKE_ALL_PROFILE, getOrModifyPost, getProfile } from "../../redux/actions";
+import { DELETE_POST, TAKE_ALL_PROFILE, getOrModifyPost, getProfile } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDots } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
-import { FaRegThumbsUp } from "react-icons/fa";
+import { FaRegThumbsUp, FaTrashAlt } from "react-icons/fa";
 import { Container, Row, Col, Modal, Button } from "react-bootstrap";
 import { FaRegCommentDots } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
@@ -14,19 +14,28 @@ const AllPosts = () => {
     const dispatch = useDispatch();
     const posts = useSelector(store => store.post.allPosts);
     const profiles = useSelector(store => store.profile.allProfiles);
+    const myProfile = useSelector(store => store.profile.myProfile)
     const [hiddenPosts, setHiddenPosts] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [showModal2, setShowModal2] = useState(false);
+    const [idToDel, setIdToDel] = useState('')
 
     useEffect(() => {
         dispatch(getOrModifyPost());
         dispatch(getProfile('', TAKE_ALL_PROFILE));
-    }, [dispatch]);
+        dispatch(getProfile('me'))
+    }, [dispatch, idToDel]);
 
 
     const getProfileImage = (username) => {
         const profile = profiles.find(profile => profile.username === username);
         return profile ? profile.image : 'default-profile.png';
     };
+
+    const getProfileNameSurname = (username) => {
+        const profile = profiles.find(profile => profile.username === username)
+        return profile
+    }
 
 
     const timeAgo = (timestamp) => {
@@ -59,8 +68,13 @@ const AllPosts = () => {
         setHiddenPosts([...hiddenPosts, postId]);
         setShowModal(true); 
     };
+    const showConfrimDelete = (postId) => {
+        setIdToDel(postId)
+        setShowModal2(true); 
+    };
 
      const handleCloseModal = () => setShowModal(false);
+     const handleCloseSecondModal = () => setShowModal2(false);
 
     return (
         <>
@@ -73,12 +87,12 @@ const AllPosts = () => {
                                     <img className="rounded-circle" src={getProfileImage(post.username)} alt={post.username} />
                                 </div>
                                 <div className="user-post w-100 h-100">
-                                    <div>{post.username}</div>
+                                    <div>{getProfileNameSurname(post.username).name} {getProfileNameSurname(post.username).surname}</div>
                                     <div>{timeAgo(post.createdAt)}</div>
                                 </div>
                                 <div className="edit-icon d-flex align-items-center">
                                     <BsThreeDots className="me-3" />
-                                    <RxCross2 onClick={() => hidePost(post._id)} />
+                                   {myProfile.username === post.username ? <FaTrashAlt className=" text-danger opacity-75" onClick={() => showConfrimDelete(post._id)} /> :  <RxCross2 onClick={() => hidePost(post._id)} />}
                                 </div>
                             </div>
                             <div className="text-light py-2 border-bottom-custom d-flex align-items-center">{post.text}</div>
@@ -114,6 +128,28 @@ const AllPosts = () => {
                 <Modal.Footer className="bg-dark text-light border-0">
                     <Button variant="light" onClick={handleCloseModal}>
                         Chiudi
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            <Modal show={showModal2} onHide={handleCloseModal}>
+                <Modal.Header className="bg-dark text-light border-0">
+                    <Modal.Title>Elimina Post</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="bg-dark text-light">Sei sicuro di voler eliminare il tuo post?</Modal.Body>
+                <Modal.Footer className="bg-dark text-light border-0">
+                    <Button variant="light" onClick={handleCloseSecondModal}>
+                        No, è bellissimo
+                    </Button>
+                    <Button variant="outline-light" onClick={(e)=> {
+                        e.preventDefault()
+                        dispatch(getOrModifyPost('DELETE', DELETE_POST, '', idToDel))
+                        setTimeout(() => {
+                            setIdToDel('')
+                            
+                        }, 1000);
+                        handleCloseSecondModal()
+                    }}>
+                        Certo, fa schifo
                     </Button>
                 </Modal.Footer>
             </Modal>

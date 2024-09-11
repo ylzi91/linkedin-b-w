@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CREATE_NEW_POST, TAKE_MY_PROFILE, getOrModifyPost, getProfile } from "../../redux/actions";
 import { GrMultimedia } from "react-icons/gr";
 import { MdEvent } from "react-icons/md";
-import { Container, Col, Row, Modal, Button } from "react-bootstrap";
+import { Container, Col, Row, Modal, Button, Form } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
 
 
@@ -11,6 +11,7 @@ const CreatePost = () => {
 
     const dispatch = useDispatch();
     const profile = useSelector(store => store.profile.myProfile)
+    const [writePost, setWritePost] = useState('')
     // const [post, setPost] = useState('')
     const [showModal, setShowModal] = useState(false);
 
@@ -65,7 +66,7 @@ const CreatePost = () => {
                                 <img className="rounded-circle" src={(profile.image)} alt={profile.username} />
                             </div>
                             <div className="user-post h-100">
-                                <div>{profile.username}</div>
+                                <div>{profile.name} {profile.surname}</div>
                             </div>
                         </div>
 
@@ -73,12 +74,12 @@ const CreatePost = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="bg-dark text-light">
-                    <form>
+                    <form >
                         {/* <textarea className="w-100 h-100 text-area-post" autoFocus>
                         </textarea> */}
-
-
-                        <input className="w-100 text-input-area" type="text" placeholder="Scrivi qualcosa..." maxLength={1200}></input>
+                    <Form.Control as ='textarea' maxLength={1200} rows={10} autoFocus value={writePost} onChange={(e) => {setWritePost(e.target.value)}} className=" fs-5 bg-dark border-0 text-light" placeholder="Di cosa vorresti parlare..."></Form.Control>
+                        
+                        {/* <input className="w-100 text-input-area" type="text" placeholder="Scrivi qualcosa..." maxLength={1200}></input> */}
                     </form>
 
 
@@ -88,7 +89,13 @@ const CreatePost = () => {
 
                 </Modal.Body>
                 <Modal.Footer className="bg-dark text-light border-0">
-                    <Button variant="light">
+                    <Button type="submit" variant="outline-secondary" onClick={(e) => {
+                        e.preventDefault()
+                        dispatch(getOrModifyPost('POST', CREATE_NEW_POST, {text: writePost}))
+                        dispatch(getOrModifyPost())
+                        handleCloseModal()
+                        setWritePost('')
+                        }}>
                         Pubblica
                     </Button>
                 </Modal.Footer>
