@@ -1,12 +1,19 @@
 .row {
-  --bs-gutter-x: 0 !important; 
+  --bs-gutter-x: 0 !important;
+}
+
+html,
+body {
+  background-color: black;
+  height: 100%;
 }
 
 header {
- border-bottom: 0.5px solid rgba(255, 255, 255, 0.2)
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.2)
 }
 
-p, a {
+p,
+a {
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -20,7 +27,8 @@ p, a {
   font-weight: 600;
 }
 
-.duration, .location {
+.duration,
+.location {
   font-size: 0.9rem;
 }
 
@@ -42,13 +50,9 @@ p, a {
 }
 
 .experience-section .card-footer .btn-link {
-  color: #0a66c2;  /* Colore blu di LinkedIn */
+  color: #0a66c2;
+  /* Colore blu di LinkedIn */
   font-weight: 600;
-}
-
-main {
-  background-color: black !important;
-  height: 100vh !important;
 }
 
 
@@ -109,19 +113,27 @@ main {
     width: 85% !important;
   }
 }
+
 @media screen and (min-width: 1000px) {
-  #home, #custom-navbar  {
+
+  #home,
+  #custom-navbar {
     width: 80% !important;
   }
 }
 
-.card-box { 
+.card-box {
   width: 72px;
   height: 72px;
+  position: relative;
+  top: -35px !important;
+  left: 33%;
+
   img {
     height: 100%;
     width: 100%;
     object-fit: fill;
+
   }
 }
 
@@ -132,24 +144,24 @@ main {
 }
 
 #search .input-group-text {
-  background-color: #38434f; 
-  color: white; 
-  border: none; 
+  background-color: #38434f;
+  color: white;
+  border: none;
 }
 
 #search .form-control {
-  background-color: #38434f; 
+  background-color: #38434f;
   color: white;
   border: none;
-  padding-left: 0; 
+  padding-left: 0;
   font-size: small;
 }
 
 #search .form-control:focus {
-  background-color: #38434f; 
-  color: white; 
-  outline: none; 
-  box-shadow: none; 
+  background-color: #38434f;
+  color: white;
+  outline: none;
+  box-shadow: none;
 }
 
 #search .input-group-text {
@@ -165,12 +177,12 @@ main {
   margin-top: 0;
 }
 
-.user-dropdown > .dropdown-toggle::after {
-  display: none !important; 
+.user-dropdown>.dropdown-toggle::after {
+  display: none !important;
 }
 
 .companies-dropdown .dropdown-toggle::after {
-  display: none; 
+  display: none;
 }
 
 .companies-dropdown {
@@ -187,35 +199,35 @@ main {
   font-size: small;
   width: 130px;
   text-align: center;
-  
+
 }
 
 .nav-dropdown-divider {
   border: 0.5px solid rgba(255, 255, 255, 0.2);
-  
+
 }
 
 
 .user-dropdown .dropdown-menu {
-  background-color: #212529; 
-  color: #fff; 
-  border: none; 
+  background-color: #212529;
+  color: #fff;
+  border: none;
   min-width: 250px;
 }
 
 .user-dropdown .dropdown-item,
 .user-dropdown .dropdown-item:hover {
-  background-color: #212529; 
+  background-color: #212529;
   color: #fff;
 }
 
 
 
 .containerUserDropdown {
-  display: flex; 
-  align-items: center; 
-  padding: 10px; 
-  color: #fff; 
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: #fff;
 }
 
 
@@ -223,13 +235,14 @@ main {
   width: 60px;
   height: 60px;
   object-fit: cover;
-  margin-right: 15px; 
+  margin-right: 15px;
 }
 
 
-.containerUserDropdown h5, .containerUserDropdown p {
-  margin: 0; 
-  color: #fff; 
+.containerUserDropdown h5,
+.containerUserDropdown p {
+  margin: 0;
+  color: #fff;
 }
 
 input::placeholder {
@@ -253,8 +266,9 @@ input::placeholder {
 
 /*BODY*/
 main {
-background-color: black;
+  background-color: black;
 }
+
 @media screen and (min-width: 1200) {
   #home {
     width: 85% !important;
@@ -282,6 +296,23 @@ background-color: black;
   height: 45px !important;
 }
 
+.body-input-text {
+  color: white;
+  border: 1px solid lightgray;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.text-area-post {
+  outline: none;
+}
+.body-input-text:hover {
+  background-color: rgb(45, 45, 45);
+}
+
 .body-input-img {
   width: 48px;
   height: 48px;
@@ -298,6 +329,28 @@ background-color: black;
 .card-create {
   background-color: #212529;
   border-radius: 8px;
+}
+
+.create-post-img {
+  width: 60px;
+  height: 60px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+}
+
+.text-input-area {
+  height: 400px !important;
+}
+
+
+.close-icon {
+  position: relative;
+  right: 10px;
+  top: -7px;
+  cursor: pointer;
 }
 
 .div-input {
@@ -337,7 +390,7 @@ background-color: black;
   font-size: 14px;
 }
 
-.button-media{
+.button-media {
   height: 40px !important;
 }
 
@@ -363,4 +416,22 @@ background-color: black;
   width: 100%;
   height: 100%;
   object-fit: fill;
+}
+
+.edit-icon {
+  position: relative;
+  color: white;
+  right: 0;
+  top: -10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.like-icon {
+  font-size: 20px !important;
+  margin-right: 4px;
+}
+
+.border-bottom-custom {
+  border-bottom: 1px solid rgb(68, 63, 63)
 }
