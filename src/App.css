@@ -246,6 +246,10 @@ input::placeholder {
   display: none;
 }
 
+.underl:hover {
+  border-bottom: 3px solid white;
+}
+
 
 /*BODY*/
 main {

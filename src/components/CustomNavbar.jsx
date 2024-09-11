@@ -22,38 +22,38 @@ const CustomNavbar = () => {
           <Navbar.Brand>
             <LinkedinIcon />
           </Navbar.Brand>
-          <Nav.Link className="ps-1 d-none d-lg-flex">
+          <Nav.Link className="ps-1 d-none d-lg-flex underl">
             <SearchBar />
           </Nav.Link>
         </div>
         <div className="d-flex align-items-center justify-content-around flex-grow-1">
-          <Nav.Link className="text-light d-flex d-lg-none">
+          <Nav.Link className="text-light d-flex d-lg-none underl">
             <SearchButton />
           </Nav.Link>
-          <Nav.Link>
-            <HomeButton />
+          <Nav.Link className="underl">
+            <HomeButton/>
           </Nav.Link>
-          <Nav.Link>
+          <Nav.Link className="underl">
             <ReteButton />
           </Nav.Link>
-          <Nav.Link>
+          <Nav.Link className="underl">
             <LavoroButton />
           </Nav.Link>
-          <Nav.Link>
+          <Nav.Link className="underl">
             <MessaggiButton />
           </Nav.Link>
-          <Nav.Link>
+          <Nav.Link className="underl">
             <NotificheButton />
           </Nav.Link>
           <Nav.Link className="me-2 d-none d-md-flex">
             <UserDropdown />
           </Nav.Link>
-          <Nav.Link className="d-flex d-md-none">
+          <Nav.Link className="d-flex d-md-none underl">
             <Dots />
           </Nav.Link>
         </div>
         <div className="d-flex align-items-center">
-          <Nav.Link className="d-none d-md-flex mx-2">
+          <Nav.Link className="d-none d-md-flex mx-2 ">
             <CompaniesDropdown />
           </Nav.Link>
           <Nav.Link className="d-none d-md-flex">
