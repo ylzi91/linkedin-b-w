@@ -1,4 +1,4 @@
-import { Card, Modal } from "react-bootstrap";
+import { Button, Card, Modal } from "react-bootstrap";
 import ExpItem from "./ExpItem";
 import { useEffect, useState } from "react";
 import { IoMdAdd, IoMdClose } from "react-icons/io";
@@ -43,7 +43,18 @@ const PostCard = ({ id }) => {
     <>
       {add2 ? (
         <Card className="experience-section mb-4 bg-dark text-light">
-          <Modal show><Modal.Header className="bg-dark text-light justify-content-end border-0 pb-0"><IoMdClose className="fs-2" onClick={(e)=>{e.preventDefault(); close()}} /> </Modal.Header><FormPost id={id} close={close} post={posts} /></Modal>
+          <Modal show>
+            <Modal.Header className="bg-dark text-light justify-content-end border-0 pb-0">
+              <IoMdClose
+                className="fs-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  close();
+                }}
+              />{" "}
+            </Modal.Header>
+            <FormPost id={id} close={close} post={posts} />
+          </Modal>
         </Card>
       ) : (
         <Card className="experience-section mb-4 bg-dark text-light">
@@ -54,23 +65,27 @@ const PostCard = ({ id }) => {
                 <div
                   onClick={() => {
                     setAdd2(true);
-                    setPosts([])
+                    setPosts([]);
                   }}
                 >
-                  <IoMdAdd />
+                  <Button variant="outline-primary" className="btnn me-3 px-3 py-1">Crea un post</Button>
                   <IoPencilOutline />
                 </div>
               </div>
             </Card.Title>
 
             {reduxPosts
-              .filter((p) =>{
-                if(p.user._id == id)
-                  return p
+              .filter((p) => {
+                if (p.user._id == id) return p;
               })
               .map((post) => {
                 return (
-                  <PostItem key={post._id} post={post} openForm={openForm} add={add2}/>
+                  <PostItem
+                    key={post._id}
+                    post={post}
+                    openForm={openForm}
+                    add={add2}
+                  />
                 );
               })}
           </Card.Body>

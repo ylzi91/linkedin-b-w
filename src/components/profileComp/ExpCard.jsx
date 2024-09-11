@@ -37,7 +37,7 @@ const ExpCard = ({ id }) => {
   return (
     <>
       {add ? (
-          <Modal show><Modal.Header className="bg-dark text-light justify-content-end"><IoMdClose onClick={(e)=>{e.preventDefault(); close()}} /> </Modal.Header><FormExp id={id} close={close} expid={exp} add={add}/></Modal>
+          <FormExp id={id} close={close} expid={exp} add={add}/>
       ) : (
         <Card className="experience-section mb-4 bg-dark text-light">
           <Card.Body>

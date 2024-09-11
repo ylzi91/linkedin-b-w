@@ -4,6 +4,10 @@
 
 /* Profile*/
 
+.btnn{
+  border-radius: 25px !important;
+}
+
 .formProfile input{
   background-color: #1b1f23 !important;
   color: whitesmoke !important;
@@ -18,7 +22,7 @@
 .modal-dialog{
 }
 .modal-body{
-  height: 500px !important;
+  max-height: 500px !important;
   display: block !important; /* I added this to see the modal, you don't need this */
   overflow-y: scroll !important;
   scrollbar-color: rgb(125, 124, 124) rgb(50, 49, 49);

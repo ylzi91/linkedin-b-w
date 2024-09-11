@@ -32,7 +32,7 @@ const ProfilePage = () => {
     <>
       <Container className="mt-4">
         <Row>
-          <Col xs={12} md={8}>
+          <Col xs={12} lg={8}>
             <Card className="experience-section mb-4 bg-dark text-light">
               <Card.Img variant="top" src="https://placedog.net/636x159" />
 
@@ -109,7 +109,7 @@ const ProfilePage = () => {
             <PostCard id={myprofile._id} />
             <ExpCard id={myprofile._id} />
           </Col>
-          <Col xs={12} md={4}>
+          <Col xs={12} lg={4}>
             <Card className="experience-section bg-dark text-light mb-3 w-100">
               <Card.Body>
                 <Card.Title className="mb-4">
