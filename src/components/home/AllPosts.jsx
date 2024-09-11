@@ -131,6 +131,10 @@ const AllPosts = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+
+
+
+
             <Modal show={showModal2} onHide={handleCloseModal}>
                 <Modal.Header className="bg-dark text-light border-0">
                     <Modal.Title>Elimina Post</Modal.Title>
@@ -146,7 +150,7 @@ const AllPosts = () => {
                         setTimeout(() => {
                             setIdToDel('')
                             
-                        }, 1000);
+                        }, 500);
                         handleCloseSecondModal()
                     }}>
                         Certo, fa schifo
