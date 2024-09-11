@@ -10,8 +10,71 @@ body {
 
 /* Profile*/
 
+.heroTit{
+  display: inline-block;
+  transform: translateX(-115px) !important;
+}
+
+.info{
+  color: #0061bc;
+}
+
+.point{
+  font-size: 7px;
+}
+
+.info:hover{
+  text-decoration: underline !important;
+}
+
+.btn_info_out:hover{
+  background-color: #344861 !important;
+  border: 1px #0061bc solid!important;
+
+}
+.btn_info:hover{
+  background-color: #3f80e3 !important;
+
+}
+
+.hov:hover{
+  padding: 10px 12px !important;
+  margin-right: 8px !important;
+  border-radius: 50% !important;
+  background-color: #666 !important;
+}
+
+.clickable{
+  cursor: pointer !important;
+}
+
+.btn_info_out{
+  color: #0061bc !important;
+  border: #0061bc 1px solid !important;
+  background-color: transparent !important;
+  height: 38px;
+}
+.btn_info{
+  height: 38px;
+  border: #0061bc 1px solid !important;
+  background-color: #0061bc !important;
+  color: #000 !important;
+}
+
+.titleHero{
+  height: 40px !important;
+}
+
 .btnn{
   border-radius: 25px !important;
+}
+
+.profilePage{
+  width: 83% !important;
+}
+
+.gutter{
+  gap: 4px;
 }
 
 .formProfile input{
@@ -551,6 +614,7 @@ main {
   height: 100px !important;
   object-fit: cover !important;
   transform: translateY(-75px);
+  border: 3px solid #212529 !important;
 }
 .profileo{
   width: 50px !important;

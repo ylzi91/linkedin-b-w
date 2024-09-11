@@ -64,7 +64,7 @@ const FormExp = ({ id, close, expid, add }) => {
         </Modal.Header>
         <Modal.Body className="p-0 modal-body">
           <Form
-            className="p-3 bg-dark text-light formProfile"
+            className="p-3 bg-dark text-light formProfile text-white-50"
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.keyCode === 13) {
                 if (exp._id) {

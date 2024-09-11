@@ -6,6 +6,7 @@ import { IoPencilOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getExperiences, TAKE_EXP, TAKE_MY_PROFILE } from "../../redux/actions";
 import FormExp from "./FormExp";
+import { HiOutlinePencil } from "react-icons/hi";
 
 const ExpCard = ({ id }) => {
   const [add, setAdd] = useState(false);
@@ -39,17 +40,17 @@ const ExpCard = ({ id }) => {
       {add ? (
           <FormExp id={id} close={close} expid={exp} add={add}/>
       ) : (
-        <Card className="experience-section mb-4 bg-dark text-light">
+        <Card className="rounded-3 experience-section mb-4 bg-dark text-light">
           <Card.Body>
             <Card.Title className="mb-4">
               <div className="d-flex flex-row justify-content-between flex-nowrap">
                 <p>Experience</p>
-                <div onClick={() => {setAdd(true)
+                <div className="me-2 clickable"
+                onClick={() => {setAdd(true)
                   setExp({})}
                 }>
-                  <IoMdAdd />
-                  <IoPencilOutline />
-                </div>
+                  <span className="me-2"><IoMdAdd /></span> <nbsp />
+                  <HiOutlinePencil />                </div>
               </div>
             </Card.Title>
 

@@ -12,6 +12,7 @@ import {
 } from "../../redux/actions";
 import PostItem from "./PostItem";
 import FormPost from "./FormPost";
+import { HiOutlinePencil } from "react-icons/hi";
 
 const PostCard = ({ id }) => {
   const [add2, setAdd2] = useState(false);
@@ -30,6 +31,8 @@ const PostCard = ({ id }) => {
     setAdd2(false);
   };
 
+
+
   const openForm = (post) => {
     setPosts({ ...post });
     setAdd2(true);
@@ -42,34 +45,21 @@ const PostCard = ({ id }) => {
   return (
     <>
       {add2 ? (
-        <Card className="experience-section mb-4 bg-dark text-light">
-          <Modal show>
-            <Modal.Header className="bg-dark text-light justify-content-end border-0 pb-0">
-              <IoMdClose
-                className="fs-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  close();
-                }}
-              />{" "}
-            </Modal.Header>
             <FormPost id={id} close={close} post={posts} />
-          </Modal>
-        </Card>
       ) : (
-        <Card className="experience-section mb-4 bg-dark text-light">
+        <Card className="experience-section mb-4 bg-dark text-light rounded-3">
           <Card.Body>
             <Card.Title className="mb-4">
               <div className="d-flex flex-row justify-content-between flex-nowrap">
                 <p>Attività</p>
-                <div
+                <div className="clickable"
                   onClick={() => {
                     setAdd2(true);
                     setPosts([]);
                   }}
                 >
-                  <Button variant="outline-primary" className="btnn me-3 px-3 py-1">Crea un post</Button>
-                  <IoPencilOutline />
+                  <Button className="btnn btn_info_out me-3 px-3">Crea un post</Button>
+                  <HiOutlinePencil />
                 </div>
               </div>
             </Card.Title>
@@ -77,7 +67,7 @@ const PostCard = ({ id }) => {
             {reduxPosts
               .filter((p) => {
                 if (p.user._id == id) return p;
-              })
+              }).reverse()
               .map((post) => {
                 return (
                   <PostItem
@@ -91,7 +81,7 @@ const PostCard = ({ id }) => {
           </Card.Body>
           <div className="show-all-experiences">
             <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold">
-              Show all {reduxPosts.filter((p) => p._id.includes(id)).length}{" "}
+              Show all {reduxPosts.filter((p) =>  {if (p.user._id == id) return p}).length}{" "}
               Posts <span className="ms-1">&rarr;</span>
             </button>
           </div>

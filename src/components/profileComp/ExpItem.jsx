@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
+import { BsThreeDots } from "react-icons/bs";
 import { IoPencilOutline } from "react-icons/io5";
 
 const ExpItem = ({
@@ -23,7 +24,7 @@ const ExpItem = ({
             <div className="justify-content-between d-flex">
               <h3 className="company-name mb-0">{exp.company}</h3>{" "}
               <div>
-                <IoPencilOutline onClick={() => { openForm(exp)}} />
+                <BsThreeDots className="me-3" onClick={() => { openForm(exp)}} />
               </div>
             </div>
             <p className="role mb-0">{exp.role}</p>
