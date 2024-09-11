@@ -16,7 +16,6 @@ export const GET_COMPANY = 'GET_COMPANY'
 export const GET_CATEGORY = 'GET_CATEGORY'
 
 
-
 // PROFILE ------------------------------------------
 
 export const getProfile = (query, myAction) => {
