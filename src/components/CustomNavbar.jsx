@@ -1,15 +1,15 @@
 import { Navbar, Nav } from "react-bootstrap";
-import LinkedinIcon from "./LinkedinIcon";
-import SearchBar from "./SearchBar";
-import HomeButton from "./HomeButton";
-import ReteButton from "./ReteButton";
-import LavoroButton from "./LavoroButton";
-import MessaggiButton from "./MessaggiButton";
-import NotificheButton from "./NotificheButton";
-import UserDropdown from "./UserDropdown";
-import CompaniesDropdown from "./CompaniesDropdown";
-import SearchButton from "./SearchButton";
-import Dots from "./Dots";
+import LinkedinIcon from "./navComp/LinkedinIcon";
+import SearchBar from "./navComp/SearchButton";
+import HomeButton from "./navComp/HomeButton";
+import ReteButton from "./navComp/ReteButton";
+import LavoroButton from "./navComp/LavoroButton";
+import MessaggiButton from "./navComp/MessaggiButton";
+import NotificheButton from "./navComp/NotificheButton";
+import UserDropdown from "./navComp/UserDropdown";
+import CompaniesDropdown from "./navComp/CompaniesDropdown";
+import SearchButton from "./navComp/SearchButton";
+import Dots from "./navComp/Dots";
 
 const CustomNavbar = () => {
   return (
@@ -45,7 +45,7 @@ const CustomNavbar = () => {
           <Nav.Link>
             <NotificheButton />
           </Nav.Link>
-          <Nav.Link className="me-4 d-none d-md-block">
+          <Nav.Link className="me-2 d-none d-md-flex">
             <UserDropdown />
           </Nav.Link>
           <Nav.Link className="d-flex d-md-none">
@@ -53,10 +53,10 @@ const CustomNavbar = () => {
           </Nav.Link>
         </div>
         <div className="d-flex align-items-center">
-          <Nav.Link className="d-none d-md-block">
+          <Nav.Link className="d-none d-md-flex mx-2">
             <CompaniesDropdown />
           </Nav.Link>
-          <Nav.Link className="d-none d-md-block">
+          <Nav.Link className="d-none d-md-flex">
             <p className="premium">Prova Premium per 0 EUR</p>
           </Nav.Link>
         </div>

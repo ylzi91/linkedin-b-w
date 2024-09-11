@@ -1,6 +1,5 @@
 import { NavDropdown } from "react-bootstrap";
 import { TiArrowSortedDown } from "react-icons/ti";
-import "../App.css";
 import { FaCompass } from "react-icons/fa6";
 import { HiUserGroup } from "react-icons/hi";
 import { BsFillFileEarmarkBarGraphFill } from "react-icons/bs";

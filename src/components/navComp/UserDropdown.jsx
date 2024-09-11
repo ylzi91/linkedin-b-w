@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, NavDropdown } from "react-bootstrap";
 import { FaRegUserCircle } from "react-icons/fa";
-import { getProfile, TAKE_MY_PROFILE } from "../redux/actions/index";
+import { getProfile, TAKE_MY_PROFILE } from "../../redux/actions/index";
 import { TiArrowSortedDown } from "react-icons/ti";
-import "../App.css";
 import { FcSimCardChip } from "react-icons/fc";
 
 const UserDropdown = () => {
