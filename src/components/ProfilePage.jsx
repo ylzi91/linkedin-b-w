@@ -42,7 +42,7 @@ const ProfilePage = () => {
                   <span className="position-absolute end-0">
                     <Badge
                     onClick={()=> setModProfile(!modProfile)}
-                      className="rounded rounded-circle bg-transparent"
+                      className={modProfile ? "rounded rounded-circle bg-transparent text-white-50" : "rounded rounded-circle bg-transparent"}
                     >
                       <IoPencilOutline />
                     </Badge>
@@ -52,7 +52,7 @@ const ProfilePage = () => {
                   <p>
                     {myprofile.title} <br />
                     <span>
-                      {myprofile.area} - <nbsp />
+                      {myprofile.area} - 
                       <a href={`mailto:${myprofile.email}`} className="text-decoration-none">
                          Informazioni di contatto
                       </a>
@@ -74,6 +74,7 @@ const ProfilePage = () => {
                     Aggiungi sezione del profilo
                   </Button>
                   <Button
+                  onClick={()=> setModProfile(!modProfile)}
                     variant="outline-primary"
                     className="rounded rounded-pill"
                     size="md"
@@ -100,7 +101,7 @@ const ProfilePage = () => {
             <div className="d-flex flex-row justify-content-between flex-nowrap">
               <div>
                 <h4>Lingua del profilo</h4>
-                <br/> <p>Italiano</p>
+                <br/> Italiano
               </div>
               <div>
                 <IoPencilOutline />

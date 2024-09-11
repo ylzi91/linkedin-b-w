@@ -9,20 +9,25 @@ import FormExp from "./FormExp";
 
 const ExpCard = ({ id }) => {
   const [add, setAdd] = useState(false);
-  const [closeLi, setCloseLi] = useState(true);
+  const [exp, setExp] = useState({})
   const dispatch = useDispatch();
   const experiences = useSelector((s) => s.experience.allExperiences);
 
   useEffect(() => {
     if (id) dispatch(getExperiences(id, TAKE_EXP));
   }, [id]);
-
+  useEffect(() => {
+    if (id) dispatch(getExperiences(id, TAKE_EXP));
+  }, [add]);
+  
   const close = () => {
     setAdd(false);
   };
-  const closeli = () => {
-    setCloseLi(false);
-  };
+
+  const openForm = (exp) => {
+    setExp({...exp})
+    setAdd(true)
+  }
 
   const experience = [
     {
@@ -146,7 +151,7 @@ const ExpCard = ({ id }) => {
     <>
       {add ? (
         <Card className="experience-section mb-4 bg-dark text-light">
-          <FormExp id={id} close={close} />
+          <FormExp id={id} close={close} expid={exp} add={add}/>
         </Card>
       ) : (
         <Card className="experience-section mb-4 bg-dark text-light">
@@ -154,8 +159,10 @@ const ExpCard = ({ id }) => {
             <Card.Title className="mb-4">
               <div className="d-flex flex-row justify-content-between flex-nowrap">
                 <p>Experience</p>
-                <div>
-                  <IoMdAdd onClick={() => setAdd(true)} />
+                <div onClick={() => {setAdd(true)
+                  setExp({})}
+                }>
+                  <IoMdAdd />
                   <IoPencilOutline />
                 </div>
               </div>
@@ -164,17 +171,9 @@ const ExpCard = ({ id }) => {
                 {experiences.map((exp, idx) => {
                   return (
                     <ExpItem
-                      key={idx}
-                      userid={exp.user}
-                      id={exp._id}
-                      company={exp.company}
-                      logo={exp.logo}
-                      role={exp.role}
-                      duration={exp.duration}
-                      location={exp.location}
-                      description={exp.description}
-                      fullDescription={exp.fullDescription}
-                      closeli={closeli}
+                      key={exp._id}
+                      exp={exp}
+                      openForm={openForm}
                     />
                   );
                 })}
