@@ -1,6 +1,6 @@
 import { Navbar, Nav } from "react-bootstrap";
 import LinkedinIcon from "./navComp/LinkedinIcon";
-import SearchBar from "./navComp/SearchButton";
+import SearchBar from "./navComp/SearchBar";
 import HomeButton from "./navComp/HomeButton";
 import ReteButton from "./navComp/ReteButton";
 import LavoroButton from "./navComp/LavoroButton";
