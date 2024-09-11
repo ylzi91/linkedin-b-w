@@ -11,8 +11,8 @@ const CreatePost = () => {
 
     const dispatch = useDispatch();
     const profile = useSelector(store => store.profile.myProfile)
-    // const [post, setPost] = useState('')
     const [showModal, setShowModal] = useState(false);
+    const [contentText, setContentText] = useState('')
 
     useEffect(() => {
         dispatch(getProfile('me', TAKE_MY_PROFILE))
@@ -23,6 +23,12 @@ const CreatePost = () => {
     const showForm = () => {
         setShowModal(true);
     };
+
+    const publishPost = () => {
+        dispatch(getOrModifyPost('POST', CREATE_NEW_POST, { text: contentText }))
+        setContentText('')
+        handleCloseModal();
+    }
 
     return (
         <>
@@ -73,22 +79,21 @@ const CreatePost = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="bg-dark text-light">
-                    <form>
-                        {/* <textarea className="w-100 h-100 text-area-post" autoFocus>
-                        </textarea> */}
-
-
-                        <input className="w-100 text-input-area" type="text" placeholder="Scrivi qualcosa..." maxLength={1200}></input>
+                    <form onSubmit={(e) => {
+                        e.preventDefault(); // Previene il comportamento predefinito del form
+                        publishPost(); // Pubblica il post quando il form viene inviato
+                    }}>
+                        <input
+                            className="w-100 text-input-area"
+                            type="text"
+                            laceholder="Scrivi qualcosa..."
+                            maxLength={1200}
+                            value={contentText}
+                            onChange={(e) => setContentText(e.target.value)}></input>
                     </form>
-
-
-
-
-
-
                 </Modal.Body>
                 <Modal.Footer className="bg-dark text-light border-0">
-                    <Button variant="light">
+                    <Button variant="light" onClick={publishPost}>
                         Pubblica
                     </Button>
                 </Modal.Footer>
