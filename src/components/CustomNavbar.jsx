@@ -8,6 +8,8 @@ import MessaggiButton from "./navComp/MessaggiButton";
 import NotificheButton from "./NotificheButton";
 import CompaniesDropdown from "./navComp/CompaniesDropdown";
 import UserDropdown from "./navComp/UserDropdown";
+import Dots from "./Dots";
+import { Link } from "react-router-dom";
 const CustomNavbar = () => {
   return (
     <div
@@ -25,10 +27,10 @@ const CustomNavbar = () => {
         </div>
         <div className="d-flex align-items-center justify-content-around flex-grow-1">
           <Nav.Link className="text-light d-flex d-lg-none">
-            <SearchButton />
+            {/* <SearchButton /> */}
           </Nav.Link>
           <Nav.Link>
-            <HomeButton />
+            <Link to = '/'><HomeButton /></Link> 
           </Nav.Link>
           <Nav.Link>
             <ReteButton />
