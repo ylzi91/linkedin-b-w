@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CREATE_NEW_POST, TAKE_MY_PROFILE, getOrModifyPost, getProfile } from "../../redux/actions";
 import { GrMultimedia } from "react-icons/gr";
 import { MdEvent } from "react-icons/md";
-import { Container, Col, Row, Modal, Button } from "react-bootstrap";
+import { Container, Col, Row, Modal, Button, Form } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
 
 
@@ -13,6 +13,7 @@ const CreatePost = () => {
     const profile = useSelector(store => store.profile.myProfile)
     const [showModal, setShowModal] = useState(false);
     const [contentText, setContentText] = useState('')
+    const [writePost, setWritePost] = useState("");
 
     useEffect(() => {
         dispatch(getProfile('me', TAKE_MY_PROFILE))
@@ -35,9 +36,9 @@ const CreatePost = () => {
             <div className="card-create px-3 pt-2 mb-3">
                 <div className="body-input mb-2">
                     <div className="post-img">
-                        <img src={profile.image} alt="profile-image" />
+                        <img src={profile.image} alt="profile-image" className="rounded-pill" />
                     </div>
-                    <div className="body-input-text w-100 h-100" onClick={showForm}>
+                    <div className="body-input-text h-100" onClick={showForm}>
                         Crea un post
                     </div>
                 </div>
@@ -63,14 +64,14 @@ const CreatePost = () => {
             {/* FORM PER IL POST  */}
 
             <Modal size="lg" show={showModal} onHide={handleCloseModal}>
-                <Modal.Header className="bg-dark text-light border-0 py-4 px-2">
+                <Modal.Header className="bg-dark text-light border-0 py-3 px-2">
                     <Modal.Title className="w-100 d-flex">
 
-                        <div className="mb-3 w-100 d-flex align-items-center">
-                            <div className="create-post-img me-2">
+                        <div className="w-100 d-flex align-items-center">
+                            <div className="create-post-img me-2 d-flex align-items-center">
                                 <img className="rounded-circle" src={(profile.image)} alt={profile.username} />
                             </div>
-                            <div className="user-post h-100">
+                            <div className="user-post h-100 d-flex align-items-center">
                                 <div>{profile.username}</div>
                             </div>
                         </div>
@@ -79,6 +80,10 @@ const CreatePost = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="bg-dark text-light">
+
+
+
+{/* 
                     <form onSubmit={(e) => {
                         e.preventDefault(); // Previene il comportamento predefinito del form
                         publishPost(); // Pubblica il post quando il form viene inviato
@@ -90,7 +95,41 @@ const CreatePost = () => {
                             maxLength={1200}
                             value={contentText}
                             onChange={(e) => setContentText(e.target.value)}></input>
-                    </form>
+                    </form> */}
+
+
+
+                    <Form.Control
+                        onKeyDown={(e) => {
+
+                            if (e.key === "Enter" || e.keyCode === "13") {
+                                dispatch(
+                                    getOrModifyPost("POST", CREATE_NEW_POST, {
+                                        text: writePost,
+                                    })
+                                );
+                                dispatch(getOrModifyPost());
+                                handleCloseModal();
+                                setWritePost("");
+                            }
+                        }}
+                        as="textarea"
+                        maxLength={1200}
+                        rows={10}
+                        autoFocus
+                        value={writePost}
+                        onChange={(e) => {
+                            setWritePost(e.target.value);
+                        }}
+                        className=" fs-5 bg-dark border-0 text-light"
+                        placeholder="Di cosa vorresti parlare..."
+                    ></Form.Control>
+
+
+
+
+
+
                 </Modal.Body>
                 <Modal.Footer className="bg-dark text-light border-0">
                     <Button variant="light" onClick={publishPost}>
