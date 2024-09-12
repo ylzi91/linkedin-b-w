@@ -6,6 +6,7 @@ import CustomNavbar from './components/CustomNavbar';
 import ProfilePage from './components/ProfilePage';
 import Home from './components/home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Search from './components/Search';
 
 function App() {
  
@@ -18,7 +19,7 @@ function App() {
         <main className='d-flex justify-content-center'>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/myprofile' element={<ProfilePage />} />
+            <Route path='/myprofile' element={<Search />} />
           </Routes>
         </main>
       </BrowserRouter>
