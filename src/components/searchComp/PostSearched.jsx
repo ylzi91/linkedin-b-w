@@ -13,11 +13,10 @@ function PostSearched({ query }) {
   useEffect(() => {
     dispatch(getOrModifyPost());
   }, []);
-  
-  useEffect(()=>{
-    dispatch(getOrModifyPost());
-  },[query])
 
+  useEffect(() => {
+    dispatch(getOrModifyPost());
+  }, [query]);
 
   return (
     <>
@@ -27,16 +26,15 @@ function PostSearched({ query }) {
           <Card.Title className="mb-4">Post</Card.Title>
 
           {reduxPosts
-            .filter((p) => p.text.includes(query))
-            .reverse()
+            .filter((p) => p.text.includes(`${query}`)).slice(0,10)
             .map((post) => {
               return <PostItemS key={post._id} post={post} />;
             })}
         </Card.Body>
         <div className="show-all-experiences">
           <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold">
-            Show all {reduxPosts.filter((p) => p.text.includes(query)).length} Posts{" "}
-            <span className="ms-1">&rarr;</span>
+            Show all {reduxPosts.filter((p) => p.text.includes(query)).length}{" "}
+            Posts <span className="ms-1">&rarr;</span>
           </button>
         </div>
       </Card>

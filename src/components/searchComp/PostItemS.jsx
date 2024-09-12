@@ -13,16 +13,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { DELETE_POST, getOrModifyPost } from "../../redux/actions";
 
 const PostItemS = ({ post }) => {
+  const [postProf, setPostProf] = useState({
+    name: "",
+    surname: "",
+    img: "",
+    username: "",
+  });
   const profiles = useSelector((store) => store.profile.allProfiles);
   const myProfile = useSelector((store) => store.profile.myProfile);
-  const getProfileImage = (username) => {
-    const profile = profiles.find((profile) => profile.username === username);
-    return profile ? profile.image : "default-profile.png";
-  };
 
-  const getProfileNameSurname = (username) => {
-    const profile = profiles.find((profile) => profile.username === username);
-    return profile;
+  const getProfileNameSurname = (u) => {
+      const profile = profiles.find((profile) => profile.username === u);
+
+      console.log("Profile", profile);
+      return profile;
+    
   };
 
   const timeAgo = (timestamp) => {
@@ -51,26 +56,47 @@ const PostItemS = ({ post }) => {
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const user = { ...getProfileNameSurname(post.username) };
+    console.log("user", user);
+
+    setPostProf({
+      name: user.name,
+      surname: user.surname,
+      img: user.image,
+    });
+  }, [post]);
+  useEffect(() => {
+    const user = { ...getProfileNameSurname(post.username) };
+    console.log("user", user);
+
+    setPostProf({
+      name: user.name,
+      surname: user.surname,
+      username: user.username,
+      img: user.image,
+    });
+  }, []);
 
   return (
     <Row className="experience-item mb-4 gutter" id="Post">
       <Col>
         <div className="card-create px-3 py-3 rounded-0" key={post._id}>
-          <div className="body-input mb-3">
-            <div className="post-img">
-              <img
-                className="rounded-circle profileo"
-                src={getProfileImage(post.username)}
-                alt={post.username}
-              />
-            </div>
-            <div className="user-post w-100 h-100">
-              <div>
-                {getProfileNameSurname(post.username).name}{" "}
-                {getProfileNameSurname(post.username).surname}
+          {postProf.name && <div className="body-input mb-3">
+            {postProf.img && (
+              <div className="post-img">
+                <img
+                  className="rounded-circle profileo"
+                  src={postProf.img}
+                  alt={post.username}
+                />
               </div>
-              <div>{timeAgo(post.createdAt)}</div>
+            )}
+            <div className="user-post w-50 h-100">
+              <div>
+                  {postProf.name} {postProf.surname} </div> <div>{postProf.username}
+              </div>
+              <div className="text-secondary py-1">{timeAgo(post.createdAt)}</div>
             </div>
             <div className="edit-icon d-flex align-items-center">
               <BsThreeDots className="me-3" />
@@ -80,8 +106,8 @@ const PostItemS = ({ post }) => {
                 <RxCross2 />
               )}
             </div>
-          </div>
-          <div className="text-light py-2 border-bottom-custom d-flex align-items-center">
+          </div>}
+          <div className="text-light py-3 px-3 border-bottom-custom d-flex align-items-center text-wrap">
             {post.text}
           </div>
           <Container className="p-0">

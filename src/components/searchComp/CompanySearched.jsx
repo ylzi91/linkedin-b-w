@@ -23,16 +23,16 @@ useEffect(()=>{
 
   return (
     <>
-      <Card className="rounded-3 experience-section mb-4 bg-dark text-light">
+      <Card className="rounded-3 experience-section mb-2 bg-dark text-light">
         <Card.Body className="pb-0">
           <Card.Title className="mb-4">Company</Card.Title>
-          {company.map((c)=>{
-            return <CompanyItem data={c} />
+          {company.map((c, id)=>{
+            return <CompanyItem key={id} data={c} />
           })}
         </Card.Body>
         <div className="show-all-experiences">
           <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold">
-            Show allexperiences
+            Show all company
             <span className="ms-1">&rarr;</span>
           </button>
         </div>

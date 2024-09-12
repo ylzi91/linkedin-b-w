@@ -25,10 +25,10 @@ const JobS = ({ query }) => {
         </Card.Title>
         <ListGroup className="p-0 m-0 border-0 border-bottom border-secondary pb-0 rounded-0">
           {allJobs.slice(0, 8)
-            .map((job) => {
+            .map((job, i) => {
               return (
                 <ListGroup.Item
-                  key={job.id}
+                  key={i}
                   className="bg-dark pt-2 d-flex pb-2 border-0 border-secondary border-bottom pb-0 justify-content-between mx-4 align-content-center"
                 >
                   <div className="text-white flex-column w-100 me-0 ps-1">
