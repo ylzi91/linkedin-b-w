@@ -89,16 +89,16 @@ const FormExp = ({ id, close, post = {}, add }) => {
             dispatch(getOrModifyPost("POST", CREATE_NEW_POST, { text: posts }));
 
           close();}}
-          variant="outline-primary py-1 rounded-pill"
-          size="lg"
+          variant="outline-secondary"
+          size="md"
           type="submit"
         >
           Submit
         </Button>{post._id && (
           <Button
-            variant="outline-danger py-1 rounded-pill mx-3"
+            variant="outline-danger mx-3"
             type="delete"
-            size="lg"
+            size="md"
             onClick={(e) => {
               e.preventDefault();
               dispatch(getOrModifyPost("DELETE", DELETE_POST, "", post._id));
@@ -110,8 +110,8 @@ const FormExp = ({ id, close, post = {}, add }) => {
           </Button>
         )}  
         <Button
-          variant="outline-warning py-1 rounded-pill ms-5"
-          size="lg"
+          variant="outline-warning ms-5"
+          size="md"
           onClick={close}
         >
           Cancel
