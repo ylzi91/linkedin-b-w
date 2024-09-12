@@ -17,7 +17,7 @@ const Searched = ({query}) => {
         <PeopleS query={'riccardo'} />
         </Col>
         <Col xs={12}>
-          <JobS query={query} /> 
+          <JobS query={'css'} /> 
         </Col>
     </Row>
     </>)
