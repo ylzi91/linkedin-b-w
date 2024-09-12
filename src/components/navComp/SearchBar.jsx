@@ -4,17 +4,23 @@ import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const navigate = useNavigate();
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      const query = e.target.value.trim(); 
+      if (query) {
+        navigate(`/search/${query}`); 
+      }
+    }
+  };
+
   return (
     <InputGroup id="search" className="me-5">
       <InputGroup.Text>
         <IoMdSearch className="fs-5" />
       </InputGroup.Text>
       <Form.Control
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.keyCode === "13") {
-            navigate(`search/:${e.target.value}`);
-          }
-        }}
+        onKeyDown={handleKeyDown}
         placeholder="Cerca"
         aria-label="Search"
       />
