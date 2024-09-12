@@ -80,25 +80,6 @@ const CreatePost = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="bg-dark text-light">
-
-
-
-{/* 
-                    <form onSubmit={(e) => {
-                        e.preventDefault(); // Previene il comportamento predefinito del form
-                        publishPost(); // Pubblica il post quando il form viene inviato
-                    }}>
-                        <input
-                            className="w-100 text-input-area"
-                            type="text"
-                            laceholder="Scrivi qualcosa..."
-                            maxLength={1200}
-                            value={contentText}
-                            onChange={(e) => setContentText(e.target.value)}></input>
-                    </form> */}
-
-
-
                     <Form.Control
                         onKeyDown={(e) => {
 
@@ -124,12 +105,6 @@ const CreatePost = () => {
                         className=" fs-5 bg-dark border-0 text-light"
                         placeholder="Di cosa vorresti parlare..."
                     ></Form.Control>
-
-
-
-
-
-
                 </Modal.Body>
                 <Modal.Footer className="bg-dark text-light border-0">
                     <Button variant="light" onClick={publishPost}>
@@ -143,41 +118,3 @@ const CreatePost = () => {
 
 export default CreatePost;
 
-
-
-// CREATE CON INPUT
-
-{/* <div className="card-create px-3 pt-2 mb-3">
-<div className="body-input mb-2">
-    <div className="body-input-img">
-        <img src={profile.image} alt="profile-image" />
-    </div>
-    <div className="body-input-text w-100 h-100">
-        <form onSubmit={(e) =>{
-            e.preventDefault()
-            dispatch(getOrModifyPost('POST', CREATE_NEW_POST, {text: post}))
-        } }>
-            <input value={post} onChange={(e)=> {
-                setPost(e.target.value)
-                window.location.reload()
-            }} type="text" placeholder="Crea un post" className="div-input w-100 bg-dark" />
-        </form>
-    </div>
-</div>
-<Container fluid className="p-0 w-100">
-    <Row className="w-100 d-flex justify-content-between pb-2">
-        <Col lg={5} className="button-media d-flex align-items-center justify-content-start px-2">
-            <GrMultimedia className="icon-media" />
-            <p className="desc-button">Contenuti Multimediali</p>
-        </Col>
-        <Col lg={2}className="button-media d-flex align-items-center justify-content-center p-0">
-            <MdEvent className="icon-event" />
-            <p className="desc-button"> Evento</p>
-        </Col>
-        <Col lg={4} className="button-media d-flex align-items-center justify-content-center p-0">
-            <GrMultimedia className="icon-article" />
-            <p className="desc-button"> Scrivi un articolo</p>
-        </Col>
-    </Row>
-</Container>
-</div> */}
