@@ -1,31 +1,23 @@
-import React, { useState } from "react";
-import { Dropdown, FormControl } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 
-const SearchButton = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
+const SearchButton = ({ showInput, handleIconClick }) => {
   return (
-    <Dropdown align="end">
-      <Dropdown.Toggle variant="link" id="search-dropdown">
-        <FaSearch className="text-white" />
-        <p className="text-white iconNames d-none d-lg-flex">Cerca</p>
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu className=" bg-dark" style={{ width: "300px" }}>
-        <FormControl
-          type="text"
-          placeholder="Cerca..."
-          value={searchQuery}
-          onChange={handleInputChange}
-          className="bg-dark text-white "
-        />
-      </Dropdown.Menu>
-    </Dropdown>
+    <div className={`search-button-container ${showInput ? "open" : ""}`}>
+      <Button
+        className={`search-button ${showInput ? "open" : ""}`}
+        onClick={handleIconClick}
+      >
+        <FaSearch />
+        {showInput && (
+          <input
+            type="text"
+            placeholder="Cerca..."
+            className={`search-input ${showInput ? "open" : ""}`}
+          />
+        )}
+      </Button>
+    </div>
   );
 };
 
