@@ -77,7 +77,7 @@ const FormExp = ({ id, close, expid, add }) => {
             }}
           >
             <Row className="my-3">
-              <Form.Group as={Col} controlId="formGridRole">
+              <Form.Group as={Col} controlId="formGridRole" className="pe-2">
                 <Form.Label>Role</Form.Label>
                 <Form.Control
                   value={exp.role}
@@ -96,7 +96,7 @@ const FormExp = ({ id, close, expid, add }) => {
                   onChange={(e) => handleChange("company", e)}
                 />
               </Form.Group>
-            </Row>
+            </Row> 
 
             <Row className="mb-3">
               <Form.Group

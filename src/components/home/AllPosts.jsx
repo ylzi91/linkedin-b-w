@@ -157,7 +157,7 @@ const AllPosts = () => {
                 </div>
                 <div className="edit-icon d-flex align-items-center">
                   <BsThreeDots
-                    className="me-3"
+                    className={post.user._id !== myProf._id ? 'text-white-50 me-3' : 'me-3'} 
                     onClick={() => handleEditPost(post)}
                   />
                   <RxCross2 onClick={() => handlePostAction(post)} />

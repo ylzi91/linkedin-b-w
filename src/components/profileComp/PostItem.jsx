@@ -88,7 +88,7 @@ const PostItem = ({ post, openForm }) => {
     }}
                 />
               ) : (
-                <FaTrashAlt />
+                <RxCross2 />
               )}
             </div>
           </div>
