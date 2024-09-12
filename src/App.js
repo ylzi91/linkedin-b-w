@@ -7,6 +7,7 @@ import ProfilePage from './components/ProfilePage';
 import Home from './components/home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Search from './components/Search';
+import DinamicProfile from './components/DinamicProfile';
 
 function App() {
  
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/myprofile' element={<ProfilePage />} />
+            <Route path='/profile/:id' element={<DinamicProfile />} />
             <Route path='search/:query' element={<Search />} />
           </Routes>
         </main>
