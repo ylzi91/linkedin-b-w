@@ -1,25 +1,20 @@
 import { useEffect, useState } from "react";
-import {
-  DELETE_POST,
-  TAKE_ALL_PROFILE,
-  getOrModifyPost,
-  getProfile,
-  MODIFY_POST,
-} from "../../redux/actions";
+import { DELETE_POST, MODIFY_POST, TAKE_ALL_PROFILE, getOrModifyPost, getProfile } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDots } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
-import { FaRegThumbsUp } from "react-icons/fa";
+import { FaRegThumbsUp, FaTrashAlt } from "react-icons/fa";
 import { Container, Row, Col, Modal, Button, Form } from "react-bootstrap";
+import { FaRegCommentDots } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend } from "react-icons/io";
 import { GoComment } from "react-icons/go";
 
 const AllPosts = () => {
   const dispatch = useDispatch();
-  const posts = useSelector((store) => store.post.allPosts);
-  const profiles = useSelector((store) => store.profile.allProfiles);
-  const myProf = useSelector((store) => store.profile.myProfile);
+  const posts = useSelector(store => store.post.allPosts);
+  const profiles = useSelector(store => store.profile.allProfiles);
+  const myProf = useSelector(store => store.profile.myProfile)
   const [hiddenPosts, setHiddenPosts] = useState([]);
   const [deletedPosts, setDeletedPosts] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -34,11 +29,6 @@ const AllPosts = () => {
     dispatch(getOrModifyPost());
     dispatch(getProfile("", TAKE_ALL_PROFILE));
   }, [dispatch]);
-
-  const getProfileImage = (username) => {
-    const profile = profiles.find((profile) => profile.username === username);
-    return profile ? profile.image : "default-profile.png";
-  };
 
   const timeAgo = (timestamp) => {
     const now = new Date();
@@ -127,6 +117,13 @@ const AllPosts = () => {
     }
   };
 
+  const getProfileImage = (username) => {
+    const profile = profiles.find(profile => profile.username === username);
+    return profile ? profile.image : 'default-profile.png';
+  };
+
+
+
   return (
     <>
       {posts && posts.length > 0 ? (
@@ -135,12 +132,11 @@ const AllPosts = () => {
           .reverse()
           .map((post) => (
             <div
-              className={`card-create px-3 py-3 mb-3 ${
-                hiddenPosts.includes(post._id) ||
-                deletedPosts.includes(post._id)
+              className={`card-create px-3 py-3 mb-3 ${hiddenPosts.includes(post._id) ||
+                  deletedPosts.includes(post._id)
                   ? "d-none"
                   : ""
-              }`}
+                }`}
               key={post._id}
             >
               <div className="body-input mb-3 w-100">
