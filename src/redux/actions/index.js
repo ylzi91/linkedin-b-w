@@ -15,6 +15,8 @@ export const GET_SEARCH = 'GET_SEARCH'
 export const GET_COMPANY = 'GET_COMPANY'
 export const GET_CATEGORY = 'GET_CATEGORY'
 export const GET_COMMENT_POST = 'GET_COMMENT_POST'
+export const WRITE_COMMENT_POST = 'WRITE_COMMENT_POST'
+export const MODIFY_COMMENT_POST = 'MODIFY_COMMENT_POST'
 
 
 // PROFILE ------------------------------------------
@@ -344,6 +346,108 @@ export const takeComments = () => {
                 const arrayObj = await response.json()
                 dispatch({
                     type: GET_COMMENT_POST,
+                    payload: arrayObj
+                })
+            }
+            else {
+                alert('Errrore Fetch')
+
+            }
+        }
+        catch (error) {
+            console.log(error)
+
+        }
+    }
+}
+export const addComment = (idPost, comment, rate = '1') => {
+    return async (dispatch, getState) => {
+        const myUrl = `https://striveschool-api.herokuapp.com/api/comments/`
+        const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmUyYTBkZDU0M2E0YzAwMTU5MDFkZmIiLCJpYXQiOjE3MjYxMjgzNDksImV4cCI6MTcyNzMzNzk0OX0.5FrJw7Z8uGN3muC9bnpUEZlfusI8TbD7sfnwiHYJGWA'
+        try {
+            const response = await fetch(myUrl, {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${key}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    comment: comment,
+                    rate: rate,
+                    elementId: idPost
+                })
+                
+            })
+            if (response.ok) {
+                const arrayObj = await response.json()
+                dispatch({
+                    type: WRITE_COMMENT_POST,
+                    payload: arrayObj
+                })
+            }
+            else {
+                alert('Errrore Fetch')
+
+            }
+        }
+        catch (error) {
+            console.log(error)
+
+        }
+    }
+}
+export const modifyComment = (idComment, comment) => {
+    return async (dispatch, getState) => {
+        const myUrl = `https://striveschool-api.herokuapp.com/api/comments/${idComment}`
+        const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmUyYTBkZDU0M2E0YzAwMTU5MDFkZmIiLCJpYXQiOjE3MjYxMjgzNDksImV4cCI6MTcyNzMzNzk0OX0.5FrJw7Z8uGN3muC9bnpUEZlfusI8TbD7sfnwiHYJGWA'
+        try {
+            const response = await fetch(myUrl, {
+                method: 'PUT',
+                headers: {
+                    Authorization: `Bearer ${key}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    comment: comment,
+                })
+                
+            })
+            if (response.ok) {
+                const arrayObj = await response.json()
+                dispatch({
+                    type: MODIFY_COMMENT_POST,
+                    payload: arrayObj
+                })
+            }
+            else {
+                alert('Errrore Fetch')
+
+            }
+        }
+        catch (error) {
+            console.log(error)
+
+        }
+    }
+}
+export const deleteComment = (idComment) => {
+    return async (dispatch, getState) => {
+        const myUrl = `https://striveschool-api.herokuapp.com/api/comments/${idComment}`
+        const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmUyYTBkZDU0M2E0YzAwMTU5MDFkZmIiLCJpYXQiOjE3MjYxMjgzNDksImV4cCI6MTcyNzMzNzk0OX0.5FrJw7Z8uGN3muC9bnpUEZlfusI8TbD7sfnwiHYJGWA'
+        try {
+            const response = await fetch(myUrl, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${key}`,
+                    'Content-Type': 'application/json'
+                },
+               
+        
+            })
+            if (response.ok) {
+                const arrayObj = await response.json()
+                dispatch({
+                    type: MODIFY_COMMENT_POST,
                     payload: arrayObj
                 })
             }
