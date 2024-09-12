@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import UserDropdown from "./UserDropdown";
 import CompaniesDropdown from "./CompaniesDropdown";
+import UserDropdown from "./UserDropdown";
+
 
 const Dots = () => {
   const [showMenu, setShowMenu] = useState(false);

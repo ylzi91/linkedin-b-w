@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
-import { DELETE_POST, TAKE_ALL_PROFILE, getOrModifyPost, getProfile, MODIFY_POST } from "../../redux/actions";
+import { DELETE_POST, MODIFY_POST, TAKE_ALL_PROFILE, getOrModifyPost, getProfile } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDots } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
-import { FaRegThumbsUp } from "react-icons/fa";
+import { FaRegThumbsUp, FaTrashAlt } from "react-icons/fa";
 import { Container, Row, Col, Modal, Button, Form } from "react-bootstrap";
+import { FaRegCommentDots } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend } from "react-icons/io";
 import { GoComment } from "react-icons/go";
 
 const AllPosts = () => {
     const dispatch = useDispatch();
-    const posts = useSelector((store) => store.post.allPosts);
-    const profiles = useSelector((store) => store.profile.allProfiles);
-    const myProf = useSelector((store) => store.profile.myProfile);
+    const posts = useSelector(store => store.post.allPosts);
+    const profiles = useSelector(store => store.profile.allProfiles);
+    const myProf = useSelector(store => store.profile.myProfile)
     const [hiddenPosts, setHiddenPosts] = useState([]);
     const [deletedPosts, setDeletedPosts] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -65,6 +66,11 @@ const AllPosts = () => {
         setModalMessage("Il post è stato rimosso dal tuo feed.");
         setShowModal(true);
     };
+
+    // const showConfrimDelete = (postId) => {
+    //     setIdToDel(postId)
+    //     setShowModal2(true); 
+    // };
 
     const deletePost = (postId) => {
         dispatch(getOrModifyPost("DELETE", DELETE_POST, "", postId));

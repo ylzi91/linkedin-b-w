@@ -8,15 +8,110 @@ body {
   height: 100%;
 }
 
+/* Profile*/
+
+.heroTit{
+  display: inline-block;
+  transform: translateX(-115px) !important;
+}
+
+.info{
+  color: #0061bc;
+}
+
+.point{
+  font-size: 7px;
+}
+
+.info:hover{
+  text-decoration: underline !important;
+}
+
+.btn_info_out:hover{
+  background-color: #344861 !important;
+  border: 1px #0061bc solid!important;
+
+}
+.btn_info:hover{
+  background-color: #3f80e3 !important;
+
+}
+
+.hov:hover{
+  padding: 10px 12px !important;
+  margin-right: 8px !important;
+  border-radius: 50% !important;
+  background-color: #666 !important;
+}
+
+.clickable{
+  cursor: pointer !important;
+}
+
+.btn_info_out{
+  color: #0061bc !important;
+  border: #0061bc 1px solid !important;
+  background-color: transparent !important;
+  height: 38px;
+}
+.btn_info{
+  height: 38px;
+  border: #0061bc 1px solid !important;
+  background-color: #0061bc !important;
+  color: #000 !important;
+}
+
+.titleHero{
+  height: 40px !important;
+}
+
+.btnn{
+  border-radius: 25px !important;
+}
+
+.profilePage{
+  width: 83% !important;
+}
+
+.gutter{
+  gap: 4px;
+}
+
+.formProfile input{
+  background-color: #1b1f23 !important;
+  color: whitesmoke !important;
+  font-size: small;
+  padding: 6px 8px !important;
+  border-radius: 5px !important;
+}
+
+.btn-close{
+  color: white !important;
+}
+
+.modal-body{
+  max-height: 500px !important;
+  display: block !important; /* I added this to see the modal, you don't need this */
+  overflow-y: scroll !important;
+  scrollbar-color: rgb(125, 124, 124) rgb(50, 49, 49);
+  scrollbar-width: none;
+}
+
+.modali{
+  background-color: #1b1f23 !important;
+}
+
+
+/***********************************************************/
 header {
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.2)
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
 }
 
 p,
 a {
   margin: 0 !important;
   padding: 0 !important;
-}
+} 
 
 .company-name {
   font-size: 1.1rem;
@@ -55,14 +150,58 @@ a {
   font-weight: 600;
 }
 
+.experience-section .card-footer .btn-link:hover {
+  color: #004182;  /* Colore blu scuro per l'hover */
+  text-decoration: underline;
+}
+
+.experience-section .show-all-experiences {
+  transition: background-color 0.3s ease;
+  border-top: 1px solid #e0e0e0;
+}
+
+.experience-section .show-all-experiences:hover {
+  background-color: #F3F3F3;
+}
+
+.user {
+  width: 80px;
+  height: 80px;
+  font-size: 45px;
+}
+
+.experience-section .show-all-experiences:hover button {
+  color: #000 !important;
+}
+
+.experience-section .show-all-experiences button {
+  color: #666;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: color 0.3s ease;
+}
+
+.experience-section .show-all-experiences button span {
+  margin-left: 4px;
+}
 
 /* NAVBAR */
 
+.ul:hover{
+  text-decoration: underline !important;
+  text-decoration-color: grey !important;
+  text-decoration-thickness: 1px !important;
+}
+
+.try:hover {
+  color: #0a66c2 !important;
+}
 /* MEDIA QUERY */
 
 
 @media screen and (min-width: 400px) {
-
+  
   #home,
   #custom-navbar {
     width: 100% !important;
@@ -70,7 +209,6 @@ a {
 }
 
 @media screen and (min-width: 576px) {
-
   #home,
   #custom-navbar {
     width: 90% !important;
@@ -84,7 +222,7 @@ a {
 
   #custom-navbar {
 
-    width: 90% !important;
+    width: 85% !important;
   }
 }
 
@@ -100,17 +238,17 @@ a {
 
   #home,
   #custom-navbar {
-    width: 80% !important;
+    width: 92% !important;
   }
 }
 
 @media screen and (min-width: 1000px) {
   #home {
-    width: 85% !important;
+    width: 92% !important;
   }
 
   #custom-navbar {
-    width: 85% !important;
+    width: 92% !important;
   }
 }
 
@@ -230,12 +368,16 @@ a {
   background-color: #212529;
   color: #fff;
   border: none;
+  background-color: #212529;
+  color: #fff;
+  border: none;
   min-width: 250px;
 }
 
 
 .user-dropdown .dropdown-item,
 .user-dropdown .dropdown-item:hover {
+  background-color: #212529;
   background-color: #212529;
   color: #fff;
 }
@@ -254,15 +396,6 @@ a {
   font-size: 0.9rem;
 }
 
-.ul:hover{
-  text-decoration: underline;
-  text-decoration-color: grey;
-  text-decoration-thickness: 1px;
-}
-
-.try:hover {
-  color: #0a66c2 !important;
-}
 
 .hover-drop:hover {
   text-decoration: underline;
@@ -391,6 +524,14 @@ main {
   position: relative;
 }
 
+.form-control::placeholder {
+    color: white;
+}
+
+.form-control:focus{
+  outline: none !important;
+}
+
 .body-input-text {
   color: white;
   border: 1px solid lightgray;
@@ -514,6 +655,18 @@ main {
   object-fit: fill;
 }
 
+.profile{
+  width: 100px !important;
+  height: 100px !important;
+  object-fit: cover !important;
+  transform: translateY(-75px);
+  border: 3px solid #212529 !important;
+}
+.profileo{
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: fill !important;
+}
 .edit-icon {
   position: absolute;
   color: white;
