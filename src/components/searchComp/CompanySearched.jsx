@@ -12,9 +12,14 @@ const CompanySearched = ({ query }) => {
   const company = useSelector((s) => s.job.companySearch);
 
   useEffect(() => {
-    dispatch(getCompany("Robots"));
+    dispatch(getCompany(query));
     console.log(company);
-  }, []);
+}, []);
+
+useEffect(()=>{
+      dispatch(getCompany(query));
+},[query])
+
 
   return (
     <>

@@ -10,7 +10,7 @@ import { IoIosSend } from "react-icons/io";
 import { IoPencilOutline } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { DELETE_POST, getOrModifyPost } from "../../redux/actions";
+import { DELETE_POST, getOrModifyPost, getProfile, TAKE_MY_PROFILE } from "../../redux/actions";
 
 const PostItem = ({ post, openForm }) => {
   const profiles = useSelector((store) => store.profile.allProfiles);
@@ -52,7 +52,6 @@ const PostItem = ({ post, openForm }) => {
     }
   };
 
-  useEffect(() => {}, []);
 
   return (
     <Row className="experience-item mb-4 gutter">
@@ -65,14 +64,14 @@ const PostItem = ({ post, openForm }) => {
             <div className="post-img">
               <img
                 className="rounded-circle profileo"
-                src={getProfileImage(post.username)}
+                src={myProfile.image}
                 alt={post.username}
               />
             </div>
             <div className="user-post w-100 h-100">
               <div>
-                {getProfileNameSurname(post.username).name}{" "}
-                {getProfileNameSurname(post.username).surname}
+                {myProfile.name}{" "}
+                {myProfile.surname}
               </div>
               <div>{timeAgo(post.createdAt)}</div>
             </div>

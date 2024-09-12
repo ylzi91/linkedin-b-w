@@ -6,13 +6,18 @@ import { getOrModifyPost } from "../../redux/actions";
 import PostItem from "../profileComp/PostItem";
 import PostItemS from "./PostItemS";
 
-function JobsSearched({ query }) {
+function PostSearched({ query }) {
   const dispatch = useDispatch();
   const reduxPosts = useSelector((s) => s.post.allPosts);
 
   useEffect(() => {
     dispatch(getOrModifyPost());
   }, []);
+  
+  useEffect(()=>{
+    dispatch(getOrModifyPost());
+  },[query])
+
 
   return (
     <>
@@ -39,4 +44,4 @@ function JobsSearched({ query }) {
   );
 }
 
-export default JobsSearched;
+export default PostSearched;

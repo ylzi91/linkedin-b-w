@@ -2,8 +2,12 @@ import { Col, Container, Row } from "react-bootstrap";
 import LftBarS from "./searchComp/LftBarS";
 import OtherProfile from "./profileComp/OtherProfile";
 import Searched from "./searchComp/Searched";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 function Search (){
+    const params = useParams()
+
     return(
         <Container fluid className="p-0 mt-3" id="home">
                 <Row className="d-flex justify-content-center">
@@ -14,7 +18,7 @@ function Search (){
                         <Container>
                             <Row>
                                 <Col>
-                                <Searched query={'css'}/>
+                                <Searched query={params.query}/>
                                 </Col>
                             </Row>
                            
