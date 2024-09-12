@@ -24,7 +24,7 @@ const AllPosts = () => {
         dispatch(getOrModifyPost());
         dispatch(getProfile('', TAKE_ALL_PROFILE));
         dispatch(getProfile('me'))
-    }, [dispatch, idToDel]);
+    }, [idToDel]);
 
 
     const getProfileImage = (username) => {
@@ -150,7 +150,7 @@ const AllPosts = () => {
                         setTimeout(() => {
                             setIdToDel('')
                             
-                        }, 500);
+                        }, 1000);
                         handleCloseSecondModal()
                     }}>
                         Certo, fa schifo

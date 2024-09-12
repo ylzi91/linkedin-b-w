@@ -14,6 +14,7 @@ export const DELETE_POST = 'DELETE_POST'
 export const GET_SEARCH = 'GET_SEARCH'
 export const GET_COMPANY = 'GET_COMPANY'
 export const GET_CATEGORY = 'GET_CATEGORY'
+export const GET_COMMENT_POST = 'GET_COMMENT_POST'
 
 
 // PROFILE ------------------------------------------
@@ -320,6 +321,35 @@ export const getCategory = ( query ) => {
             }
             else {
                 alert ('Errore nella Fetch')
+            }
+        }
+        catch (error) {
+            console.log(error)
+
+        }
+    }
+}
+
+export const takeComments = () => {
+    return async (dispatch, getState) => {
+        const myUrl = `https://striveschool-api.herokuapp.com/api/comments/`
+        const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmUyYTBkZDU0M2E0YzAwMTU5MDFkZmIiLCJpYXQiOjE3MjYxMjgzNDksImV4cCI6MTcyNzMzNzk0OX0.5FrJw7Z8uGN3muC9bnpUEZlfusI8TbD7sfnwiHYJGWA'
+        try {
+            const response = await fetch(myUrl, {
+                headers: {
+                    Authorization: `Bearer ${key}`
+                }
+            })
+            if (response.ok) {
+                const arrayObj = await response.json()
+                dispatch({
+                    type: GET_COMMENT_POST,
+                    payload: arrayObj
+                })
+            }
+            else {
+                alert('Errrore Fetch')
+
             }
         }
         catch (error) {
