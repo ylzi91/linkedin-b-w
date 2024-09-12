@@ -7,7 +7,7 @@ const JobS = ({ query }) => {
 
   return (
     <>
-      <Card bg="dark" className="text-white rounded-3 text-wrap mb-2" id="Jobs">
+      <Card bg="dark" className="text-white rounded-3 text-wrap mb-2 mt-3" id="Jobs">
         <Card.Title className="ms-3 py-3">
           Offerte di lavoro che potrebbero interessarti
         </Card.Title>
