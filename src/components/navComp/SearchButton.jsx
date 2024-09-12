@@ -12,7 +12,7 @@ const SearchButton = ( {showInput, handleIconClick}) => {
       )}
       {showInput && (
         <div className="d-flex">
-          <Button className="bg-dark text-white border-0 ">
+          <Button className="bg-dark text-white border-0">
           <FaSearch />
          <input
            type="text"
