@@ -6,10 +6,10 @@ const LftBarS = () => {
       <Card bg='dark' text="white">
         <Card.Header className="border-0 fs-5">Su questa pagina</Card.Header>
         <ListGroup variant="flush" className="fs-6">
-          <ListGroup.Item className="border-0 py-2 bg-dark text-white">Jobs</ListGroup.Item>
-          <ListGroup.Item className="border-0 py-2 bg-dark text-white">Company</ListGroup.Item>
-          <ListGroup.Item className="border-0 py-2 bg-dark text-white">People</ListGroup.Item>
-          <ListGroup.Item className="border-0 py-2 bg-dark text-white">Post</ListGroup.Item>
+          <a href="#Jobs" className="list-group-item border-0 py-2 bg-dark text-white ps-3">Jobs</a>
+          <a href="#Company" className="list-group-item border-0 py-2 bg-dark text-white ps-3">Company</a>
+          <a href="#People" className="list-group-item border-0 py-2 bg-dark text-white ps-3">People</a>
+          <a href="#Post" className="list-group-item border-0 py-2 bg-dark text-white ps-3">Post</a>
         </ListGroup>
       </Card>
     </>

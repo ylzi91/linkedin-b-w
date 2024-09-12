@@ -2,6 +2,7 @@ import { Col, Row } from "react-bootstrap"
 import JobsSearched from "./JobsSearched"
 import CompanySearched from "./CompanySearched"
 import PeopleS from "./PeopleS"
+import JobS from "./JobS"
 
 const Searched = ({query}) => {
     return(<>
@@ -14,6 +15,9 @@ const Searched = ({query}) => {
         </Col>
         <Col xs={12}>
         <PeopleS query={'riccardo'} />
+        </Col>
+        <Col xs={12}>
+          <JobS query={query} /> 
         </Col>
     </Row>
     </>)

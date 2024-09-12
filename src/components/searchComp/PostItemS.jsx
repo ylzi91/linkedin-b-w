@@ -54,7 +54,7 @@ const PostItemS = ({ post }) => {
   useEffect(() => {}, []);
 
   return (
-    <Row className="experience-item mb-4 gutter">
+    <Row className="experience-item mb-4 gutter" id="Post">
       <Col>
         <div className="card-create px-3 py-3 rounded-0" key={post._id}>
           <div className="body-input mb-3">

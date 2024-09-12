@@ -7,7 +7,7 @@ const PeopleS = ({ query }) => {
 
   return (
     <>
-      <Card bg="dark" className="text-white  rounded-3 text-wrap mb-2">
+      <Card bg="dark" className="text-white  rounded-3 text-wrap mb-2" id="People">
         <Card.Title className="ms-3 py-3">
           {" "}
           Persone che potrebbero interessarti
