@@ -58,7 +58,7 @@ const PostItem = ({ post, openForm }) => {
     <Row className="experience-item mb-4 gutter">
       <Col>
         <div
-          className="card-create px-3 py-3 rounded-0 border-bottom border-light"
+          className="card-create px-3 py-3 rounded-0"
           key={post._id}
         >
           <div className="body-input mb-3">
@@ -82,14 +82,13 @@ const PostItem = ({ post, openForm }) => {
                   }}
 />
               {myProfile.username === post.username ? (
-                <FaTrashAlt
+                <RxCross2
                 onClick={()=>{              dispatch(getOrModifyPost("DELETE", DELETE_POST, "", post._id));
                   dispatch(getOrModifyPost());
     }}
-                  className=" text-danger opacity-75"
                 />
               ) : (
-                <RxCross2 />
+                <FaTrashAlt />
               )}
             </div>
           </div>
