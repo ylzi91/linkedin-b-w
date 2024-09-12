@@ -139,7 +139,7 @@ const AllPosts = () => {
                                     <div>{timeAgo(post.createdAt)}</div>
                                 </div>
                                 <div className="edit-icon d-flex align-items-center">
-                                    <BsThreeDots className="me-3" onClick={() => handleEditPost(post)} />
+                                    <BsThreeDots className="me-3" onClick={() => {if(post.username._id === myProf._id)handleEditPost(post)}} />
                                     <RxCross2
                                         onClick={() => handlePostAction(post)}
                                     />
