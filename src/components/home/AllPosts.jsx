@@ -1,20 +1,32 @@
 import { useEffect, useState } from "react";
-import { DELETE_POST, MODIFY_POST, TAKE_ALL_PROFILE, getOrModifyPost, getProfile } from "../../redux/actions";
+import {
+  DELETE_POST,
+  MODIFY_POST,
+  TAKE_ALL_PROFILE,
+  addComment,
+  deleteComment,
+  getOrModifyPost,
+  getProfile,
+  modifyComment,
+  takeComments,
+} from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDots } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
-import { FaRegThumbsUp, FaTrashAlt } from "react-icons/fa";
+import { FaPen, FaRegThumbsUp, FaTrash, FaTrashAlt } from "react-icons/fa";
 import { Container, Row, Col, Modal, Button, Form } from "react-bootstrap";
 import { FaRegCommentDots } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend } from "react-icons/io";
 import { GoComment } from "react-icons/go";
 
+
 const AllPosts = () => {
   const dispatch = useDispatch();
-  const posts = useSelector(store => store.post.allPosts);
-  const profiles = useSelector(store => store.profile.allProfiles);
-  const myProf = useSelector(store => store.profile.myProfile)
+  const posts = useSelector((store) => store.post.allPosts);
+  const profiles = useSelector((store) => store.profile.allProfiles);
+  const myProf = useSelector((store) => store.profile.myProfile);
+  const comments = useSelector((store) => store.comment.allComment);
   const [hiddenPosts, setHiddenPosts] = useState([]);
   const [deletedPosts, setDeletedPosts] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -24,10 +36,18 @@ const AllPosts = () => {
   const [editPost, setEditPost] = useState(null); // Post in fase di modifica
   const [showEditModal, setShowEditModal] = useState(false); // Stato per mostrare il modale di modifica
   const [editedPostText, setEditedPostText] = useState(""); // Testo modificato
+  const [writeComment, setWriteComment] = useState("");
+  const [myClick, setMyClick] = useState("");
+  const [showComment, setShowComment] = useState("");
+  const [modify, setModify] = useState('')
 
   useEffect(() => {
     dispatch(getOrModifyPost());
     dispatch(getProfile("", TAKE_ALL_PROFILE));
+    
+    dispatch(takeComments());
+        
+
   }, [dispatch]);
 
   const timeAgo = (timestamp) => {
@@ -118,11 +138,15 @@ const AllPosts = () => {
   };
 
   const getProfileImage = (username) => {
-    const profile = profiles.find(profile => profile.username === username);
-    return profile ? profile.image : 'default-profile.png';
+    const profile = profiles.find((profile) => profile.username === username);
+    return profile ? profile.image : "default-profile.png";
   };
+  const getProfileFromPost = (username) => {
+    const profile = profiles.find(profile => profile.username === username)
+    return profile
+  }
 
-
+ 
 
   return (
     <>
@@ -132,11 +156,12 @@ const AllPosts = () => {
           .reverse()
           .map((post) => (
             <div
-              className={`card-create px-3 py-3 mb-3 ${hiddenPosts.includes(post._id) ||
-                  deletedPosts.includes(post._id)
+              className={`card-create px-3 py-3 mb-3 ${
+                hiddenPosts.includes(post._id) ||
+                deletedPosts.includes(post._id)
                   ? "d-none"
                   : ""
-                }`}
+              }`}
               key={post._id}
             >
               <div className="body-input mb-3 w-100">
@@ -148,7 +173,9 @@ const AllPosts = () => {
                   />
                 </div>
                 <div className="user-post h-100">
-                  <div>{post.username}</div>
+                  <div>
+                    {getProfileFromPost(post.username)?.name} {getProfileFromPost(post.username)?.surname}
+                    </div>
                   <div>{timeAgo(post.createdAt)}</div>
                 </div>
                 <div className="edit-icon d-flex align-items-center">
@@ -159,8 +186,22 @@ const AllPosts = () => {
                   <RxCross2 onClick={() => handlePostAction(post)} />
                 </div>
               </div>
-              <div className="text-light py-2 border-bottom-custom d-flex align-items-center">
+              <div className="text-light py-2 border-bottom-custom">
                 {post.text}
+                <div
+                  className=" text-end clickable"
+                  style={{ fontSize: "0.8em" }}
+                  onClick={() =>
+                    showComment !== post._id
+                      ? setShowComment(post._id)
+                      : setShowComment("")
+                  }
+                >
+                  {comments.filter((comment) => comment.elementId === post._id)
+                    .length > 0 &&
+                    comments.filter((comment) => comment.elementId === post._id)
+                      .length + " commenti"}
+                </div>
               </div>
               <Container className="p-0">
                 <Row className="pt-1">
@@ -180,6 +221,14 @@ const AllPosts = () => {
                     lg={3}
                     xl={3}
                     className="button-media text-light d-flex justify-content-center align-items-center p-2"
+                    onClick={() => {
+                      myClick !== post._id
+                        ? setMyClick(post._id)
+                        : setMyClick("")
+                        setWriteComment('')
+                        setModify('')
+                    }
+                    }
                   >
                     <GoComment className="like-icon" />
                     <p className="d-md-none d-lg-none d-xl-block">Commenta</p>
@@ -207,6 +256,80 @@ const AllPosts = () => {
                     <p className="d-md-none d-lg-none d-xl-block">Invia</p>
                   </Col>
                 </Row>
+                {myClick === post._id && (
+                  <Row className=" align-items-center mt-2">
+                    <Col xs={2}>
+                      <div className="post-img">
+                        <img
+                          src={myProf.image}
+                          alt="profile-image"
+                          className="rounded-pill"
+                        />
+                      </div>
+                    </Col>
+                    <Col className=" text-light" xs={10}>
+                      <Form
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          if(modify !== ''){
+                              dispatch(modifyComment(modify, writeComment))
+                              setModify('')
+                              setTimeout(() => {
+                                  dispatch(takeComments())
+                                
+                              }, 500);
+
+                          }
+                    
+                          else{
+                            dispatch(addComment(post._id, writeComment));
+                            setModify('')
+                            setShowComment(post._id)
+                            
+                        }
+                        setWriteComment('');
+                        }}
+                      >
+                        <Form.Control
+                          value={writeComment}
+                          style={{ fontSize: "0.9em" }}
+                          className=" bg-dark rounded-5 text-light"
+                          placeholder="Scrivi commento..."
+                          type="text"
+                          onChange={(e) => {
+                            setWriteComment(e.target.value);
+                          }}
+                        />
+                      </Form>
+                    </Col>
+                  </Row>
+                )}
+                
+                {showComment === post._id &&
+                  comments
+                    .filter((comment) => comment.elementId === post._id)
+                    .map((cacca) => {
+                      return (
+                        <Row className=" bg-secondary p-2 rounded-5 align-items-center mt-2">
+
+                          <Col className=" text-light" xs={12}>
+                            <p className="text-light d-flex justify-content-between align-items-center"><span>{cacca.comment}</span><span><Button className="rounded-start-5 me-1"  variant="outline-dark" onClick={(e)=> {
+                                e.preventDefault()
+                                 setMyClick(post._id)
+                                 setWriteComment(cacca.comment)
+                                 setModify(cacca._id)
+                                 
+                            }}><FaPen/></Button><Button className="rounded-end-5" variant="outline-dark" onClick={()=> {
+                                dispatch(deleteComment(cacca._id))
+                                setTimeout(() => {
+                                    dispatch(takeComments())
+                                    
+                                }, 1000);
+                            }}><FaTrash/></Button></span> </p>
+                          </Col>
+                        </Row>
+                      );
+                    })}
               </Container>
             </div>
           ))
