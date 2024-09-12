@@ -11,24 +11,24 @@ import { IoIosSend } from "react-icons/io";
 import { GoComment } from "react-icons/go";
 
 const AllPosts = () => {
-    const dispatch = useDispatch();
-    const posts = useSelector(store => store.post.allPosts);
-    const profiles = useSelector(store => store.profile.allProfiles);
-    const myProf = useSelector(store => store.profile.myProfile)
-    const [hiddenPosts, setHiddenPosts] = useState([]);
-    const [deletedPosts, setDeletedPosts] = useState([]);
-    const [showModal, setShowModal] = useState(false);
-    const [modalMessage, setModalMessage] = useState("");
-    const [showConfirmModal, setShowConfirmModal] = useState(false);
-    const [postToDelete, setPostToDelete] = useState(null);
-    const [editPost, setEditPost] = useState(null); // Post in fase di modifica
-    const [showEditModal, setShowEditModal] = useState(false); // Stato per mostrare il modale di modifica
-    const [editedPostText, setEditedPostText] = useState(""); // Testo modificato
+  const dispatch = useDispatch();
+  const posts = useSelector(store => store.post.allPosts);
+  const profiles = useSelector(store => store.profile.allProfiles);
+  const myProf = useSelector(store => store.profile.myProfile)
+  const [hiddenPosts, setHiddenPosts] = useState([]);
+  const [deletedPosts, setDeletedPosts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [postToDelete, setPostToDelete] = useState(null);
+  const [editPost, setEditPost] = useState(null); // Post in fase di modifica
+  const [showEditModal, setShowEditModal] = useState(false); // Stato per mostrare il modale di modifica
+  const [editedPostText, setEditedPostText] = useState(""); // Testo modificato
 
-    useEffect(() => {
-        dispatch(getOrModifyPost());
-        dispatch(getProfile("", TAKE_ALL_PROFILE));
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getOrModifyPost());
+    dispatch(getProfile("", TAKE_ALL_PROFILE));
+  }, [dispatch]);
 
   const timeAgo = (timestamp) => {
     const now = new Date();
@@ -117,6 +117,13 @@ const AllPosts = () => {
     }
   };
 
+  const getProfileImage = (username) => {
+    const profile = profiles.find(profile => profile.username === username);
+    return profile ? profile.image : 'default-profile.png';
+  };
+
+
+
   return (
     <>
       {posts && posts.length > 0 ? (
@@ -125,12 +132,11 @@ const AllPosts = () => {
           .reverse()
           .map((post) => (
             <div
-              className={`card-create px-3 py-3 mb-3 ${
-                hiddenPosts.includes(post._id) ||
-                deletedPosts.includes(post._id)
+              className={`card-create px-3 py-3 mb-3 ${hiddenPosts.includes(post._id) ||
+                  deletedPosts.includes(post._id)
                   ? "d-none"
                   : ""
-              }`}
+                }`}
               key={post._id}
             >
               <div className="body-input mb-3 w-100">
