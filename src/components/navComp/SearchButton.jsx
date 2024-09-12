@@ -1,34 +1,24 @@
-
 import { Button } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 
-const SearchButton = ( {showInput, handleIconClick}) => {
- 
+const SearchButton = ({ showInput, handleIconClick }) => {
   return (
-    <div>
-       {!showInput && (
-       <FaSearch onClick={
-        handleIconClick} />
-      )}
-      {showInput && (
-        <div className="d-flex">
-          <Button className="bg-dark text-white border-0">
-          <FaSearch />
-         <input
-           type="text"
+    <div className={`search-button-container ${showInput ? "open" : ""}`}>
+      <Button
+        className={`search-button ${showInput ? "open" : ""}`}
+        onClick={handleIconClick}
+      >
+        <FaSearch />
+        {showInput && (
+          <input
+            type="text"
             placeholder="Cerca..."
-            className="bg-dark text-white"
+            className={`search-input ${showInput ? "open" : ""}`}
           />
-          </Button>
-        </div>
-       
-          
         )}
-      
+      </Button>
     </div>
   );
 };
- 
-
 
 export default SearchButton;

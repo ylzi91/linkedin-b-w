@@ -250,6 +250,48 @@ input::placeholder {
   border-bottom: 3px solid white;
 }
 
+.search-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 100%;
+  
+}
+
+.search-button {
+  border: transparent;
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+
+.search-button:hover {
+  background-color: transparent;
+}
+
+.search-button:focus {
+  border: none !important;
+  outline: none !important;
+}
+
+.search-button.open {
+  width: 100%;
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  flex-grow: 1;
+}
+
+.search-input.open {
+  width: 100%;
+}
 
 /*BODY*/
 main {

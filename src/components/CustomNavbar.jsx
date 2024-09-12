@@ -19,10 +19,12 @@ const CustomNavbar = () => {
     setShowInput(true);
   };
 
+ 
   useEffect(() => {
     const handleResize = () => {
+    
       if (window.innerWidth >= 992) {
-        setShowInput(false);
+        setShowInput(false); 
       }
     };
     window.addEventListener("resize", handleResize);
@@ -40,23 +42,15 @@ const CustomNavbar = () => {
       className="d-flex justify-content-around align-items-center"
     >
       <Nav className="d-flex align-items-center justify-content-between w-100">
-        <div className={`d-flex align-items-center ${showInput ? "w-100" : ""}`}>
+        <div className="d-flex align-items-center "> 
           <Navbar.Brand>
             <LinkedinIcon />
           </Navbar.Brand>
 
-          <Nav.Link
-            className={`ps-1 d-flex ${showInput ? "flex-grow-1 w-100" : "d-lg-none"} underl`}
-            style={{ flexBasis: showInput ? "100%" : "auto" }}
-          >
-            <SearchButton
-              showInput={showInput}
-              handleIconClick={handleIconClick}
-              style={{ width: "100%" }} 
-            />
+          <Nav.Link className="ps-1 d-flex d-lg-none w-100">
+            <SearchButton showInput={showInput} handleIconClick={handleIconClick} />
           </Nav.Link>
-
-          <Nav.Link className="d-none d-lg-flex ps-1 underl">
+          <Nav.Link className="d-none d-lg-flex ps-1 ">
             <SearchBar />
           </Nav.Link>
         </div>
@@ -103,4 +97,3 @@ const CustomNavbar = () => {
 };
 
 export default CustomNavbar;
-
