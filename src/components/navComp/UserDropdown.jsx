@@ -5,6 +5,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { getProfile, TAKE_MY_PROFILE } from "../../redux/actions/index";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { FcSimCardChip } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const UserDropdown = () => {
   const dispatch = useDispatch();
@@ -60,12 +61,14 @@ const UserDropdown = () => {
             </div>
           </div>
           <div className="text-center">
-            <Button
-              variant="outline"
-              className="rounded rounded-pill mt-2 btnProfile py-0"
-            >
-              Visualizza profilo
-            </Button>{" "}
+            <Link to="/myprofile" className="text-decoration-none">
+              <Button
+                variant="outline"
+                className="rounded rounded-pill mt-2 btnProfile py-0"
+              >
+                Visualizza profilo
+              </Button>
+            </Link>
           </div>
         </div>
       </NavDropdown.Item>

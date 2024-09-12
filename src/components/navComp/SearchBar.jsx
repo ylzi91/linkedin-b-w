@@ -20,7 +20,7 @@ const SearchBar = () => {
         <IoMdSearch className="fs-5" />
       </InputGroup.Text>
       <Form.Control
-        onKeyDown={(e) => handleKeyDown(e)}
+        onKeyDown={handleKeyDown}
         placeholder="Cerca"
         aria-label="Search"
       />
