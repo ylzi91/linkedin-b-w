@@ -17,7 +17,7 @@ import { HiOutlinePencil } from "react-icons/hi";
 const PostCard = ({ id }) => {
   const [add2, setAdd2] = useState(false);
   const [posts, setPosts] = useState([]);
-  const [postExpand, setPostExpand] = useState(5);
+  const [postExpand, setPostExpand] = useState(2);
   const [expand, setExpand] = useState(false);
   const dispatch = useDispatch();
   const reduxPosts = useSelector((s) => s.post.allPosts);
@@ -87,38 +87,41 @@ const PostCard = ({ id }) => {
                 );
               })}
           </Card.Body>
-         {expand ? ( <div className="show-all-experiences">
-            <button
-              className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
-              onClick={() => {
-                setExpand(false)
-                setPostExpand(5);
-              }}
-            >
-              Hide
-              Posts <span className="ms-1">&rarr;</span>
-            </button>
-          </div>) : ( <div className="show-all-experiences">
-            <button
-              className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
-              onClick={() => {
-                setExpand(true)
-                setPostExpand(
+          {expand ? (
+            <div className="show-all-experiences">
+              <button
+                className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
+                onClick={() => {
+                  setExpand(false);
+                  setPostExpand(2);
+                }}
+              >
+                Hide Posts <span className="ms-1">&larr;</span>
+              </button>
+            </div>
+          ) : (
+            <div className="show-all-experiences">
+              <button
+                className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
+                onClick={() => {
+                  setExpand(true);
+                  setPostExpand(
+                    reduxPosts.filter((p) => {
+                      if (p.user._id == id) return p;
+                    }).length
+                  );
+                }}
+              >
+                Show all{" "}
+                {
                   reduxPosts.filter((p) => {
                     if (p.user._id == id) return p;
                   }).length
-                );
-              }}
-            >
-              Show all{" "}
-              {
-                reduxPosts.filter((p) => {
-                  if (p.user._id == id) return p;
-                }).length
-              }{" "}
-              Posts <span className="ms-1">&rarr;</span>
-            </button>
-          </div>)}
+                }{" "}
+                Posts <span className="ms-1">&rarr;</span>
+              </button>
+            </div>
+          )}
         </Card>
       )}
     </>

@@ -11,7 +11,7 @@ import { HiOutlinePencil } from "react-icons/hi";
 const ExpCard = ({ id }) => {
   const [add, setAdd] = useState(false);
   const [exp, setExp] = useState({});
-  const [expExpand, setExpExpand] = useState(5);
+  const [expExpand, setExpExpand] = useState(2);
   const [expand, setExpand] = useState(false);
   const dispatch = useDispatch();
   const experiences = useSelector((s) => s.experience.allExperiences);
@@ -72,10 +72,10 @@ const ExpCard = ({ id }) => {
           {expand ? (<div className="show-all-experiences">
             <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold" onClick={()=>{
               setExpand(false)
-              setExpExpand(5)
+              setExpExpand(2)
             }}>
-              Show all {experiences.length} experiences{" "}
-              <span className="ms-1">&rarr;</span>
+              Hide experiences{" "}
+              <span className="ms-1">&larr;</span>
             </button>
           </div>) : (<div className="show-all-experiences">
             <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold" onClick={()=>{

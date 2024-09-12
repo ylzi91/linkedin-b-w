@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { Button, Card, ListGroup } from "react-bootstrap";
 import { IoMdPersonAdd } from "react-icons/io";
 import { useSelector } from "react-redux";
 
 const PeopleS = ({ query }) => {
   const AllProfile = useSelector((s) => s.profile.allProfiles);
+  const [peopleExpand, setPeopleExpand] = useState(5);
+  const [expand, setExpand] = useState(false);
+
 
   return (
     <>
@@ -18,7 +22,7 @@ const PeopleS = ({ query }) => {
               p.username.includes(query) ||
               p.name.includes(query) ||
               p.surname.includes(query)
-          ).map((p) => {
+          ).slice(0, peopleExpand).map((p) => {
             return (
               <ListGroup.Item
                 key={p._id}
@@ -41,12 +45,33 @@ const PeopleS = ({ query }) => {
             );
           })}
         </ListGroup>
-        <div className="show-all-experiences">
-            <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold">
-              Show all 
+        {expand ? (<div className="show-all-experiences">
+            <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold" onClick={() => {
+                setExpand(false);
+                setPeopleExpand(5);
+              }}>
+             Hide
+              people <span className="ms-1">&larr;</span>
+            </button>
+          </div>) : (<div className="show-all-experiences">
+            <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold" onClick={() => {
+                setExpand(true);
+                setPeopleExpand(AllProfile.filter(
+                    (p) =>
+                      p.username.includes(query) ||
+                      p.name.includes(query) ||
+                      p.surname.includes(query)
+                  ).length);
+              }}>
+              Show all {AllProfile.filter(
+                    (p) =>
+                      p.username.includes(query) ||
+                      p.name.includes(query) ||
+                      p.surname.includes(query)
+                  ).length}
               people <span className="ms-1">&rarr;</span>
             </button>
-          </div>
+          </div>)}
       </Card>
     </>
   );
