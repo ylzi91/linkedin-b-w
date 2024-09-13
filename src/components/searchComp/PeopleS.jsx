@@ -17,19 +17,15 @@ const navigate = useNavigate()
   );
 
   return (
-    <>
-      <Card
-        bg="dark"
-        className="text-white rounded-3 text-wrap mb-2"
-        id="People"
-      >
-        {/* Controlla se ci sono persone */}
-        {filteredProfiles.length === 0 ? (
-          <div className="d-flex align-items-center px-3 text-secondary" style={{ height: "70px" }}>
-            <p> Nessun profilo trovato. </p>
-          </div>
-        ) : (
-          <>
+    <Card
+      bg="dark"
+      className="text-white rounded-3 text-wrap mb-2"
+      id="People"
+    >
+      {filteredProfiles.length > 0 ? (
+        <>
+          <Card.Body>
+            <Card.Title className="mb-4">People</Card.Title>
             <ListGroup className="p-0 m-0 border-0 border-bottom border-secondary pb-0 rounded-0">
               {/* Mostra le persone filtrate in base a peopleExpand */}
               {filteredProfiles.slice(0, peopleExpand).map((p) => {
@@ -84,10 +80,14 @@ const navigate = useNavigate()
                 </button>
               </div>
             )}
-          </>
-        )}
-      </Card>
-    </>
+          </Card.Body>
+        </>
+      ) : (
+        <div className="d-flex align-items-center px-3 text-secondary" style={{ height: "70px" }}>
+          <p>Nessun profilo trovato.</p>
+        </div>
+      )}
+    </Card>
   );
 };
 

@@ -64,7 +64,7 @@ const ExpCard = ({ id }) => {
                       setExp({});
                     }}
                   >
-                    <span style={{marginRight: "13px"}}>
+                    <span style={{marginRight: "6px"}}>
                       <IoMdAdd />
                     </span>
                   </div>

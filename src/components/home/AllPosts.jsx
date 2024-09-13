@@ -23,6 +23,9 @@ import SpinnerDots from "../spinners/SpinnerDots";
 
 import { useNavigate } from "react-router-dom";
 
+import { Dropdown } from 'react-bootstrap';
+import { FaEllipsisH } from 'react-icons/fa';
+
 const AllPosts = () => {
   const dispatch = useDispatch();
   const posts = useSelector((store) => store.post.allPosts);
@@ -68,7 +71,7 @@ const AllPosts = () => {
     if (diffInSeconds < 60) {
       return `${diffInSeconds} secondi fa`;
     } else if (diffInMinutes < 60) {
-      return `${diffInMinutes} ${diffInMinutes > 1? 'minuti' : 'minuto'} fa`;
+      return `${diffInMinutes} ${diffInMinutes > 1 ? 'minuti' : 'minuto'} fa`;
     } else if (diffInHours < 24) {
       return `${diffInHours} ${diffInHours > 1 ? 'ore' : 'ora'} fa`;
     } else if (diffInDays < 30) {
@@ -119,9 +122,9 @@ const AllPosts = () => {
 
   const handleEditPost = (post) => {
     if (post.user._id === myProf._id) {
-      setEditPost(post); 
-      setEditedPostText(post.text); 
-      setShowEditModal(true); 
+      setEditPost(post);
+      setEditedPostText(post.text);
+      setShowEditModal(true);
     }
   };
 
@@ -133,11 +136,11 @@ const AllPosts = () => {
           MODIFY_POST,
           { text: editedPostText },
           editPost._id
-        ) 
+        )
       );
-      dispatch(getOrModifyPost()); 
-      setShowEditModal(false); 
-      setEditPost(null); 
+      dispatch(getOrModifyPost());
+      setShowEditModal(false);
+      setEditPost(null);
     }
   };
 
@@ -174,12 +177,11 @@ const AllPosts = () => {
           .reverse()
           .map((post) => (
             <div
-              className={`card-create px-3 py-3 mb-3 ${
-                hiddenPosts.includes(post._id) ||
+              className={`card-create px-3 py-3 mb-3 ${hiddenPosts.includes(post._id) ||
                 deletedPosts.includes(post._id)
-                  ? "d-none"
-                  : ""
-              }`}
+                ? "d-none"
+                : ""
+                }`}
               key={post._id}
             >
               <div className="body-input mb-3 w-100">
@@ -290,10 +292,13 @@ const AllPosts = () => {
                     <p className="d-none d-md-none d-lg-none d-xl-block">Invia</p>
                   </Col>
                 </Row>
+
+
+
                 {myClick === post._id && (
                   <Row className=" align-items-center mt-2">
-                    <Col xs={2}>
-                      <div className="post-img">
+                    <Col xs={2} className="d-flex align-items-center justify-content-center">
+                      <div className="post-img m-0">
                         <img
                           src={myProf.image}
                           alt="profile-image"
@@ -335,50 +340,39 @@ const AllPosts = () => {
                   </Row>
                 )}
 
-                {showComment === post._id &&
+
+
+
+                {/* {showComment === post._id &&
                   comments
                     .filter((comment) => comment.elementId === post._id)
                     .map((cacca) => {
                       return (
-                        <Row className="mt-2 ">
-                          <Col xs={2} className=" p-2">
-                            <div className="post-img">
+                        <Row className="mt-2 customComment ">
+                          <Col xs={2} className="d-flex align-items-center justify-content-center">
+                            <div className="post-img m-0">
                               <img
                                 className="rounded-circle"
                                 src={getProfileFromComment(cacca.author).image}
+                                alt="foto"
+
                               />
                             </div>
                           </Col>
-                          <Col
-                            className=" text-light bg-secondary p-2 rounded-2 align-items-center"
-                            xs={10}
-                          >
+                          <Col className=" text-light p-2 rounded-2 align-items-center" xs={10}>
                             <p className=" d-flex justify-content-between mb-2">
-                              <span
-                                className=" fw-bold clickable"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  if (cacca.author === "yuri@lenzi.com") {
-                                    navigate("/myprofile");
-                                  } else if (
-                                    !getProfileFromComment(cacca.author)._id
-                                  ) {
-                                    alert("Non posso andare alla pagina");
-                                  } else if (
-                                    getProfileFromComment(cacca.author)
-                                  ) {
-                                    console.log("terzo");
-                                    navigate(
-                                      `/profile/${
-                                        getProfileFromComment(cacca.author)._id
-                                      }`
-                                    );
-                                  }
-                                }}
-                              >
-                                {getProfileFromComment(cacca.author)?.name}{" "}
-                                {getProfileFromComment(cacca.author)?.surname}
-                              </span>
+                              <span className=" fw-bold clickable" onClick={(e) => {
+                                e.preventDefault()
+                                if (cacca.author === 'yuri@lenzi.com') {
+                                  navigate('/myprofile')
+                                }
+                                else if (!getProfileFromComment(cacca.author)?._id) {
+                                  alert('Non posso andare alla pagina')
+                                }
+                                else {
+                                  navigate(navigate(`/profile/${getProfileFromComment(cacca.author)._id}`))
+                                }
+                              }}>{getProfileFromComment(cacca.author)?.name} {getProfileFromComment(cacca.author)?.surname}</span>
                               <span>{timeAgo(cacca.createdAt)}</span>
                             </p>
                             <p className="text-light d-flex justify-content-between align-items-center">
@@ -420,6 +414,104 @@ const AllPosts = () => {
                         </Row>
                       );
                     })}
+ */}
+
+
+
+
+
+                {showComment === post._id &&
+                  comments
+                    .filter((comment) => comment.elementId === post._id)
+                    .map((cacca) => {
+                      return (
+                        <Row className="mt-2 customComment" key={cacca._id}>
+                          <Col xs={2} className="d-flex align-items-center justify-content-center">
+                            <div className="post-img m-0">
+                              <img
+                                className="rounded-circle"
+                                src={getProfileFromComment(cacca.author).image}
+                                alt="foto"
+                              />
+                            </div>
+                          </Col>
+                          <Col className="text-light p-2 rounded-2 align-items-center" xs={10}>
+                            <p className="d-flex justify-content-between">
+                              <span className="fw-bold clickable" onClick={(e) => {
+                                e.preventDefault();
+                                if (cacca.author === 'yuri@lenzi.com') {
+                                  navigate('/myprofile');
+                                } else if (!getProfileFromComment(cacca.author)?._id) {
+                                  alert('Non posso andare alla pagina');
+                                } else {
+                                  navigate(`/profile/${getProfileFromComment(cacca.author)._id}`);
+                                }
+                              }}>
+                                {getProfileFromComment(cacca.author)?.name} {getProfileFromComment(cacca.author)?.surname}
+                              </span>
+                              <div className="d-flex align-items-center">
+                                <span className="pe-2">{timeAgo(cacca.createdAt)}</span>
+                                <Dropdown align="end">
+                                  <Dropdown.Toggle noCaret className="p-0 no-caret text-light bg-transparent border-0" id="dropdown-basic">
+                                    <FaEllipsisH />
+                                  </Dropdown.Toggle>
+                                  <Dropdown.Menu className="border border-secondary user-dropdown">
+                                    <Dropdown.Item
+                                      as="button"
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        setMyClick(post._id);
+                                        setWriteComment(cacca.comment);
+                                        setModify(cacca._id);
+                                      }}
+                                    >
+                                      <div className="d-flex align-items-center justify-content-center py-3">
+                                        <FaPen className="text-light me-2" />
+                                        <p className="text-light px-1">Modifica</p>
+                                      </div>
+
+                                    </Dropdown.Item>
+                                    <Dropdown.Item
+                                      as="button"
+                                      onClick={() => {
+                                        dispatch(deleteComment(cacca._id));
+                                        setTimeout(() => {
+                                          dispatch(takeComments());
+                                        }, 1000);
+                                      }}
+                                    >
+                                      <div className="d-flex align-items-center justify-content-center py-3">
+                                      <FaTrash className="me-2 text-light" />
+                                        <p className="text-light px-1">Elimina</p>
+                                      </div>
+                                
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
+                              </div>
+                            </p>
+                            <div className="text-light d-flex justify-content-between align-items-center">
+                              <span>
+                                {cacca.comment}
+                              </span>
+                            </div>
+                          </Col>
+                        </Row>
+                      );
+                    })
+                }
+
+
+
+
+
+
+
+
+
+
+
+
               </Container>
             </div>
           ))

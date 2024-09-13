@@ -14,19 +14,19 @@ const Searched = ({query}) => {
 
     return(<>
     <Row>
-        <Col xs={12}>
+        <Col xs={12} md={12}>
           <JobS query={query} setCategoryQuery={setCategoryQuery}/> 
         </Col>
-        <Col xs={12}>
+        <Col xs={12} md={12}>
         <CompanySearched query={query} />
         </Col>
-        <Col xs={12}>
+        <Col xs={12} md={12}>
         <CategoryS query={catQuery} />
         </Col>
-        <Col xs={12}>
+        <Col xs={12} md={12}>
         <PeopleS query={query} />
         </Col>
-        <Col xs={12}>
+        <Col xs={12} md={12}>
         <PostSearched query={query} />
         </Col>
     </Row>
