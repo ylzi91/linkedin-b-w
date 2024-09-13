@@ -30,7 +30,7 @@ const Home = () => {
                         <Dxbar />
                     </Col>
                     <Col>
-                    <MyFooter />
+                        <MyFooter/>
                     </Col>
 
 

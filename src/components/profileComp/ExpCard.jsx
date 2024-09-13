@@ -40,7 +40,7 @@ const ExpCard = ({ id }) => {
   }, []);
     setExp({ ...exp })
     setAdd(true);
-  };
+  
 
   return (
     <>
@@ -101,6 +101,7 @@ const ExpCard = ({ id }) => {
       )}
     </>
   );
-};
+}
+
 
 export default ExpCard;

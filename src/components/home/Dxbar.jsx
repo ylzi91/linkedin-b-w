@@ -4,6 +4,7 @@ import { getSearch } from "../../redux/actions"
 import { Button, Card, ListGroup } from "react-bootstrap"
 import { MdOutlineExpandLess, MdOutlineExpandMore } from "react-icons/md"
 import SpinnerDots from "../spinners/SpinnerDots"
+import MyFooter from "../MyFooter"
 
 
 
@@ -44,9 +45,10 @@ export const Dxbar = () => {
      
      
              </Card>
+             
 
         )}
-       
+       <MyFooter />
 
         </>
     )

@@ -27,6 +27,7 @@ function App() {
             <Route path='search/:query' element={<Search />} />
           </Routes>
         </main>
+    
       </BrowserRouter>
     </>
   );
