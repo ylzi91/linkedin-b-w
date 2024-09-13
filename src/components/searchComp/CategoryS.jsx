@@ -2,29 +2,33 @@ import { useEffect, useState } from "react";
 import { Button, Card, ListGroup } from "react-bootstrap";
 import { IoMdBriefcase } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { getSearch } from "../../redux/actions";
+import { getCategory, getSearch } from "../../redux/actions";
 
-const JobS = ({ query, setCategoryQuery }) => {
-  const allJobs = useSelector((state) => state.job.querySearch);
+const CategoryS = ({ query }) => {
+  const allJobs = useSelector((state) => state.job.categorySearch);
   const dispatch = useDispatch();
   const [jobExpand, setJobExpand] = useState(5);
   const [expand, setExpand] = useState(false);
 
-
   useEffect(() => {
-    dispatch(getSearch(query));
-    setCategoryQuery(allJobs[0]?.category);
-  }, [allJobs]);
+    dispatch(getCategory(query));
+    console.log('category', allJobs)
+  }, []);
+  
+  useEffect(() => {
+    dispatch(getCategory(query));
+    console.log('category', allJobs)
+  }, [query]);
 
   return (
     <>
       <Card
         bg="dark"
         className="text-white rounded-3 text-wrap mb-2 "
-        id="Jobs"
+        id="Category"
       >
         <Card.Title className="ms-3 py-3">
-          Offerte di lavoro che potrebbero interessarti
+          Offerte di lavoro inerenti a {allJobs[0]?.category}
         </Card.Title>
         <ListGroup className="p-0 m-0 border-0 border-bottom border-secondary pb-0 rounded-0">
           {allJobs.slice(0, jobExpand).map((job, i) => {
@@ -58,7 +62,8 @@ const JobS = ({ query, setCategoryQuery }) => {
                 setJobExpand(5);
               }}
             >
-              Hide jobs <span className="ms-1">&larr;</span>
+              Hide jobs{" "}
+              <span className="ms-1">&larr;</span>
             </button>
           </div>
         ) : (
@@ -80,4 +85,4 @@ const JobS = ({ query, setCategoryQuery }) => {
   );
 };
 
-export default JobS;
+export default CategoryS;

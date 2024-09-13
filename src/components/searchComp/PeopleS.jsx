@@ -1,79 +1,94 @@
 import { useState } from "react";
-import { Button, Card, ListGroup } from "react-bootstrap";
-import { IoMdPersonAdd } from "react-icons/io";
+import { Card, ListGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const PeopleS = ({ query }) => {
   const AllProfile = useSelector((s) => s.profile.allProfiles);
   const [peopleExpand, setPeopleExpand] = useState(5);
   const [expand, setExpand] = useState(false);
-
+const navigate = useNavigate()
+  // Funzione di filtraggio per i profili che corrispondono alla query
+  const filteredProfiles = AllProfile.filter(
+    (p) =>
+      p.username.includes(query) ||
+      p.name.includes(query) ||
+      p.surname.includes(query)
+  );
 
   return (
     <>
-      <Card bg="dark" className="text-white  rounded-3 text-wrap mb-2" id="People">
-        <Card.Title className="ms-3 py-3">
-          {" "}
-          Persone che potrebbero interessarti
-        </Card.Title>
-        <ListGroup className="p-0 m-0 border-0 border-bottom border-secondary pb-0 rounded-0">
-          {AllProfile.filter(
-            (p) =>
-              p.username.includes(query) ||
-              p.name.includes(query) ||
-              p.surname.includes(query)
-          ).slice(0, peopleExpand).map((p) => {
-            return (
-              <ListGroup.Item
-                key={p._id}
-                className="bg-dark pt-2 d-flex pe-0 border-0 pb-0"
-              >
-                <div>
-                  <img
-                    src={p.image}
-                    className="profileo rounded-circle"
-                    alt="profile"
-                  />
-                </div>
-                <div className="text-white flex-column w-100 me-0 ps-3 pb-2 border-0 border-secondary border-bottom">
-                  <p>
-                    {p.name} {p.surname}
-                  </p>
-                  <p className="py-1 text-secondary">{p.title}</p>
-                </div>
-              </ListGroup.Item>
-            );
-          })}
-        </ListGroup>
-        {expand ? (<div className="show-all-experiences">
-            <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold" onClick={() => {
-                setExpand(false);
-                setPeopleExpand(5);
-              }}>
-             Hide
-              people <span className="ms-1">&larr;</span>
-            </button>
-          </div>) : (<div className="show-all-experiences">
-            <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold" onClick={() => {
-                setExpand(true);
-                setPeopleExpand(AllProfile.filter(
-                    (p) =>
-                      p.username.includes(query) ||
-                      p.name.includes(query) ||
-                      p.surname.includes(query)
-                  ).length);
-              }}>
-              Show all {AllProfile.filter(
-                    (p) =>
-                      p.username.includes(query) ||
-                      p.name.includes(query) ||
-                      p.surname.includes(query)
-                  ).length}
-              people <span className="ms-1">&rarr;</span>
-            </button>
-          </div>)}
+      <Card
+        bg="dark"
+        className="text-white rounded-3 text-wrap mb-2"
+        id="People"
+      >
+        {/* Controlla se ci sono persone */}
+        {filteredProfiles.length === 0 ? (
+          <div className="d-flex align-items-center px-3 text-secondary" style={{ height: "70px" }}>
+            <p> Nessun profilo trovato. </p>
+          </div>
+        ) : (
+          <>
+            <ListGroup className="p-0 m-0 border-0 border-bottom border-secondary pb-0 rounded-0">
+              {/* Mostra le persone filtrate in base a peopleExpand */}
+              {filteredProfiles.slice(0, peopleExpand).map((p) => {
+                return (
+                  <ListGroup.Item
+                    key={p._id}
+                    className="bg-dark px-3 py-2 d-flex align-items-center pe-0 border-0"
+                  >
+                    <div  onClick={()=> navigate(`/profile/${p._id}`)} className="clickable">
+                      <img
+                        src={p.image}
+                        className="profileo rounded-circle"
+                        alt="profile"
+                      />
+                    </div>
+                    <div className="text-white flex-column w-100 me-0 ps-3 border-0 clickable"  onClick={()=> navigate(`/profile/${p._id}`)}>
+                      <p>
+                        {p.name} {p.surname}
+                      </p>
+                      <p className="py-1 text-secondary">{p.title}</p>
+                    </div>
+                  </ListGroup.Item>
+                );
+              })}
+            </ListGroup>
+
+            {/* Bottone per espandere o nascondere le persone */}
+            {expand ? (
+              <div className="show-all-experiences">
+                <button
+                  className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
+                  onClick={() => {
+                    setExpand(false);
+                    setPeopleExpand(5); // Riduci la lista a 5 persone
+                  }}
+                >
+                  Hide people
+                  <span className="ms-1">&larr;</span>
+                </button>
+              </div>
+            ) : (
+              <div className="show-all-experiences">
+                <button
+                  className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
+                  onClick={() => {
+                    setExpand(true);
+                    setPeopleExpand(filteredProfiles.length); // Espandi la lista per mostrare tutte le persone
+                  }}
+                >
+                  Show all {filteredProfiles.length} people
+                  <span className="ms-1">&rarr;</span>
+                </button>
+              </div>
+            )}
+          </>
+        )}
       </Card>
     </>
   );
 };
+
 export default PeopleS;

@@ -28,10 +28,10 @@ const CompaniesDropdown = () => {
             <div className="d-flex align-items-center">
               <p className="text-center m-0 iconNames text-white d-none d-lg-flex">
                 Per le Aziende
+              </p>
                 <span className="custom-arrow iconNames">
                   <TiArrowSortedDown />
                 </span>
-              </p>
             </div>
           </div>
         }

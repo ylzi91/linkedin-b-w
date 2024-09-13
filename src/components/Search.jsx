@@ -7,9 +7,10 @@ import { useEffect } from "react";
 
 function Search (){
     const params = useParams()
+    
 
     return(
-        <Container fluid className="p-0 mt-3" id="home">
+        <Container fluid className="p-0 px-3 mt-3" id="home">
                 <Row className="d-flex justify-content-center">
                     <Col xs={0} sm={4} md={2} lg={3} className=" d-none d-sm-block p-1" >
                     <LftBarS />
@@ -24,7 +25,7 @@ function Search (){
                            
                         </Container>
                     </Col>
-                    <Col xs={0} sm={0} md={3} lg={3} className=" p-1 d-none d-lg-block border-top border-secondary pt-1">
+                    <Col xs={0} sm={0} md={3} lg={3} className=" p-1 d-none d-lg-block pt-1">
                     <OtherProfile/>
                     </Col>
 

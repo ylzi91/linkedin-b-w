@@ -10,74 +10,89 @@ body {
 
 /* Profile*/
 
-.heroTit{
-  display: inline-block;
-  transform: translateX(-115px) !important;
-}
-
-.info{
+.info {
   color: #0061bc;
 }
 
-.point{
+.edit-icon-profile {
+  font-size: 27px;
+  position: absolute;
+  right: 15px;
+  bottom: 170px;
+  cursor: pointer;
+}
+
+.edit-icon-profile:hover {
+  background-color: rgba(158, 158, 158, 0.4) !important;
+}
+
+.modal-custom-overflow {
+  overflow: visible !important;
+}
+
+.react-datepicker-popper {
+  z-index: 2060 !important;
+}
+
+
+.point {
   font-size: 7px;
 }
 
-.info:hover{
+.info:hover {
   text-decoration: underline !important;
 }
 
-.btn_info_out:hover{
+.btn_info_out:hover {
   background-color: #344861 !important;
-  border: 1px #0061bc solid!important;
+  border: 1px #0061bc solid !important;
 
 }
-.btn_info:hover{
+
+.btn_info:hover {
   background-color: #3f80e3 !important;
 
 }
 
-.hov:hover{
+.hov:hover {
   padding: 10px 12px !important;
   margin-right: 8px !important;
   border-radius: 50% !important;
   background-color: #666 !important;
 }
 
-.clickable{
+.clickable {
   cursor: pointer !important;
 }
 
-.btn_info_out{
+.btn_info_out {
   color: #0061bc !important;
   border: #0061bc 1px solid !important;
   background-color: transparent !important;
   height: 38px;
 }
-.btn_info{
+
+.btn_info {
   height: 38px;
   border: #0061bc 1px solid !important;
   background-color: #0061bc !important;
   color: #000 !important;
 }
 
-.titleHero{
+/* .titleHero{
   height: 40px !important;
-}
+} */
 
-.btnn{
+.btnn {
   border-radius: 25px !important;
 }
 
-.profilePage{
-  width: 83% !important;
-}
 
-.gutter{
+.gutter {
   gap: 4px;
 }
 
-.formProfile input{
+.formProfile input {
   background-color: #1b1f23 !important;
   color: whitesmoke !important;
   font-size: small;
@@ -85,19 +100,20 @@ body {
   border-radius: 5px !important;
 }
 
-.btn-close{
+.btn-close {
   color: white !important;
 }
 
-.modal-body{
+.modal-body {
   max-height: 500px !important;
-  display: block !important; /* I added this to see the modal, you don't need this */
+  display: block !important;
+  /* I added this to see the modal, you don't need this */
   overflow-y: scroll !important;
   scrollbar-color: rgb(125, 124, 124) rgb(50, 49, 49);
   scrollbar-width: none;
 }
 
-.modali{
+.modali {
   background-color: #1b1f23 !important;
 }
 
@@ -111,7 +127,7 @@ p,
 a {
   margin: 0 !important;
   padding: 0 !important;
-} 
+}
 
 .company-name {
   font-size: 1.1rem;
@@ -151,13 +167,13 @@ a {
 }
 
 .experience-section .card-footer .btn-link:hover {
-  color: #004182;  /* Colore blu scuro per l'hover */
+  color: #004182;
+  /* Colore blu scuro per l'hover */
   text-decoration: underline;
 }
 
 .experience-section .show-all-experiences {
   transition: background-color 0.3s ease;
-  border-top: 1px solid #e0e0e0;
 }
 
 .experience-section .show-all-experiences:hover {
@@ -188,7 +204,7 @@ a {
 
 /* NAVBAR */
 
-.ul:hover{
+.ul:hover {
   text-decoration: underline !important;
   text-decoration-color: grey !important;
   text-decoration-thickness: 1px !important;
@@ -197,31 +213,35 @@ a {
 .try:hover {
   color: #0a66c2 !important;
 }
+
+
+
 /* MEDIA QUERY */
 
 
 @media screen and (min-width: 400px) {
-  
+
   #home,
-  #custom-navbar {
+  #custom-navbar,
+  #profilePage {
     width: 100% !important;
   }
 }
 
 @media screen and (min-width: 576px) {
+
   #home,
-  #custom-navbar {
+  #custom-navbar,
+  #profilePage {
     width: 90% !important;
   }
 }
 
 @media screen and (min-width: 768px) {
-  #home {
-    width: 85% !important;
-  }
 
+  #home,
+  #profilePage,
   #custom-navbar {
-
     width: 85% !important;
   }
 }
@@ -229,7 +249,8 @@ a {
 @media screen and (min-width: 960px) {
 
   #home,
-  #custom-navbar {
+  #custom-navbar,
+  #profilePage {
     width: 80% !important;
   }
 }
@@ -237,40 +258,62 @@ a {
 @media screen and (min-width: 992px) {
 
   #home,
-  #custom-navbar {
+  #custom-navbar,
+  #profilePage {
     width: 80% !important;
   }
 }
 
-@media screen and (min-width: 1000px) {
-  #home {
-    width: 92% !important;
-  }
-
-  #custom-navbar {
-    width: 92% !important;
-  }
-}
 
 @media screen and (min-width: 1000px) {
 
   #home,
+  #profilePage {
+    width: 95% !important;
+  }
+
   #custom-navbar {
-    width: 80% !important;
+    width: 100% !important;
   }
 }
+
+
+@media screen and (min-width: 1200px) {
+
+  #home,
+  #profilePage,
+  #custom-navbar {
+    width: 83% !important;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .divider {
+    border-right: 0.5px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+@media (max-width: 768px) {
+  .dividersm {
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+
 
 .card-box {
   width: 72px;
   height: 72px;
-  position: relative;
-  top: -35px !important;
-  left: 33%;
+  position: absolute;
+  top: -35% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
 
   img {
     height: 100%;
     width: 100%;
-    object-fit: fill;
+    object-fit: cover;
 
   }
 }
@@ -314,7 +357,7 @@ a {
   margin-top: 0;
 }
 
-.user-dropdown > .dropdown-toggle::after {
+.user-dropdown>.dropdown-toggle::after {
   display: none !important;
 }
 
@@ -347,19 +390,8 @@ a {
   border: 0.5px solid rgba(255, 255, 255, 0.2);
 }
 
-@media (min-width: 768px) {
-  .divider {
-    border-right: 0.5px solid rgba(255, 255, 255, 0.2);
-  }
-}
 
-@media (max-width: 768px) {
-  .dividersm {
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
-  }
-}
-
-.dropdown-menu{
+.dropdown-menu {
   background-color: transparent;
   border: none;
 }
@@ -437,7 +469,7 @@ input::placeholder {
 }
 
 .dots-dropdown .dropdown-toggle::after {
-  display: none; 
+  display: none;
 }
 
 #search-dropdown::after {
@@ -453,7 +485,7 @@ input::placeholder {
   align-items: center;
   justify-content: end;
   width: 100%;
-  
+
 }
 
 .search-button {
@@ -491,29 +523,6 @@ input::placeholder {
   width: 100%;
 }
 
-/*BODY*/
-main {
-  background-color: black;
-}
-
-@media screen and (min-width: 1200) {
-  #home {
-    width: 85% !important;
-  }
-
-  #custom-navbar {
-    width: 85% !important;
-  }
-}
-
-
-/* HOME -------------- */
-
-
-
-
-
-
 
 /* CREATE POST COMPONENT ------------ */
 
@@ -525,10 +534,10 @@ main {
 }
 
 .form-control::placeholder {
-    color: white;
+  color: white;
 }
 
-.form-control:focus{
+.form-control:focus {
   outline: none !important;
 }
 
@@ -546,6 +555,7 @@ main {
 .text-area-post {
   outline: none;
 }
+
 .body-input-text:hover {
   background-color: rgb(45, 45, 45);
 }
@@ -559,7 +569,7 @@ main {
 .body-input-img img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
   border-radius: 100px;
 }
 
@@ -571,10 +581,11 @@ main {
 .create-post-img {
   width: 60px;
   height: 60px;
+
   img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover;
   }
 }
 
@@ -652,21 +663,38 @@ main {
 .post-img img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
 }
 
-.profile{
-  width: 100px !important;
-  height: 100px !important;
+.profile-img {
+  width: 100%!important;
+  height: 100% !important;
   object-fit: cover !important;
-  transform: translateY(-75px);
   border: 3px solid #212529 !important;
 }
-.profileo{
+
+.profile-img-box {
+  width:  140px !important;
+  height: 140px !important;
+  position: absolute;
+  top: -35% !important;
+  left: 2% !important;
+}
+
+.other-profile-img-box {
+  width:  140px !important;
+  height: 140px !important;
+  position: absolute;
+  top: -48% !important;
+  left: 2% !important;
+}
+
+.profileo {
   width: 50px !important;
   height: 50px !important;
-  object-fit: fill !important;
+  object-fit: cover !important;
 }
+
 .edit-icon {
   position: absolute;
   color: white;
@@ -689,6 +717,6 @@ main {
   color: rgb(81, 81, 81);
 }
 
-.form-control:focus{
-outline: none !important;
+.form-control:focus {
+  outline: none !important;
 }

@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import { BsThreeDots } from "react-icons/bs";
 import { IoPencilOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const ExpItem = ({
  exp,
  openForm,
 }) => {
   const [expanded, setExpanded] = useState(false);
+  const myProfile = useSelector((s) => s.profile.myProfile)
 
   const toggleDescription = () => {
     setExpanded(!expanded);
@@ -24,7 +26,7 @@ const ExpItem = ({
             <div className="justify-content-between d-flex">
               <h3 className="company-name mb-0">{exp.company}</h3>{" "}
               <div>
-                <BsThreeDots className="me-3" onClick={() => { openForm(exp)}} />
+                <BsThreeDots className= {exp.user === myProfile._id ? 'me-2' : 'me-2 text-white-50' } onClick={() => { if(exp.user === myProfile._id)openForm(exp)}} />
               </div>
             </div>
             <p className="role mb-0">{exp.role}</p>
@@ -38,7 +40,7 @@ const ExpItem = ({
               className="see-more text-primary"
               onClick={() => toggleDescription()}
             >
-              {expanded ? "See less" : "...see more"}
+              {expanded ? "...see more" : "see less"}
             </a>
           </Col>
         
