@@ -313,7 +313,7 @@ a {
   img {
     height: 100%;
     width: 100%;
-    object-fit: fill;
+    object-fit: cover;
 
   }
 }
@@ -569,7 +569,7 @@ input::placeholder {
 .body-input-img img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
   border-radius: 100px;
 }
 
@@ -585,7 +585,7 @@ input::placeholder {
   img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover;
   }
 }
 
@@ -663,7 +663,7 @@ input::placeholder {
 .post-img img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
 }
 
 .profile-img {
@@ -692,7 +692,7 @@ input::placeholder {
 .profileo {
   width: 50px !important;
   height: 50px !important;
-  object-fit: fill !important;
+  object-fit: cover !important;
 }
 
 .edit-icon {
