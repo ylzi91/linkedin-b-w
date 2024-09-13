@@ -306,7 +306,7 @@ a {
   width: 72px;
   height: 72px;
   position: absolute;
-  top: 30% !important;
+  top: -35% !important;
   left: 50% !important;
   transform: translate(-50%, -50%);
 

@@ -16,7 +16,7 @@ export const Sxbar = () => {
 
   return (
     <>
-      <Card data-bs-theme='dark' className="d-md-none d-lg-none d-xl-block">
+      <Card data-bs-theme='dark' className="d-sm-none d-lg-none d-xl-block">
         <Card.Img
           variant="top"
           src="https://pbs.twimg.com/media/DgZOQPkX0AA_YT1.jpg"
