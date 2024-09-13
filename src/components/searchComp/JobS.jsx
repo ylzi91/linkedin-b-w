@@ -3,7 +3,7 @@ import { Button, Card, ListGroup } from "react-bootstrap";
 import { IoMdBriefcase } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearch } from "../../redux/actions";
-import SpinnerBars from "../spinners/SpinnerBars"; // Assicurati che il percorso sia corretto
+import SpinnerCircle from "../spinners/SpinnerCircle";
 
 const JobS = ({ query }) => {
   const allJobs = useSelector((state) => state.job.querySearch);
@@ -27,7 +27,7 @@ const JobS = ({ query }) => {
         </Card.Title>
 
         
-        {!allJobs.length && <SpinnerBars />}
+        {!allJobs.length && <SpinnerCircle />}
 
         
         {allJobs.length > 0 && (
