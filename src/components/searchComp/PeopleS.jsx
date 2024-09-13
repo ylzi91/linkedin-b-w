@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const PeopleS = ({ query }) => {
   const AllProfile = useSelector((s) => s.profile.allProfiles);
   const [peopleExpand, setPeopleExpand] = useState(5);
   const [expand, setExpand] = useState(false);
-
+const navigate = useNavigate()
   // Funzione di filtraggio per i profili che corrispondono alla query
   const filteredProfiles = AllProfile.filter(
     (p) =>
@@ -37,14 +38,14 @@ const PeopleS = ({ query }) => {
                     key={p._id}
                     className="bg-dark px-3 py-2 d-flex align-items-center pe-0 border-0"
                   >
-                    <div>
+                    <div  onClick={()=> navigate(`/profile/${p._id}`)} className="clickable">
                       <img
                         src={p.image}
                         className="profileo rounded-circle"
                         alt="profile"
                       />
                     </div>
-                    <div className="text-white flex-column w-100 me-0 ps-3 border-0">
+                    <div className="text-white flex-column w-100 me-0 ps-3 border-0 clickable"  onClick={()=> navigate(`/profile/${p._id}`)}>
                       <p>
                         {p.name} {p.surname}
                       </p>

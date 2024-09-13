@@ -5,10 +5,11 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { getProfile, TAKE_MY_PROFILE } from "../../redux/actions/index";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { FcSimCardChip } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserDropdown = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const profile = useSelector((state) => state.profile.myProfile);
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const UserDropdown = () => {
     >
       <NavDropdown.Item >
         <div className="p-2">
-          <div className="containerUserDropdown d-flex">
+          <div className="containerUserDropdown d-flex"  onClick={()=> navigate('/myprofile')}>
             {profile.image ? (
               <img
                 src={profile.image}

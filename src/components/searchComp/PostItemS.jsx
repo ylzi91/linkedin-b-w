@@ -109,7 +109,7 @@ const PostItemS = ({ post }) => {
         <div className="card-create px-3 py-3 rounded-0" key={post._id}>
           {postProf.name && <div className="body-input mb-3">
             {postProf.img && (
-              <div className="post-img">
+              <div className="post-img clickable" onClick={()=> navigate(`/profile/${post.user._id}`)}>
                 <img
                   className="rounded-circle profileo"
                   src={postProf.img}
@@ -117,8 +117,8 @@ const PostItemS = ({ post }) => {
                 />
               </div>
             )}
-            <div className="user-post w-50 h-100">
-              <div>
+            <div className="user-post w-50 h-100 ">
+              <div className="clickable" onClick={()=> navigate(`/profile/${post.user._id}`)}>
                   {postProf.name} {postProf.surname} </div> <div>{postProf.username}
               </div>
               <div className="text-secondary py-1">{timeAgo(post.createdAt)}</div>

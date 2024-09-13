@@ -3,9 +3,11 @@ import { Button, Card, ListGroup } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { getProfile, TAKE_ALL_PROFILE } from "../../redux/actions"
 import { IoMdPersonAdd } from "react-icons/io"
+import { useNavigate } from "react-router-dom"
 
 function OtherProfile (){
     const AllProfile = useSelector((s)=> s.profile.allProfiles)
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getProfile('', TAKE_ALL_PROFILE))
@@ -17,8 +19,8 @@ function OtherProfile (){
       <ListGroup >
         {AllProfile.slice(4, 9).map((p)=>{
             return(
-                <ListGroup.Item key={p._id} className="bg-dark border-0 border-black border-bottom d-flex">
-                    <div>
+                <ListGroup.Item key={p._id} className="bg-dark border-0 border-black border-bottom d-flex clickable">
+                    <div onClick={()=> navigate(`/profile/${p._id}`)}>
                         <img src={p.image} className="profileo rounded-circle" alt="profile" />
                     </div>
                     <div className="text-white flex-column ps-3 pb-2">

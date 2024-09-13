@@ -11,6 +11,7 @@ import {
   getProfile,
   TAKE_MY_PROFILE,
 } from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
 
 const PostItem = ({
   post,
@@ -28,7 +29,7 @@ const PostItem = ({
   const profiles = useSelector((store) => store.profile.allProfiles);
   const myProfile = useSelector((store) => store.profile.myProfile);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate()
   const getProfileNameSurname = (username) => {
     const profile = profiles.find((profile) => profile.username === username);
     console.log('pppppppppppp', username)
@@ -112,7 +113,7 @@ const PostItem = ({
       <Col>
         <div className="card-create px-3 py-3 rounded-0" key={post._id}>
           <div className="body-input mb-3">
-            <div className="post-img">
+            <div className="post-img" onClick={()=> navigate(`/profile/${post.user._id}`)}>
               <img
                 className="rounded-circle profileo"
                 src={postProf.img}
