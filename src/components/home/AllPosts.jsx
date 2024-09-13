@@ -20,7 +20,6 @@ import { BiRepost } from "react-icons/bi";
 import { IoIosSend } from "react-icons/io";
 import { GoComment } from "react-icons/go";
 
-
 const AllPosts = () => {
   const dispatch = useDispatch();
   const posts = useSelector((store) => store.post.allPosts);
@@ -39,15 +38,13 @@ const AllPosts = () => {
   const [writeComment, setWriteComment] = useState("");
   const [myClick, setMyClick] = useState("");
   const [showComment, setShowComment] = useState("");
-  const [modify, setModify] = useState('')
+  const [modify, setModify] = useState("");
 
   useEffect(() => {
     dispatch(getOrModifyPost());
     dispatch(getProfile("", TAKE_ALL_PROFILE));
-    
-    dispatch(takeComments());
-        
 
+    dispatch(takeComments());
   }, [dispatch]);
 
   const timeAgo = (timestamp) => {
@@ -61,6 +58,9 @@ const AllPosts = () => {
     const diffInMonths = Math.floor(diffInDays / 30);
     const diffInYears = Math.floor(diffInDays / 365);
 
+    if(diffInSeconds <= 5){
+      return 'Adesso'
+    }
     if (diffInSeconds < 60) {
       return `${diffInSeconds} secondi fa`;
     } else if (diffInMinutes < 60) {
@@ -142,11 +142,25 @@ const AllPosts = () => {
     return profile ? profile.image : "default-profile.png";
   };
   const getProfileFromPost = (username) => {
-    const profile = profiles.find(profile => profile.username === username)
-    return profile
-  }
-
- 
+    const profile = profiles.find((profile) => profile.username === username);
+    return profile;
+  };
+  const getProfileFromComment = (author) => {
+    if (author === "yuri@lenzi.com") {
+      return myProf;
+    } else {
+      let profile = profiles.find((profile) => profile.email === author);
+      if (!profile) {
+        profile = {
+          name: "Nome",
+          surname: "Cognome",
+          image:
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+        };
+      }
+      return profile;
+    }
+  };
 
   return (
     <>
@@ -174,13 +188,18 @@ const AllPosts = () => {
                 </div>
                 <div className="user-post h-100">
                   <div>
-                    {getProfileFromPost(post.username)?.name} {getProfileFromPost(post.username)?.surname}
-                    </div>
+                    {getProfileFromPost(post.username)?.name}{" "}
+                    {getProfileFromPost(post.username)?.surname}
+                  </div>
                   <div>{timeAgo(post.createdAt)}</div>
                 </div>
                 <div className="edit-icon d-flex align-items-center">
                   <BsThreeDots
-                    className={post.user._id !== myProf._id ? 'text-white-50 me-3' : 'me-3'} 
+                    className={
+                      post.user._id !== myProf._id
+                        ? "text-white-50 me-3"
+                        : "me-3"
+                    }
                     onClick={() => handleEditPost(post)}
                   />
                   <RxCross2 onClick={() => handlePostAction(post)} />
@@ -224,11 +243,10 @@ const AllPosts = () => {
                     onClick={() => {
                       myClick !== post._id
                         ? setMyClick(post._id)
-                        : setMyClick("")
-                        setWriteComment('')
-                        setModify('')
-                    }
-                    }
+                        : setMyClick("");
+                      setWriteComment("");
+                      setModify("");
+                    }}
                   >
                     <GoComment className="like-icon" />
                     <p className="d-md-none d-lg-none d-xl-block">Commenta</p>
@@ -271,23 +289,18 @@ const AllPosts = () => {
                       <Form
                         onSubmit={(e) => {
                           e.preventDefault();
-                          if(modify !== ''){
-                              dispatch(modifyComment(modify, writeComment))
-                              setModify('')
-                              setTimeout(() => {
-                                  dispatch(takeComments())
-                                
-                              }, 500);
-
-                          }
-                    
-                          else{
+                          if (modify !== "") {
+                            dispatch(modifyComment(modify, writeComment));
+                            setModify("");
+                            setTimeout(() => {
+                              dispatch(takeComments());
+                            }, 500);
+                          } else {
                             dispatch(addComment(post._id, writeComment));
-                            setModify('')
-                            setShowComment(post._id)
-                            
-                        }
-                        setWriteComment('');
+                            setModify("");
+                            setShowComment(post._id);
+                          }
+                          setWriteComment("");
                         }}
                       >
                         <Form.Control
@@ -304,28 +317,58 @@ const AllPosts = () => {
                     </Col>
                   </Row>
                 )}
-                
+
                 {showComment === post._id &&
                   comments
                     .filter((comment) => comment.elementId === post._id)
                     .map((cacca) => {
                       return (
-                        <Row className=" bg-secondary p-2 rounded-5 align-items-center mt-2">
+                        <Row className="mt-2 ">
+                          <Col xs = {2} className=" p-2">
+                            <div className="post-img">
+                              <img
+                                className="rounded-circle"
+                                src={getProfileFromComment(cacca.author).image}
 
-                          <Col className=" text-light" xs={12}>
-                            <p className="text-light d-flex justify-content-between align-items-center"><span>{cacca.comment}</span><span><Button className="rounded-start-5 me-1"  variant="outline-dark" onClick={(e)=> {
-                                e.preventDefault()
-                                 setMyClick(post._id)
-                                 setWriteComment(cacca.comment)
-                                 setModify(cacca._id)
-                                 
-                            }}><FaPen/></Button><Button className="rounded-end-5" variant="outline-dark" onClick={()=> {
-                                dispatch(deleteComment(cacca._id))
-                                setTimeout(() => {
-                                    dispatch(takeComments())
-                                    
-                                }, 1000);
-                            }}><FaTrash/></Button></span> </p>
+                              />
+                            </div>
+                          </Col>
+                          <Col className=" text-light bg-secondary p-2 rounded-2 align-items-center" xs={10}>
+                          <p className=" d-flex justify-content-between mb-2"> 
+                                <span className=" fw-bold">{getProfileFromComment(cacca.author)?.name} {getProfileFromComment(cacca.author)?.surname}</span>
+                                <span>{timeAgo(cacca.createdAt)}</span>
+                          </p>
+                            <p className="text-light d-flex justify-content-between align-items-center">
+                              <span>
+                                {cacca.comment}
+                              </span>
+                              <span>
+                                <Button
+                                  className="rounded-start-2 me-1"
+                                  variant="outline-dark"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setMyClick(post._id);
+                                    setWriteComment(cacca.comment);
+                                    setModify(cacca._id);
+                                  }}
+                                >
+                                  <FaPen />
+                                </Button>
+                                <Button
+                                  className="rounded-end-2"
+                                  variant="outline-dark"
+                                  onClick={() => {
+                                    dispatch(deleteComment(cacca._id));
+                                    setTimeout(() => {
+                                      dispatch(takeComments());
+                                    }, 1000);
+                                  }}
+                                >
+                                  <FaTrash />
+                                </Button>
+                              </span>{" "}
+                            </p>
                           </Col>
                         </Row>
                       );
