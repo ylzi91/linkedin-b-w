@@ -50,17 +50,15 @@ const ExpCard = ({ id }) => {
                 <p>Experience</p>
                 {id === myProfile._id && (
                   <div
-                    className="me-2 clickable"
+                    className="clickable"
                     onClick={() => {
                       setAdd(true);
                       setExp({});
                     }}
                   >
-                    <span className="me-2">
+                    <span style={{marginRight: "13px"}}>
                       <IoMdAdd />
-                    </span>{" "}
-                    <nbsp />
-                    <HiOutlinePencil />{" "}
+                    </span>
                   </div>
                 )}
               </div>

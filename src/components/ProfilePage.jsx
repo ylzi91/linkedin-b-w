@@ -43,10 +43,10 @@ const ProfilePage = () => {
           <Col xs={12} lg={9} className="pe-2">
             <Card className="experience-section mb-4 bg-dark text-light rounded-3">
               <Card.Img variant="top" src="https://placedog.net/636x159" className="rounded-top-3" />
-              <div className="profile-img-box">
-                <img src={myprofile.image} className="w-100 rounded rounded-circle profile-img" alt="profile" />
-              </div>
-              <Card.Body>
+              <Card.Body className="position-relative">
+                <div className="profile-img-box">
+                  <img src={myprofile.image} className="w-100 rounded rounded-circle profile-img" alt="profile" />
+                </div>
                 <Card.Title className="mt-5">
                   <div style={{ fontSize: "25px", fontWeight: "bold" }}>
                     {myprofile.name} {myprofile.surname}
@@ -116,15 +116,17 @@ const ProfilePage = () => {
 
                   <hr />
 
-                  <div className="d-flex justify-content-between">
-                    <div>
-                      <h5>Profilo pubblico e URL</h5>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="w-100">
+                      <div className="d-flex justify-content-between align-items-center mb-2">
+                        <h5 className="m-0">Profilo pubblico e URL</h5>
+                        <div className="d-flex align-items-center">
+                          <IoPencilOutline />
+                        </div>
+                      </div>
                       <a>
                         <p style={{ fontSize: "16px", opacity: "0.3" }}> {myprofile.email}</p>
                       </a>
-                    </div>
-                    <div>
-                      <IoPencilOutline />
                     </div>
                   </div>
                 </Card.Title>

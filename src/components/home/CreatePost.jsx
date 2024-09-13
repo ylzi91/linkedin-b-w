@@ -35,7 +35,7 @@ const CreatePost = () => {
   return (
     <>
       <div className="card-create px-3 pt-2 mb-3">
-        <div className="body-input mb-2">
+        <div className="body-input my-2">
           <div className="post-img">
             <Link to="/myprofile">
               <img src={profile.image} alt="profile-image" className="rounded-pill" />
@@ -47,15 +47,15 @@ const CreatePost = () => {
         </div>
         <Container fluid className="p-0 w-100">
           <Row className="w-100 d-flex justify-content-between pb-2">
-            <Col xs={5} lg={5} className="button-media d-flex align-items-center justify-content-start px-2">
+            <Col xs={5} lg={7} xl={5} className="button-media d-flex align-items-center justify-content-start px-2">
               <GrMultimedia className="icon-media" />
               <p className="desc-button">Contenuti Multimediali</p>
             </Col>
-            <Col xs={3} lg={2} className="button-media d-flex align-items-center justify-content-center p-0">
+            <Col xs={3} lg={5} xl={2} className="button-media d-flex align-items-center justify-content-center p-0">
               <MdEvent className="icon-event" />
               <p className="desc-button"> Evento</p>
             </Col>
-            <Col xs={4} lg={4} className="button-media d-flex align-items-center justify-content-center p-0">
+            <Col xs={4} lg={12} xl={4} className="button-media d-flex align-items-center justify-content-center p-0">
               <GrMultimedia className="icon-article" />
               <p className="desc-button"> Scrivi un articolo</p>
             </Col>
