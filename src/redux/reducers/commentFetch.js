@@ -1,9 +1,9 @@
-import { GET_COMMENT_POST, MODIFY_COMMENT_POST, WRITE_COMMENT_POST } from "../actions"
+import { DELETE_COMMENT_POST, GET_COMMENT_POST, MODIFY_COMMENT_POST, WRITE_COMMENT_POST } from "../actions"
 
 
 const initialState = {
     allComment: [],
-    myComment: []
+    myComment: {}
 }
 
 export const commentReducer = (state = initialState, action) => {
@@ -25,6 +25,12 @@ export const commentReducer = (state = initialState, action) => {
         case MODIFY_COMMENT_POST: {
             return {
                 allComment: state.allComment.filter(commment => commment._id === action.payload._id),
+                myComment: action.payload
+            }
+        }
+        case DELETE_COMMENT_POST: {
+            return {
+                allComment: state.allComment.filter(commment => commment._id === action.payload._id ),
                 myComment: action.payload
             }
         }

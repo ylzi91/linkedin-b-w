@@ -17,6 +17,7 @@ export const GET_CATEGORY = 'GET_CATEGORY'
 export const GET_COMMENT_POST = 'GET_COMMENT_POST'
 export const WRITE_COMMENT_POST = 'WRITE_COMMENT_POST'
 export const MODIFY_COMMENT_POST = 'MODIFY_COMMENT_POST'
+export const DELETE_COMMENT_POST = 'DELETE_COMMENT_POST'
 
 
 // PROFILE ------------------------------------------
@@ -445,10 +446,10 @@ export const deleteComment = (idComment) => {
         
             })
             if (response.ok) {
-                const arrayObj = await response.json()
+                const Obj = await response.json()
                 dispatch({
-                    type: MODIFY_COMMENT_POST,
-                    payload: arrayObj
+                    type: DELETE_COMMENT_POST,
+                    payload: Obj
                 })
             }
             else {

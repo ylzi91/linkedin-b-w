@@ -40,14 +40,14 @@ const AllPosts = () => {
   const [myClick, setMyClick] = useState("");
   const [showComment, setShowComment] = useState("");
   const [modify, setModify] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getOrModifyPost());
     dispatch(getProfile("", TAKE_ALL_PROFILE));
-
     dispatch(takeComments());
   }, [dispatch]);
+
 
   const timeAgo = (timestamp) => {
     const now = new Date();
@@ -60,8 +60,8 @@ const AllPosts = () => {
     const diffInMonths = Math.floor(diffInDays / 30);
     const diffInYears = Math.floor(diffInDays / 365);
 
-    if(diffInSeconds <= 5){
-      return 'Adesso'
+    if (diffInSeconds <= 5) {
+      return "Adesso";
     }
     if (diffInSeconds < 60) {
       return `${diffInSeconds} secondi fa`;
@@ -189,16 +189,20 @@ const AllPosts = () => {
                   />
                 </div>
                 <div className="user-post h-100">
-                  <div className=" clickable" onClick={(e) => {
-                    e.preventDefault()
-                    if(post.username === myProf.username){
-                      navigate(`/myprofile`)
-                    }
-                    else {
-                      navigate(`/profile/${getProfileFromPost(post.username)._id}`)
-                    }
-                  }}>
-                    {getProfileFromPost(post.username)?.name}
+                  <div
+                    className=" clickable"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (post.username === myProf.username) {
+                        navigate(`/myprofile`);
+                      } else {
+                        navigate(
+                          `/profile/${getProfileFromPost(post.username)._id}`
+                        );
+                      }
+                    }}
+                  >
+                    {getProfileFromPost(post.username)?.name}{" "}
                     {getProfileFromPost(post.username)?.surname}
                   </div>
                   <div>{timeAgo(post.createdAt)}</div>
@@ -302,9 +306,8 @@ const AllPosts = () => {
                           if (modify !== "") {
                             dispatch(modifyComment(modify, writeComment));
                             setModify("");
-                            setTimeout(() => {
                               dispatch(takeComments());
-                            }, 500);
+                            
                           } else {
                             dispatch(addComment(post._id, writeComment));
                             setModify("");
@@ -334,60 +337,79 @@ const AllPosts = () => {
                     .map((cacca) => {
                       return (
                         <Row className="mt-2 ">
-                          <Col xs = {2} className=" p-2">
+                          <Col xs={2} className=" p-2">
                             <div className="post-img">
                               <img
                                 className="rounded-circle"
                                 src={getProfileFromComment(cacca.author).image}
-
                               />
                             </div>
                           </Col>
-                          <Col className=" text-light bg-secondary p-2 rounded-2 align-items-center" xs={10}>
-                          <p className=" d-flex justify-content-between mb-2"> 
-                                <span className=" fw-bold clickable" onClick={(e) => {
-                                  e.preventDefault()
-                                  if(cacca.author === 'yuri@lenzi.com'){
-                                    navigate('/myprofile')
+                          <Col
+                            className=" text-light bg-secondary p-2 rounded-2 align-items-center"
+                            xs={10}
+                          >
+                            <p className=" d-flex justify-content-between mb-2">
+                              <span
+                                className=" fw-bold clickable"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  if (cacca.author === "yuri@lenzi.com") {
+                                    navigate("/myprofile");
+                                  } else if (
+                                    !getProfileFromComment(cacca.author)._id
+                                  ) {
+                                    alert("Non posso andare alla pagina");
+                                  } else if (
+                                    getProfileFromComment(cacca.author)
+                                  ) {
+                                    console.log("terzo");
+                                    navigate(
+                                      `/profile/${
+                                        getProfileFromComment(cacca.author)._id
+                                      }`
+                                    );
                                   }
-                                  else if (!getProfileFromComment(cacca.author)?._id){
-                                    alert('Non posso andare alla pagina')
-                                  }
-                                  else {
-                                    navigate(navigate(`/profile/${getProfileFromComment(cacca.author)._id}`))
-                                  }
-                                }}>{getProfileFromComment(cacca.author)?.name} {getProfileFromComment(cacca.author)?.surname}</span>
-                                <span>{timeAgo(cacca.createdAt)}</span>
-                          </p>
-                            <p className="text-light d-flex justify-content-between align-items-center">
-                              <span>
-                                {cacca.comment}
+                                }}
+                              >
+                                {getProfileFromComment(cacca.author)?.name}{" "}
+                                {getProfileFromComment(cacca.author)?.surname}
                               </span>
+                              <span>{timeAgo(cacca.createdAt)}</span>
+                            </p>
+                            <p className="text-light d-flex justify-content-between align-items-center">
+                              <span>{cacca.comment}</span>
                               <span>
-                                <Button
-                                  className="rounded-start-2 me-1"
-                                  variant="outline-dark"
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    setMyClick(post._id);
-                                    setWriteComment(cacca.comment);
-                                    setModify(cacca._id);
-                                  }}
-                                >
-                                  <FaPen />
-                                </Button>
-                                <Button
-                                  className="rounded-end-2"
-                                  variant="outline-dark"
-                                  onClick={() => {
-                                    dispatch(deleteComment(cacca._id));
-                                    setTimeout(() => {
-                                      dispatch(takeComments());
-                                    }, 1000);
-                                  }}
-                                >
-                                  <FaTrash />
-                                </Button>
+                                {cacca.author === "yuri@lenzi.com" && (
+                                  <>
+                                    <Button
+                                      className="rounded-start-2 me-1"
+                                      variant="outline-dark"
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        setMyClick(post._id);
+                                        setWriteComment(cacca.comment);
+                                        setModify(cacca._id);
+                                      }}
+                                    >
+                                      <FaPen />
+                                    </Button>
+                                    <Button
+                                      className="rounded-end-2"
+                                      variant="outline-dark"
+                                      onClick={async () => {
+                                        await dispatch(deleteComment(cacca._id));
+                                        dispatch(takeComments())
+                                    
+                                        
+                                       
+                                  
+                                      }}
+                                    >
+                                      <FaTrash />
+                                    </Button>
+                                  </>
+                                )}
                               </span>{" "}
                             </p>
                           </Col>
