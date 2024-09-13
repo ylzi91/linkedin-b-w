@@ -154,8 +154,8 @@ const FormExp = ({ id, close, expid, add }) => {
         <Modal.Footer className="modali text-light justify-content-end border-0 ">
           {" "}
           <Button
-            variant="outline-primary py-1 rounded-pill"
-            size="lg"
+            variant="outline-secondary"
+            size="md"
             type="submit"
             onClick={() => {
               if (exp._id) {
@@ -168,18 +168,11 @@ const FormExp = ({ id, close, expid, add }) => {
           >
             Submit
           </Button>
-          <Button
-            variant="outline-warning py-1 rounded-pill ms-3"
-            size="lg"
-            onClick={close}
-          >
-            Cancel
-          </Button>
           {expid._id && (
             <Button
-              variant="outline-danger py-1 rounded-pill ms-3"
-              type="delete"
-              size="lg"
+            variant="outline-danger"
+            size="md"
+            type="delete"
               onClick={(e) => {
                 e.preventDefault();
                 dispatch(deleteExperience(id, exp._id));

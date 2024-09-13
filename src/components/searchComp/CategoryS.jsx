@@ -35,12 +35,10 @@ const CategoryS = ({ query }) => {
             return (
               <ListGroup.Item
                 key={i}
-                className="bg-dark pt-2 d-flex pb-2 border-0 border-secondary border-bottom pb-0 justify-content-between mx-4 align-content-center"
+                className="bg-dark pt-2 d-flex pb-2 border-0 pb-0 justify-content-between mx-4 d-flex align-items-center"
               >
                 <div className="text-white flex-column w-100 me-0 ps-1">
-                  <p className="mb-1 fw-bold">{job.title}</p>
-                  <p className="py-1 text-secondary">{job.company}</p>
-                  <p className="py-1 text-secondary">{job.location}</p>
+                  <p className="fw-bold">{job.title}</p>
                 </div>
                 <Button
                   variant="link"

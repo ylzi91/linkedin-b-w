@@ -16,43 +16,36 @@ const PeopleS = ({ query }) => {
   );
 
   return (
-    <>
-      <Card
-        bg="dark"
-        className="text-white rounded-3 text-wrap mb-2"
-        id="People"
-      >
-        {/* Controlla se ci sono persone */}
-        {filteredProfiles.length === 0 ? (
-          <div className="d-flex align-items-center px-3 text-secondary" style={{ height: "70px" }}>
-            <p> Nessun profilo trovato. </p>
-          </div>
-        ) : (
-          <>
+    <Card
+      bg="dark"
+      className="text-white rounded-3 text-wrap mb-2"
+      id="People"
+    >
+      {filteredProfiles.length > 0 ? (
+        <>
+          <Card.Body>
+            <Card.Title className="mb-4">People</Card.Title>
             <ListGroup className="p-0 m-0 border-0 border-bottom border-secondary pb-0 rounded-0">
-              {/* Mostra le persone filtrate in base a peopleExpand */}
-              {filteredProfiles.slice(0, peopleExpand).map((p) => {
-                return (
-                  <ListGroup.Item
-                    key={p._id}
-                    className="bg-dark px-3 py-2 d-flex align-items-center pe-0 border-0"
-                  >
-                    <div>
-                      <img
-                        src={p.image}
-                        className="profileo rounded-circle"
-                        alt="profile"
-                      />
-                    </div>
-                    <div className="text-white flex-column w-100 me-0 ps-3 border-0">
-                      <p>
-                        {p.name} {p.surname}
-                      </p>
-                      <p className="py-1 text-secondary">{p.title}</p>
-                    </div>
-                  </ListGroup.Item>
-                );
-              })}
+              {filteredProfiles.slice(0, peopleExpand).map((p) => (
+                <ListGroup.Item
+                  key={p._id}
+                  className="bg-dark px-3 py-2 d-flex align-items-center pe-0 border-0"
+                >
+                  <div>
+                    <img
+                      src={p.image}
+                      className="profileo rounded-circle"
+                      alt="profile"
+                    />
+                  </div>
+                  <div className="text-white flex-column w-100 me-0 ps-3 border-0">
+                    <p>
+                      {p.name} {p.surname}
+                    </p>
+                    <p className="py-1 text-secondary">{p.title}</p>
+                  </div>
+                </ListGroup.Item>
+              ))}
             </ListGroup>
 
             {/* Bottone per espandere o nascondere le persone */}
@@ -83,10 +76,14 @@ const PeopleS = ({ query }) => {
                 </button>
               </div>
             )}
-          </>
-        )}
-      </Card>
-    </>
+          </Card.Body>
+        </>
+      ) : (
+        <div className="d-flex align-items-center px-3 text-secondary" style={{ height: "70px" }}>
+          <p>Nessun profilo trovato.</p>
+        </div>
+      )}
+    </Card>
   );
 };
 

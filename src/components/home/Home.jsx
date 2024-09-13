@@ -10,7 +10,7 @@ const Home = () => {
         <>
             <Container fluid className="p-0 px-3 mt-3" id="home">
                 <Row className="d-flex justify-content-center">
-                    <Col sm={12} md={12} lg={3} xl={3} className=" d-none d-sm-block pe-1" >
+                    <Col sm={12} md={12} lg={3} xl={3} className=" d-none d-sm-block pe-1 pe-md-0 pe-lg-1" >
                         <Sxbar />
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={5} xl={6} className=" px-1" >
