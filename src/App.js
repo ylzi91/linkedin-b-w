@@ -21,7 +21,8 @@ function App() {
         <main className='d-flex justify-content-center'>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/myprofile' element={<JobPage />} />
+            <Route path='/myprofile' element={<ProfilePage />} />
+            <Route path='/job' element={<JobPage />} />
             <Route path='/profile/:id' element={<DinamicProfile />} />
             <Route path='search/:query' element={<Search />} />
           </Routes>
