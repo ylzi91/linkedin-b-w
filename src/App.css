@@ -387,15 +387,11 @@ a {
   background-color: #212529;
   color: #fff;
   border: none;
-  background-color: #212529;
-  color: #fff;
-  border: none;
   min-width: 250px;
 }
 
 .user-dropdown .dropdown-item,
 .user-dropdown .dropdown-item:hover {
-  background-color: #212529;
   background-color: #212529;
   color: #fff;
 }
@@ -707,6 +703,7 @@ input::placeholder {
   color :rgba(255, 255, 255, 0.5);
   text-decoration: none;
   padding: 0.3rem;
+  cursor: pointer;
 }
 
 
@@ -717,14 +714,13 @@ input::placeholder {
   text-decoration: underline;
 }
 
+
 .listItem :visited,
 .listItem a:visited{
   color: #C8A1F6;
 }
 
-.dropdownMenu {
-  border-radius: 5px !important;
-}
+
 
 .listItemDropdown {
   background-color: black;
@@ -732,6 +728,13 @@ input::placeholder {
   color :rgba(255, 255, 255, 0.5);
   text-decoration: none;
   padding: 0.3rem;
+  cursor: pointer;
+}
+
+.listItemDropdown :hover:not(.listItemDropdown)  {
+  cursor: pointer;
+  color :#71b7fb;
+  
 }
 
 
@@ -743,7 +746,7 @@ input::placeholder {
   padding:0.3rem 1rem !important;
   font-weight: bold;
   font-size: small;
-  
+  cursor: pointer;
 }
 
 .dropdownItem:hover {

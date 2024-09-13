@@ -18,17 +18,17 @@ const MyFooter = () => {
 
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <button
-    type="button"
-    ref={ref}
-    onClick={(e) => {
-      e.preventDefault();
-      onClick(e);
-    }}
-    className="listItem p-0 m-0"
-  >
-    {children} &#x25bc;
-  </button>
-));
+      type="button"
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+      className="listItem p-0 m-0"
+    >
+      {children} &#x25bc;
+    </button>
+  ));
 
   return (
     <Container className="fsFooter" id="footer">
@@ -49,33 +49,43 @@ const MyFooter = () => {
         </ListGroup.Item>
 
         <ListGroup.Item className="listItemDropdown">
-          <Dropdown >
+          <Dropdown>
             <Dropdown.Toggle as={CustomToggle} id="dropdown-autoclose-true">
               Privacy e condizioni
             </Dropdown.Toggle>
-
-            <Dropdown.Menu >
-              <Dropdown.Item 
-              className="dropdownItem" 
-              href="https://www.linkedin.com/legal/privacy-policy">
-                Informativa sulla privacy</Dropdown.Item>
-              <Dropdown.Item 
-              className="dropdownItem" 
-              href="https://www.linkedin.com/legal/user-agreement">
-                Contratto di licenza</Dropdown.Item>
-              <Dropdown.Item 
-              className="dropdownItem" 
-              href="https://it.linkedin.com/legal/l/linkedin-pages-terms?">
-                Termini e condizioni delle pagine</Dropdown.Item>
-              <Dropdown.Item 
-              className="dropdownItem" 
-              href="https://www.linkedin.com/legal/cookie-policy">
-                Informativa sui cookie</Dropdown.Item>
-              <Dropdown.Item 
-              className="dropdownItem" 
-              href="https://www.linkedin.com/legal/copyright-policy">
-                Informativa sul copyright</Dropdown.Item>
-            </Dropdown.Menu>
+              
+              <Dropdown.Menu >
+                <Dropdown.Item
+                  className="dropdownItem"
+                  href="https://www.linkedin.com/legal/privacy-policy"
+                >
+                  Informativa sulla privacy
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className="dropdownItem"
+                  href="https://www.linkedin.com/legal/user-agreement"
+                >
+                  Contratto di licenza
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className="dropdownItem"
+                  href="https://it.linkedin.com/legal/l/linkedin-pages-terms?"
+                >
+                  Termini e condizioni delle pagine
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className="dropdownItem"
+                  href="https://www.linkedin.com/legal/cookie-policy"
+                >
+                  Informativa sui cookie
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className="dropdownItem"
+                  href="https://www.linkedin.com/legal/copyright-policy"
+                >
+                  Informativa sul copyright
+                </Dropdown.Item>
+              </Dropdown.Menu>
           </Dropdown>
         </ListGroup.Item>
 
