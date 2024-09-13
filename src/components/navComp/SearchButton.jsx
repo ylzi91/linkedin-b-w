@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
-import { Dropdown, FormControl } from "react-bootstrap";
+
 
 const SearchButton = ({ showInput, handleIconClick }) => {
   return (

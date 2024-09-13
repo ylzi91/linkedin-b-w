@@ -5,22 +5,31 @@ import { BsThreeDots } from "react-icons/bs";
 import { FaTrashAlt } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { DELETE_POST, getOrModifyPost } from "../../redux/actions";
+import {
+  DELETE_POST,
+  getOrModifyPost,
+  getProfile,
+  TAKE_MY_PROFILE,
+} from "../../redux/actions";
 
-const PostItem = ({ post, openForm }) => {
+const PostItem = ({
+  post,
+  openForm,
+}) => {
+  const [postProf, setPostProf] = useState({
+    name: "",
+    surname: "",
+    img: "",
+    username: "",
+  });
   const profiles = useSelector((store) => store.profile.allProfiles);
   const myProfile = useSelector((store) => store.profile.myProfile);
-  const dispatch = useDispatch()
-  const getProfileImage = (username) => {
-    const profile = profiles.find((profile) => profile.username === username);
-    return profile ? profile.image : "default-profile.png";
-  };
+  const dispatch = useDispatch();
 
   const getProfileNameSurname = (username) => {
     const profile = profiles.find((profile) => profile.username === username);
-
-    return profile ? profile : { name: "Unknown", surname: "" };
-
+    console.log('pppppppppppp', username)
+    return profile;
   };
 
   const timeAgo = (timestamp) => {
@@ -49,6 +58,28 @@ const PostItem = ({ post, openForm }) => {
     }
   };
 
+  useEffect(() => {
+    const user = { ...getProfileNameSurname(post.username) };
+    console.log("user", user);
+
+    setPostProf({
+      name: user.name,
+      surname: user.surname,
+      img: user.image,
+    });
+  }, [post]);
+  useEffect(() => {
+    const user = { ...getProfileNameSurname(post.username) };
+    console.log("user", user);
+
+    setPostProf({
+      name: user.name,
+      surname: user.surname,
+      username: user.username,
+      img: user.image,
+    });
+  }, []);
+
 
 
   return (
@@ -57,30 +88,45 @@ const PostItem = ({ post, openForm }) => {
         <div className="card-create px-3 py-3 rounded-0" key={post._id}>
           <div className="body-input mb-3">
             <div className="post-img">
-              <img className="rounded-circle profileo" src={getProfileImage(post.username)} alt={post.username}
+              <img
+                className="rounded-circle profileo"
+                src={postProf.img}
+                alt={post.username}
               />
             </div>
             <div className="user-post w-100 h-100">
               <div>
-                {getProfileNameSurname(post.username).name}{" "}
-                {getProfileNameSurname(post.user).surname}
+                {postProf.name}{" "}
+                {postProf.surname}
               </div>
               <div>{timeAgo(post.createdAt)}</div>
             </div>
             <div className="edit-icon d-flex align-items-center">
-              <BsThreeDots className="me-3" onClick={() => {
-                openForm(post);
-              }}
+              <BsThreeDots
+                className="me-3"
+                onClick={() => {
+                  openForm(post);
+                }}
               />
-              {myProfile.username === post.username ? (
+              {getProfileNameSurname(post.username) && getProfileNameSurname(post.username).username ===
+              post.username ? (
                 <RxCross2
                   onClick={() => {
-                    dispatch(getOrModifyPost("DELETE", DELETE_POST, "", post._id));
+                    dispatch(
+                      getOrModifyPost("DELETE", DELETE_POST, "", post._id)
+                    );
                     dispatch(getOrModifyPost());
                   }}
                 />
               ) : (
-                <FaTrashAlt />
+                <FaTrashAlt
+                  onClick={() => {
+                    dispatch(
+                      getOrModifyPost("DELETE", DELETE_POST, "", post._id)
+                    );
+                    dispatch(getOrModifyPost());
+                  }}
+                />
               )}
             </div>
           </div>

@@ -41,7 +41,7 @@ const CustomNavbar = () => {
       id="custom-navbar"
       className="d-flex justify-content-around align-items-center px-3 py-1"
     >
-      <Nav className="d-flex align-items-center justify-content-between w-100">
+      <Nav className="d-flex align-items-center justify-content-between w-100 flex-nowrap">
         <div className="d-flex align-items-center "> 
           <Navbar.Brand>
             <LinkedinIcon />

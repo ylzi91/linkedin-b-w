@@ -17,8 +17,11 @@ import { HiOutlinePencil } from "react-icons/hi";
 const PostCard = ({ id }) => {
   const [add2, setAdd2] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [postExpand, setPostExpand] = useState(2);
+  const [expand, setExpand] = useState(false);
   const dispatch = useDispatch();
   const reduxPosts = useSelector((s) => s.post.allPosts);
+  const myProfile = useSelector((s) => s.profile.myProfile);
 
   useEffect(() => {
     if (id) dispatch(getOrModifyPost());
@@ -30,8 +33,6 @@ const PostCard = ({ id }) => {
   const close = () => {
     setAdd2(false);
   };
-
-
 
   const openForm = (post) => {
     setPosts({ ...post });
@@ -50,25 +51,31 @@ const PostCard = ({ id }) => {
         <Card className="experience-section mb-4 bg-dark text-light rounded-3">
           <Card.Body>
             <Card.Title className="mb-4">
-              <div className="d-flex align-items-center justify-content-between">
-                <div>
-                  <p>Attività</p>
-                </div>
-                <div className="clickable"
-                  onClick={() => {
-                    setAdd2(true);
-                    setPosts([]);
-                  }}
-                >
-                  <Button className="btnn btn_info_out px-3">Crea un post</Button>
-                </div>
+              <div className="d-flex aling-items-center justify-content-between">
+                <p>Attività</p>
+                {id === myProfile._id && (
+                  <div
+                    className="clickable"
+                    onClick={() => {
+                      setAdd2(true);
+                      setPosts([]);
+                    }}
+                  >
+                    <Button className="btnn btn_info_out me-3 px-3">
+                      Crea un post
+                    </Button>
+                    <HiOutlinePencil />
+                  </div>
+                )}
               </div>
             </Card.Title>
 
             {reduxPosts
               .filter((p) => {
-                if (p.user._id == id) return p;
-              }).reverse()
+                if (p.user._id === id) return p;
+              })
+              .reverse()
+              .slice(0, postExpand)
               .map((post) => {
                 return (
                   <PostItem
@@ -80,12 +87,41 @@ const PostCard = ({ id }) => {
                 );
               })}
           </Card.Body>
-          <div className="show-all-experiences">
-            <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold">
-              Show all {reduxPosts.filter((p) => { if (p.user._id == id) return p }).length}{" "}
-              Posts <span className="ms-1">&rarr;</span>
-            </button>
-          </div>
+          {expand ? (
+            <div className="show-all-experiences">
+              <button
+                className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
+                onClick={() => {
+                  setExpand(false);
+                  setPostExpand(2);
+                }}
+              >
+                Hide Posts <span className="ms-1">&larr;</span>
+              </button>
+            </div>
+          ) : (
+            <div className="show-all-experiences">
+              <button
+                className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
+                onClick={() => {
+                  setExpand(true);
+                  setPostExpand(
+                    reduxPosts.filter((p) => {
+                      if (p.user._id === id) return p;
+                    }).length
+                  );
+                }}
+              >
+                Show all{" "}
+                {
+                  reduxPosts.filter((p) => {
+                    if (p.user._id === id) return p;
+                  }).length
+                }{" "}
+                Posts <span className="ms-1">&rarr;</span>
+              </button>
+            </div>
+          )}
         </Card>
       )}
     </>
