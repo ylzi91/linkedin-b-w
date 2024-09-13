@@ -20,6 +20,8 @@ function DinamicProfile() {
     dispatch(getProfile(params.id, TAKE_ID_PROFILE));
   }, [params]);
 
+
+
   return (
     <>
       {" "}
@@ -33,7 +35,11 @@ function DinamicProfile() {
                 className="rounded-top-3"
               />
 
-              <Card.Body>
+              <div className="profile-img-box">
+                <img src={myprofile.image} className="w-100 rounded rounded-circle profile-img" alt="profile" />
+              </div>
+
+              {/* <Card.Body>
                 <Card.Title as="h2" className="mb-4 titleHero">
                   <img
                     src={myprofile.image}
@@ -59,7 +65,71 @@ function DinamicProfile() {
                     </span>
                   </p>
                 </Card.Text>
+              </Card.Body> */}
+
+              <Card.Body>
+                <Card.Title className="mt-5">
+                  {/* <img
+                    src={myprofile.image}
+                    className="w-100 rounded rounded-circle profile me-3"
+                    alt="profile"
+                  /> */}
+                  <div style={{ fontSize: "25px", fontWeight: "bold" }}>
+                    {myprofile.name} {myprofile.surname}
+                  </div>
+
+
+                  {/* <EditIcon actionState={setModProfile} state={modProfile} /> */}
+
+
+                </Card.Title>
+                <Card.Text>
+                  <p className="pb-2">
+                    {myprofile.title} <br />
+                    <span className="mt-2 d-block text-white-50">
+                      {myprofile.area} <TbPointFilled className="point" /> <nbsp />
+                      <a
+                        href={`mailto:${myprofile.email}`}
+                        className="text-decoration-none info"
+                      >
+                        Informazioni di contatto
+                      </a>
+                    </span>
+                  </p>
+                  {/* <div className="d-flex align-content-center mt-2 text-nowrap flex-wrap gap-2">
+                    <Button className="rounded rounded-pill btn_info" size="md">
+                      Disponibile per
+                    </Button>
+                    <Button
+                      className="mx-2 rounded rounded-pill btn_info_out"
+                      size="md"
+                    >
+                      Aggiungi sezione del profilo
+                    </Button>
+                    <Button
+                      onClick={() => setModProfile(!modProfile)}
+                      className="rounded rounded-pill btn_info_out"
+                      size="md"
+                    >
+                      modifica profilo
+                    </Button>
+                    <Button
+                      variant="outline-secondary"
+                      className="ms-2 rounded rounded-pill"
+                      size="md"
+                    >
+                      Altro
+                    </Button>{" "}
+                  </div>
+                  {modProfile && (
+                    <FormModProfile close={closeForm} changes={changes} />
+                  )} */}
+                </Card.Text>
               </Card.Body>
+
+
+
+
             </Card>{" "}
             <PostCard id={myprofile._id} />
             <ExpCard id={myprofile._id} />
@@ -103,6 +173,13 @@ function DinamicProfile() {
       </Container>
     </>
   );
+
+
+
+
+
+
+
 }
 
 export default DinamicProfile;

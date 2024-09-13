@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getSearch } from "../../redux/actions"
 import { Button, Card, ListGroup } from "react-bootstrap"
 import { MdOutlineExpandLess, MdOutlineExpandMore } from "react-icons/md"
-import { useNavigate } from "react-router-dom"
+
 
 
 
@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom"
 export const Dxbar = () => {
     const [numJobs, setNumJobs] = useState(10)
     const [myOpen, setMyOpen] = useState(false)
-    const navigate = useNavigate()
-
     const jobs = useSelector((state) => state.job.querySearch)
     const dispatch = useDispatch()
     useEffect(()=> {

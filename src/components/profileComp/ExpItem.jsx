@@ -38,7 +38,7 @@ const ExpItem = ({
               className="see-more text-primary"
               onClick={() => toggleDescription()}
             >
-              {expanded ? "See less" : "...see more"}
+              {expanded ? "...see more" : "see less"}
             </a>
           </Col>
         
