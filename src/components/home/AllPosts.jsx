@@ -1,160 +1,418 @@
 import { useEffect, useState } from "react";
-import { DELETE_POST, TAKE_ALL_PROFILE, getOrModifyPost, getProfile } from "../../redux/actions";
+import {
+  DELETE_POST,
+  MODIFY_POST,
+  TAKE_ALL_PROFILE,
+  addComment,
+  deleteComment,
+  getOrModifyPost,
+  getProfile,
+  modifyComment,
+  takeComments,
+} from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDots } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
-import { FaRegThumbsUp, FaTrashAlt } from "react-icons/fa";
-import { Container, Row, Col, Modal, Button } from "react-bootstrap";
+import { FaPen, FaRegThumbsUp, FaTrash, FaTrashAlt } from "react-icons/fa";
+import { Container, Row, Col, Modal, Button, Form } from "react-bootstrap";
 import { FaRegCommentDots } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend } from "react-icons/io";
 import { GoComment } from "react-icons/go";
 
+
 const AllPosts = () => {
-    const dispatch = useDispatch();
-    const posts = useSelector(store => store.post.allPosts);
-    const profiles = useSelector(store => store.profile.allProfiles);
-    const myProfile = useSelector(store => store.profile.myProfile)
-    const [hiddenPosts, setHiddenPosts] = useState([]);
-    const [showModal, setShowModal] = useState(false);
-    const [showModal2, setShowModal2] = useState(false);
-    const [idToDel, setIdToDel] = useState('')
+  const dispatch = useDispatch();
+  const posts = useSelector((store) => store.post.allPosts);
+  const profiles = useSelector((store) => store.profile.allProfiles);
+  const myProf = useSelector((store) => store.profile.myProfile);
+  const comments = useSelector((store) => store.comment.allComment);
+  const [hiddenPosts, setHiddenPosts] = useState([]);
+  const [deletedPosts, setDeletedPosts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [postToDelete, setPostToDelete] = useState(null);
+  const [editPost, setEditPost] = useState(null); // Post in fase di modifica
+  const [showEditModal, setShowEditModal] = useState(false); // Stato per mostrare il modale di modifica
+  const [editedPostText, setEditedPostText] = useState(""); // Testo modificato
+  const [writeComment, setWriteComment] = useState("");
+  const [myClick, setMyClick] = useState("");
+  const [showComment, setShowComment] = useState("");
+  const [modify, setModify] = useState('')
 
-    useEffect(() => {
-        dispatch(getOrModifyPost());
-        dispatch(getProfile('', TAKE_ALL_PROFILE));
-        dispatch(getProfile('me'))
-    }, [dispatch, idToDel]);
+  useEffect(() => {
+    dispatch(getOrModifyPost());
+    dispatch(getProfile("", TAKE_ALL_PROFILE));
+    
+    dispatch(takeComments());
+        
 
+  }, [dispatch]);
 
-    const getProfileImage = (username) => {
-        const profile = profiles.find(profile => profile.username === username);
-        return profile ? profile.image : 'default-profile.png';
-    };
+  const timeAgo = (timestamp) => {
+    const now = new Date();
+    const time = new Date(timestamp);
+    const diffInMs = now - time;
+    const diffInSeconds = Math.floor(diffInMs / 1000);
+    const diffInMinutes = Math.floor(diffInSeconds / 60);
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    const diffInDays = Math.floor(diffInHours / 24);
+    const diffInMonths = Math.floor(diffInDays / 30);
+    const diffInYears = Math.floor(diffInDays / 365);
 
-    const getProfileNameSurname = (username) => {
-        const profile = profiles.find(profile => profile.username === username)
-        return profile
+    if (diffInSeconds < 60) {
+      return `${diffInSeconds} secondi fa`;
+    } else if (diffInMinutes < 60) {
+      return `${diffInMinutes} minuti fa`;
+    } else if (diffInHours < 24) {
+      return `${diffInHours} ore fa`;
+    } else if (diffInDays < 30) {
+      return `${diffInDays} giorni fa`;
+    } else if (diffInMonths < 12) {
+      return `${diffInMonths} mesi fa`;
+    } else {
+      return `${diffInYears} anni fa`;
     }
+  };
 
+  const hidePost = (postId) => {
+    setHiddenPosts((prevHiddenPosts) => [...prevHiddenPosts, postId]);
+    setModalMessage("Il post è stato rimosso dal tuo feed.");
+    setShowModal(true);
+  };
 
-    const timeAgo = (timestamp) => {
-        const now = new Date();
-        const time = new Date(timestamp);
-        const diffInMs = now - time;
-        const diffInSeconds = Math.floor(diffInMs / 1000);
-        const diffInMinutes = Math.floor(diffInSeconds / 60);
-        const diffInHours = Math.floor(diffInMinutes / 60);
-        const diffInDays = Math.floor(diffInHours / 24);
-        const diffInMonths = Math.floor(diffInDays / 30);
-        const diffInYears = Math.floor(diffInDays / 365);
+  const deletePost = (postId) => {
+    dispatch(getOrModifyPost("DELETE", DELETE_POST, "", postId));
+    setDeletedPosts((prevDeletedPosts) => [...prevDeletedPosts, postId]);
+    setModalMessage("Il post è stato cancellato.");
+    setShowModal(true);
+  };
 
-        if (diffInSeconds < 60) {
-            return `${diffInSeconds} secondi fa`;
-        } else if (diffInMinutes < 60) {
-            return `${diffInMinutes} minuti fa`;
-        } else if (diffInHours < 24) {
-            return `${diffInHours} ore fa`;
-        } else if (diffInDays < 30) {
-            return `${diffInDays} giorni fa`;
-        } else if (diffInMonths < 12) {
-            return `${diffInMonths} mesi fa`;
-        } else {
-            return `${diffInYears} anni fa`;
-        }
-    };
+  const handleCloseModal = () => setShowModal(false);
 
-    const hidePost = (postId) => {
-        setHiddenPosts([...hiddenPosts, postId]);
-        setShowModal(true); 
-    };
-    const showConfrimDelete = (postId) => {
-        setIdToDel(postId)
-        setShowModal2(true); 
-    };
+  const handlePostAction = (post) => {
+    if (post.username === myProf.username) {
+      setPostToDelete(post._id);
+      setShowConfirmModal(true);
+    } else {
+      hidePost(post._id);
+    }
+  };
 
-     const handleCloseModal = () => setShowModal(false);
-     const handleCloseSecondModal = () => setShowModal2(false);
+  const handleConfirmDelete = () => {
+    if (postToDelete) {
+      deletePost(postToDelete);
+    }
+    setShowConfirmModal(false);
+    setPostToDelete(null); // e
+  };
 
-    return (
-        <>
-            {
-                posts && posts.length > 0 ?
-                    posts.filter(post => !hiddenPosts.includes(post._id)).slice(-10).reverse().map((post) => (
-                        <div className="card-create px-3 py-3 mb-3" key={post._id}>
-                            <div className="body-input mb-3">
-                                <div className="post-img">
-                                    <img className="rounded-circle" src={getProfileImage(post.username)} alt={post.username} />
-                                </div>
-                                <div className="user-post w-100 h-100">
-                                    <div>{getProfileNameSurname(post.username).name} {getProfileNameSurname(post.username).surname}</div>
-                                    <div>{timeAgo(post.createdAt)}</div>
-                                </div>
-                                <div className="edit-icon d-flex align-items-center">
-                                    <BsThreeDots className="me-3" />
-                                   {myProfile.username === post.username ? <FaTrashAlt className=" text-danger opacity-75" onClick={() => showConfrimDelete(post._id)} /> :  <RxCross2 onClick={() => hidePost(post._id)} />}
-                                </div>
-                            </div>
-                            <div className="text-light py-2 border-bottom-custom d-flex align-items-center">{post.text}</div>
-                            <Container className="p-0">
-                                <Row className="pt-1">
-                                    <Col xs={3} md={3} lg={3} xl={3} className="button-media text-light d-flex justify-content-center align-items-center p-2">
-                                        <FaRegThumbsUp className="like-icon" />
-                                        <p className="d-md-none d-lg-none d-xl-block"> Consiglia</p>
-                                    </Col>
-                                    <Col xs={3} md={3} lg={3} xl={3} className="button-media text-light d-flex  justify-content-center align-items-center p-2">
-                                        <GoComment  className="like-icon" />
-                                        <p className="d-md-none d-lg-none d-xl-block"> Commenta</p>
-                                    </Col>
-                                    <Col xs={3} md={3} lg={3} xl={4} className="button-media text-light d-flex  justify-content-center align-items-center p-2">
-                                        <BiRepost className="like-icon" />
-                                        <p className="d-md-none d-lg-none d-xl-block"> Diffondi post</p>
-                                    </Col>
-                                    <Col xs={3} md={3} lg={3} xl={2} className="button-media text-light d-flex  justify-content-center align-items-center">
-                                        <IoIosSend className="like-icon" />
-                                        <p className="d-md-none d-lg-none d-xl-block"> Invia</p>
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </div>
-                    )) : <p className="text-light">No posts available</p>
-            }
+  const handleCancelDelete = () => {
+    setShowConfirmModal(false);
+    setPostToDelete(null);
+  };
 
-            <Modal show={showModal} onHide={handleCloseModal}>
-                <Modal.Header className="bg-dark text-light border-0">
-                    <Modal.Title>Post nascosto</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="bg-dark text-light">Il post è stato rimosso dal tuo feed.</Modal.Body>
-                <Modal.Footer className="bg-dark text-light border-0">
-                    <Button variant="light" onClick={handleCloseModal}>
-                        Chiudi
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-            <Modal show={showModal2} onHide={handleCloseModal}>
-                <Modal.Header className="bg-dark text-light border-0">
-                    <Modal.Title>Elimina Post</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="bg-dark text-light">Sei sicuro di voler eliminare il tuo post?</Modal.Body>
-                <Modal.Footer className="bg-dark text-light border-0">
-                    <Button variant="light" onClick={handleCloseSecondModal}>
-                        No, è bellissimo
-                    </Button>
-                    <Button variant="outline-light" onClick={(e)=> {
-                        e.preventDefault()
-                        dispatch(getOrModifyPost('DELETE', DELETE_POST, '', idToDel))
-                        setTimeout(() => {
-                            setIdToDel('')
+  const handleEditPost = (post) => {
+    if (post.user._id === myProf._id) {
+      setEditPost(post); // Imposta il post da modificare
+      setEditedPostText(post.text); // Carica il testo del post esistente
+      setShowEditModal(true); // Mostra il modale di modifica
+    }
+  };
+
+  const handleSavePost = () => {
+    if (editPost) {
+      dispatch(
+        getOrModifyPost(
+          "PUT",
+          MODIFY_POST,
+          { text: editedPostText },
+          editPost._id
+        ) // Aggiorna il post con il testo modificato
+      );
+      dispatch(getOrModifyPost()); // Aggiorna i post dopo la modifica
+      setShowEditModal(false); // Chiudi il modale
+      setEditPost(null); // Resetta lo stato del post modificato
+    }
+  };
+
+  const getProfileImage = (username) => {
+    const profile = profiles.find((profile) => profile.username === username);
+    return profile ? profile.image : "default-profile.png";
+  };
+  const getProfileFromPost = (username) => {
+    const profile = profiles.find(profile => profile.username === username)
+    return profile
+  }
+
+ 
+
+  return (
+    <>
+      {posts && posts.length > 0 ? (
+        posts
+          .slice(-10)
+          .reverse()
+          .map((post) => (
+            <div
+              className={`card-create px-3 py-3 mb-3 ${
+                hiddenPosts.includes(post._id) ||
+                deletedPosts.includes(post._id)
+                  ? "d-none"
+                  : ""
+              }`}
+              key={post._id}
+            >
+              <div className="body-input mb-3 w-100">
+                <div className="post-img">
+                  <img
+                    className="rounded-circle"
+                    src={getProfileImage(post.username)}
+                    alt={post.username}
+                  />
+                </div>
+                <div className="user-post h-100">
+                  <div>
+                    {getProfileFromPost(post.username)?.name} {getProfileFromPost(post.username)?.surname}
+                    </div>
+                  <div>{timeAgo(post.createdAt)}</div>
+                </div>
+                <div className="edit-icon d-flex align-items-center">
+                  <BsThreeDots
+                    className={post.user._id !== myProf._id ? 'text-white-50 me-3' : 'me-3'} 
+                    onClick={() => handleEditPost(post)}
+                  />
+                  <RxCross2 onClick={() => handlePostAction(post)} />
+                </div>
+              </div>
+              <div className="text-light py-2 border-bottom-custom">
+                {post.text}
+                <div
+                  className=" text-end clickable"
+                  style={{ fontSize: "0.8em" }}
+                  onClick={() =>
+                    showComment !== post._id
+                      ? setShowComment(post._id)
+                      : setShowComment("")
+                  }
+                >
+                  {comments.filter((comment) => comment.elementId === post._id)
+                    .length > 0 &&
+                    comments.filter((comment) => comment.elementId === post._id)
+                      .length + " commenti"}
+                </div>
+              </div>
+              <Container className="p-0">
+                <Row className="pt-1">
+                  <Col
+                    xs={3}
+                    md={3}
+                    lg={3}
+                    xl={3}
+                    className="button-media text-light d-flex justify-content-center align-items-center p-2"
+                  >
+                    <FaRegThumbsUp className="like-icon" />
+                    <p className="d-md-none d-lg-none d-xl-block">Consiglia</p>
+                  </Col>
+                  <Col
+                    xs={3}
+                    md={3}
+                    lg={3}
+                    xl={3}
+                    className="button-media text-light d-flex justify-content-center align-items-center p-2"
+                    onClick={() => {
+                      myClick !== post._id
+                        ? setMyClick(post._id)
+                        : setMyClick("")
+                        setWriteComment('')
+                        setModify('')
+                    }
+                    }
+                  >
+                    <GoComment className="like-icon" />
+                    <p className="d-md-none d-lg-none d-xl-block">Commenta</p>
+                  </Col>
+                  <Col
+                    xs={3}
+                    md={3}
+                    lg={3}
+                    xl={4}
+                    className="button-media text-light d-flex justify-content-center align-items-center p-2"
+                  >
+                    <BiRepost className="like-icon" />
+                    <p className="d-md-none d-lg-none d-xl-block">
+                      Diffondi post
+                    </p>
+                  </Col>
+                  <Col
+                    xs={3}
+                    md={3}
+                    lg={3}
+                    xl={2}
+                    className="button-media text-light d-flex justify-content-center align-items-center"
+                  >
+                    <IoIosSend className="like-icon" />
+                    <p className="d-md-none d-lg-none d-xl-block">Invia</p>
+                  </Col>
+                </Row>
+                {myClick === post._id && (
+                  <Row className=" align-items-center mt-2">
+                    <Col xs={2}>
+                      <div className="post-img">
+                        <img
+                          src={myProf.image}
+                          alt="profile-image"
+                          className="rounded-pill"
+                        />
+                      </div>
+                    </Col>
+                    <Col className=" text-light" xs={10}>
+                      <Form
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          if(modify !== ''){
+                              dispatch(modifyComment(modify, writeComment))
+                              setModify('')
+                              setTimeout(() => {
+                                  dispatch(takeComments())
+                                
+                              }, 500);
+
+                          }
+                    
+                          else{
+                            dispatch(addComment(post._id, writeComment));
+                            setModify('')
+                            setShowComment(post._id)
                             
-                        }, 1000);
-                        handleCloseSecondModal()
-                    }}>
-                        Certo, fa schifo
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </>
-    );
-}
+                        }
+                        setWriteComment('');
+                        }}
+                      >
+                        <Form.Control
+                          value={writeComment}
+                          style={{ fontSize: "0.9em" }}
+                          className=" bg-dark rounded-5 text-light"
+                          placeholder="Scrivi commento..."
+                          type="text"
+                          onChange={(e) => {
+                            setWriteComment(e.target.value);
+                          }}
+                        />
+                      </Form>
+                    </Col>
+                  </Row>
+                )}
+                
+                {showComment === post._id &&
+                  comments
+                    .filter((comment) => comment.elementId === post._id)
+                    .map((cacca) => {
+                      return (
+                        <Row className=" bg-secondary p-2 rounded-5 align-items-center mt-2">
+
+                          <Col className=" text-light" xs={12}>
+                            <p className="text-light d-flex justify-content-between align-items-center"><span>{cacca.comment}</span><span><Button className="rounded-start-5 me-1"  variant="outline-dark" onClick={(e)=> {
+                                e.preventDefault()
+                                 setMyClick(post._id)
+                                 setWriteComment(cacca.comment)
+                                 setModify(cacca._id)
+                                 
+                            }}><FaPen/></Button><Button className="rounded-end-5" variant="outline-dark" onClick={()=> {
+                                dispatch(deleteComment(cacca._id))
+                                setTimeout(() => {
+                                    dispatch(takeComments())
+                                    
+                                }, 1000);
+                            }}><FaTrash/></Button></span> </p>
+                          </Col>
+                        </Row>
+                      );
+                    })}
+              </Container>
+            </div>
+          ))
+      ) : (
+        <p className="text-light">No posts available</p>
+      )}
+
+      {/* MODALE POST NASCOSTO O CANCELLATO */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header className="bg-dark text-light border-0">
+          <Modal.Title>Post rimosso</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="bg-dark text-light">{modalMessage}</Modal.Body>
+        <Modal.Footer className="bg-dark text-light border-0">
+          <Button variant="light" onClick={handleCloseModal}>
+            Chiudi
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* MODALE DI CONFERMA PER LA CANCELLAZIONE */}
+      <Modal show={showConfirmModal} onHide={handleCancelDelete}>
+        <Modal.Header className="bg-dark text-light border-0">
+          <Modal.Title>Conferma cancellazione</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="bg-dark text-light">
+          Sei sicuro di voler cancellare questo post?
+        </Modal.Body>
+        <Modal.Footer className="bg-dark text-light border-0">
+          <Button variant="secondary" onClick={handleCancelDelete}>
+            Annulla
+          </Button>
+          <Button variant="danger" onClick={handleConfirmDelete}>
+            Conferma
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        size="lg"
+        show={showEditModal}
+        onHide={() => setShowEditModal(false)}
+      >
+        <Modal.Header className="bg-dark text-light border-0 py-3 px-2">
+          <Modal.Title className="w-100 d-flex">
+            <div className="w-100 d-flex align-items-center">
+              <div className="create-post-img me-2 d-flex align-items-center">
+                <img
+                  className="rounded-circle"
+                  src={myProf.image}
+                  alt={myProf.username}
+                />
+              </div>
+              <div className="user-post h-100 d-flex align-items-center">
+                <div>{myProf.username}</div>
+              </div>
+            </div>
+            <RxCross2
+              className="close-icon"
+              onClick={() => setShowEditModal(false)}
+            />
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="bg-dark text-light">
+          <Form.Control
+            as="textarea"
+            maxLength={1200}
+            rows={10}
+            autoFocus
+            value={editedPostText}
+            onChange={(e) => setEditedPostText(e.target.value)}
+            className="fs-5 bg-dark border-0 text-light"
+            placeholder="Modifica il tuo post..."
+          ></Form.Control>
+        </Modal.Body>
+        <Modal.Footer className="bg-dark text-light border-0">
+          <Button variant="light" onClick={handleSavePost}>
+            Salva Modifiche
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+};
 
 export default AllPosts;

@@ -12,7 +12,7 @@ function OtherProfile (){
     },[dispatch])
     return (
         <>
-        <Card bg="dark" className="text-white" >
+        <Card bg="dark" className="text-white  rounded-3 text-wrap" >
             <Card.Title className="ms-3 py-3"> Profili che potrebbero interessarti</Card.Title>
       <ListGroup >
         {AllProfile.slice(4, 9).map((p)=>{

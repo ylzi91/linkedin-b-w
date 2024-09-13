@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 
+
 const SearchButton = ({ showInput, handleIconClick }) => {
   return (
     <div className={`search-button-container ${showInput ? "open" : ""}`}>

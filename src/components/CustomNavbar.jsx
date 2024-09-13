@@ -39,9 +39,9 @@ const CustomNavbar = () => {
   return (
     <div
       id="custom-navbar"
-      className="d-flex justify-content-around align-items-center"
+      className="d-flex justify-content-around align-items-center flex-nowrap"
     >
-      <Nav className="d-flex align-items-center justify-content-between w-100">
+      <Nav className="d-flex align-items-center justify-content-between w-100 flex-nowrap">
         <div className="d-flex align-items-center "> 
           <Navbar.Brand>
             <LinkedinIcon />

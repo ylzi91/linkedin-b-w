@@ -1,45 +1,28 @@
-import {
-  Badge,
-  Button,
-  Card,
-  Col,
-  Container,
-  Modal,
-  Row,
-} from "react-bootstrap";
-import ExpCard from "./profileComp/ExpCard";
-import { FaRegCircleUser } from "react-icons/fa6";
-import { CiCamera } from "react-icons/ci";
-import { IoPencilOutline } from "react-icons/io5";
-import { getProfile, TAKE_MY_PROFILE } from "../redux/actions";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getProfile, TAKE_ID_PROFILE } from "../redux/actions";
+import { IoPencilOutline } from "react-icons/io5";
 import OtherProfile from "./profileComp/OtherProfile";
-import FormModProfile from "./profileComp/FormModProfile";
+import { Badge, Button, Card, Col, Container, Row } from "react-bootstrap";
+import ExpCard from "./profileComp/ExpCard";
 import PostCard from "./profileComp/PostCard";
-import { IoMdClose } from "react-icons/io";
-import { HiOutlinePencil } from "react-icons/hi";
+import FormModProfile from "./profileComp/FormModProfile";
 import { TbPointFilled } from "react-icons/tb";
+import { HiOutlinePencil } from "react-icons/hi";
 
-const ProfilePage = () => {
+function DinamicProfile() {
   const dispatch = useDispatch();
-  const myprofile = useSelector((s) => s.profile.myProfile);
-  const [modProfile, setModProfile] = useState(false);
-  const [change, setChange] = useState(true);
-  const closeForm = () => {
-    setModProfile(false);
-  };
-  const changes = () => {
-    setChange(false);
-  };
+  const params = useParams();
+  const myprofile = useSelector((s) => s.profile.specificProfile);
 
   useEffect(() => {
-    dispatch(getProfile("me", TAKE_MY_PROFILE));
-    setChange(true);
-  }, [change]);
+    dispatch(getProfile(params.id, TAKE_ID_PROFILE));
+  }, [params]);
 
   return (
     <>
+      {" "}
       <Container className="mt-4 profilePage">
         <Row className="d-flex justify-content-center">
           <Col xs={12} lg={8} className="p-3">
@@ -60,24 +43,13 @@ const ProfilePage = () => {
                   <span className="heroTit">
                     {myprofile.name} {myprofile.surname}
                   </span>
-                  <span className="position-absolute end-0">
-                    <Badge
-                      onClick={() => setModProfile(!modProfile)}
-                      className={
-                        modProfile
-                          ? "rounded rounded-circle bg-transparent text-white-50 clickable hov"
-                          : "rounded rounded-circle bg-transparent clickable hov"
-                      }
-                    >
-                      <HiOutlinePencil className="" />
-                    </Badge>
-                  </span>
                 </Card.Title>
                 <Card.Text>
                   <p className="pb-2">
                     {myprofile.title} <br />
                     <span className="mt-2 d-block text-white-50">
-                      {myprofile.area} <TbPointFilled className="point" /> <nbsp/>
+                      {myprofile.area} <TbPointFilled className="point" />{" "}
+                      <nbsp />
                       <a
                         href={`mailto:${myprofile.email}`}
                         className="text-decoration-none info"
@@ -86,34 +58,6 @@ const ProfilePage = () => {
                       </a>
                     </span>
                   </p>
-                  <div className="d-flex align-content-center mt-2 text-nowrap flex-wrap gap-2">
-                    <Button className="rounded rounded-pill btn_info" size="md">
-                      Disponibile per
-                    </Button>
-                    <Button
-                      className="mx-2 rounded rounded-pill btn_info_out"
-                      size="md"
-                    >
-                      Aggiungi sezione del profilo
-                    </Button>
-                    <Button
-                      onClick={() => setModProfile(!modProfile)}
-                      className="rounded rounded-pill btn_info_out"
-                      size="md"
-                    >
-                      modifica profilo
-                    </Button>
-                    <Button
-                      variant="outline-secondary"
-                      className="ms-2 rounded rounded-pill"
-                      size="md"
-                    >
-                      Altro
-                    </Button>{" "}
-                  </div>
-                  {modProfile && (
-                    <FormModProfile close={closeForm} changes={changes} />
-                  )}
                 </Card.Text>
               </Card.Body>
             </Card>{" "}
@@ -159,6 +103,6 @@ const ProfilePage = () => {
       </Container>
     </>
   );
-};
+}
 
-export default ProfilePage;
+export default DinamicProfile;
