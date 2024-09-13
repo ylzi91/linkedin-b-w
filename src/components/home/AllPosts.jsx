@@ -18,6 +18,8 @@ import { Container, Row, Col, Modal, Button, Form } from "react-bootstrap";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend } from "react-icons/io";
 import { GoComment } from "react-icons/go";
+import { FaPen } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 
 
 const AllPosts = () => {
