@@ -23,7 +23,7 @@ function PostSearched({ query }) {
   return (
     <>
       {" "}
-      <Card className="experience-section mb-4 bg-dark text-light rounded-3">
+      <Card className="experience-section mb-2 bg-dark text-light rounded-3">
         <Card.Body>
           <Card.Title className="mb-4">Post</Card.Title>
 

@@ -4,6 +4,7 @@ import PeopleS from "./PeopleS"
 import JobS from "./JobS"
 import PostSearched from "./PostSearched"
 import { useEffect } from "react"
+import CategoryS from "./CategoryS"
 
 const Searched = ({query}) => {
     return(<>
@@ -13,6 +14,9 @@ const Searched = ({query}) => {
         </Col>
         <Col xs={12}>
         <CompanySearched query={query} />
+        </Col>
+        <Col xs={12}>
+        <CategoryS query={query} />
         </Col>
         <Col xs={12}>
         <PeopleS query={query} />
