@@ -9,6 +9,7 @@ function Search (){
     const params = useParams()
 
     return(
+        
         <Container fluid className="p-0 mt-3" id="home">
                 <Row className="d-flex justify-content-center">
                     <Col xs={0} sm={4} md={2} lg={3} className=" d-none d-sm-block p-1" >
