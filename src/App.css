@@ -720,3 +720,12 @@ input::placeholder {
 .form-control:focus {
   outline: none !important;
 }
+
+.customComment {
+  background-color: rgba(104, 104, 104, 0.172);
+  border-radius: 8px;
+}
+
+.no-caret .dropdown-toggle::after {
+  display: none !important;
+}
