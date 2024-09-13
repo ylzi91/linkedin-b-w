@@ -3,9 +3,8 @@ import { DELETE_POST, MODIFY_POST, TAKE_ALL_PROFILE, getOrModifyPost, getProfile
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDots } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
-import { FaRegThumbsUp, FaTrashAlt } from "react-icons/fa";
+import { FaRegThumbsUp } from "react-icons/fa";
 import { Container, Row, Col, Modal, Button, Form } from "react-bootstrap";
-import { FaRegCommentDots } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend } from "react-icons/io";
 import { GoComment } from "react-icons/go";
@@ -44,15 +43,15 @@ const AllPosts = () => {
     if (diffInSeconds < 60) {
       return `${diffInSeconds} secondi fa`;
     } else if (diffInMinutes < 60) {
-      return `${diffInMinutes} minuti fa`;
+      return `${diffInMinutes} ${diffInMinutes > 1? 'minuti' : 'minuto'} fa`;
     } else if (diffInHours < 24) {
-      return `${diffInHours} ore fa`;
+      return `${diffInHours} ${diffInHours > 1 ? 'ore' : 'ora'} fa`;
     } else if (diffInDays < 30) {
-      return `${diffInDays} giorni fa`;
+      return `${diffInDays} ${diffInDays > 1 ? 'giorni' : 'giorno'} fa`;
     } else if (diffInMonths < 12) {
-      return `${diffInMonths} mesi fa`;
+      return `${diffInMonths} ${diffInMonths > 1 ? 'mesi' : 'mese'} fa`;
     } else {
-      return `${diffInYears} anni fa`;
+      return `${diffInYears} ${diffInYears > 1 ? 'anno' : 'anni'} fa`;
     }
   };
 
@@ -95,9 +94,9 @@ const AllPosts = () => {
 
   const handleEditPost = (post) => {
     if (post.user._id === myProf._id) {
-      setEditPost(post); // Imposta il post da modificare
-      setEditedPostText(post.text); // Carica il testo del post esistente
-      setShowEditModal(true); // Mostra il modale di modifica
+      setEditPost(post); 
+      setEditedPostText(post.text); 
+      setShowEditModal(true); 
     }
   };
 
@@ -109,11 +108,11 @@ const AllPosts = () => {
           MODIFY_POST,
           { text: editedPostText },
           editPost._id
-        ) // Aggiorna il post con il testo modificato
+        ) 
       );
-      dispatch(getOrModifyPost()); // Aggiorna i post dopo la modifica
-      setShowEditModal(false); // Chiudi il modale
-      setEditPost(null); // Resetta lo stato del post modificato
+      dispatch(getOrModifyPost()); 
+      setShowEditModal(false); 
+      setEditPost(null); 
     }
   };
 
@@ -172,7 +171,7 @@ const AllPosts = () => {
                     className="button-media text-light d-flex justify-content-center align-items-center p-2"
                   >
                     <FaRegThumbsUp className="like-icon" />
-                    <p className="d-md-none d-lg-none d-xl-block">Consiglia</p>
+                    <p className=" d-none d-md-none d-lg-none d-xl-block">Consiglia</p>
                   </Col>
                   <Col
                     xs={3}
@@ -182,7 +181,7 @@ const AllPosts = () => {
                     className="button-media text-light d-flex justify-content-center align-items-center p-2"
                   >
                     <GoComment className="like-icon" />
-                    <p className="d-md-none d-lg-none d-xl-block">Commenta</p>
+                    <p className="d-none d-md-none d-lg-none d-xl-block">Commenta</p>
                   </Col>
                   <Col
                     xs={3}
@@ -192,7 +191,7 @@ const AllPosts = () => {
                     className="button-media text-light d-flex justify-content-center align-items-center p-2"
                   >
                     <BiRepost className="like-icon" />
-                    <p className="d-md-none d-lg-none d-xl-block">
+                    <p className="d-none d-md-none d-lg-none d-xl-block">
                       Diffondi post
                     </p>
                   </Col>
@@ -204,7 +203,7 @@ const AllPosts = () => {
                     className="button-media text-light d-flex justify-content-center align-items-center"
                   >
                     <IoIosSend className="like-icon" />
-                    <p className="d-md-none d-lg-none d-xl-block">Invia</p>
+                    <p className="d-none d-md-none d-lg-none d-xl-block">Invia</p>
                   </Col>
                 </Row>
               </Container>

@@ -11,6 +11,7 @@ import {
 } from "../../redux/actions";
 import DatePicker from "react-datepicker";
 import { IoMdClose } from "react-icons/io";
+import "react-datepicker/dist/react-datepicker.css";
 
 const FormExp = ({ id, close, expid, add }) => {
   const reduxExp = useSelector((s) => s.experience.specificExperience);
@@ -51,9 +52,9 @@ const FormExp = ({ id, close, expid, add }) => {
 
   return (
     <>
-      <Modal show size="lg">
-        <Modal.Header className="modali text-light justify-content-between p-3">
-          <h4>Modifica presentazione</h4>
+      <Modal show size="lg" className="modal-custom-overflow">
+        <Modal.Header className="modali text-light justify-content-between border-0">
+          <h4>Modifica Esperienza</h4>
           <IoMdClose
             className="fs-3 text-white-50"
             onClick={(e) => {
@@ -62,7 +63,7 @@ const FormExp = ({ id, close, expid, add }) => {
             }}
           />{" "}
         </Modal.Header>
-        <Modal.Body className="p-0 modal-body">
+        <Modal.Body className="p-0 modal-body border-0 modal-custom-overflow">
           <Form
             className="p-3 bg-dark text-light formProfile text-white-50"
             onKeyDown={(e) => {
@@ -76,8 +77,8 @@ const FormExp = ({ id, close, expid, add }) => {
               }
             }}
           >
-            <Row className="my-3">
-              <Form.Group as={Col} controlId="formGridRole">
+            <div className="d-flex">
+              <Form.Group controlId="formGridRole" className="mb-3 text-white-50 w-50 pe-2">
                 <Form.Label>Role</Form.Label>
                 <Form.Control
                   value={exp.role}
@@ -87,7 +88,7 @@ const FormExp = ({ id, close, expid, add }) => {
                 />
               </Form.Group>
 
-              <Form.Group as={Col} controlId="formGridCompany">
+              <Form.Group className="mb-3 text-white-50 w-50 ps-2" controlId="formGridCompany">
                 <Form.Label>Company</Form.Label>
                 <Form.Control
                   value={exp.company}
@@ -96,32 +97,40 @@ const FormExp = ({ id, close, expid, add }) => {
                   onChange={(e) => handleChange("company", e)}
                 />
               </Form.Group>
-            </Row>
+            </div>
 
-            <Row className="mb-3">
+            <div className="d-flex">
               <Form.Group
-                as={Col}
-                className="mb-3"
+
+                className="mb-3 text-white-50 w-50 pe-2"
                 controlId="formGridStartDate"
               >
-                <Form.Label>Start Date</Form.Label>
-                <br />
+                <div>
+                  <Form.Label>Start Date</Form.Label>
+                </div>
+
                 <DatePicker
                   selected={exp.startDate}
                   onChange={(e) => setExp({ ...exp, startDate: e })}
-                  className="form-control"
+                  className="form-control w-100"
+                  popperContainer={({ children }) => <div>{children}</div>}
+                  popperClassName="custom-datepicker-popper"
+                  withPortal
                 />{" "}
               </Form.Group>
-              <Form.Group as={Col} className="mb-3" controlId="formGridEndDate">
+              <Form.Group className="mb-3 text-white-50 w-50 pe-2" controlId="formGridEndDate">
                 <Form.Label>End Date</Form.Label>
                 <br />
                 <DatePicker
                   selected={exp.endDate}
                   onChange={(e) => setExp({ ...exp, endDate: e })}
                   className="form-control"
+                  popperContainer={({ children }) => <div>{children}</div>}
+                  popperClassName="custom-datepicker-popper"
+                  withPortal
                 />{" "}
               </Form.Group>
-            </Row>
+            </div>
 
             <Form.Group className="mb-3" controlId="formDescription">
               <Form.Label>Description</Form.Label>
@@ -142,7 +151,7 @@ const FormExp = ({ id, close, expid, add }) => {
             </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer className="modali text-light justify-content-end ">
+        <Modal.Footer className="modali text-light justify-content-end border-0 ">
           {" "}
           <Button
             variant="outline-primary py-1 rounded-pill"

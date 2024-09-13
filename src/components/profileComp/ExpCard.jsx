@@ -20,13 +20,13 @@ const ExpCard = ({ id }) => {
   useEffect(() => {
     if (id) dispatch(getExperiences(id, TAKE_EXP));
   }, [add]);
-  
+
   const close = () => {
     setAdd(false);
   };
 
   const openForm = (exp) => {
-    setExp({...exp})
+    setExp({ ...exp })
     setAdd(true)
   }
 
@@ -38,31 +38,33 @@ const ExpCard = ({ id }) => {
   return (
     <>
       {add ? (
-          <FormExp id={id} close={close} expid={exp} add={add}/>
+        <FormExp id={id} close={close} expid={exp} add={add} />
       ) : (
         <Card className="rounded-3 experience-section mb-4 bg-dark text-light">
           <Card.Body>
             <Card.Title className="mb-4">
-              <div className="d-flex flex-row justify-content-between flex-nowrap">
+              <div className="d-flex justify-content-between">
                 <p>Experience</p>
-                <div className="me-2 clickable"
-                onClick={() => {setAdd(true)
-                  setExp({})}
-                }>
-                  <span className="me-2"><IoMdAdd /></span> <nbsp />
-                  <HiOutlinePencil />                </div>
+                <div className="clickable"
+                  onClick={() => {
+                    setAdd(true)
+                    setExp({})
+                  }
+                  }>
+                  <span><IoMdAdd /></span>
+                </div>
               </div>
             </Card.Title>
 
-                {experiences.map((exp, idx) => {
-                  return (
-                    <ExpItem
-                      key={exp._id}
-                      exp={exp}
-                      openForm={openForm}
-                    />
-                  );
-                })}
+            {experiences.map((exp, idx) => {
+              return (
+                <ExpItem
+                  key={exp._id}
+                  exp={exp}
+                  openForm={openForm}
+                />
+              );
+            })}
           </Card.Body>
           <div className="show-all-experiences">
             <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold">

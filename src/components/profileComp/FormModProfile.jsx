@@ -22,11 +22,11 @@ const FormModProfile = ({ close, changes }) => {
   }, []);
 
   return (
-    <Modal size="lg" show>
-      <Modal.Header className="modali text-light justify-content-between p-3">
+    <Modal size="lg" show className="">
+      <Modal.Header className="modali text-light justify-content-between border-0">
         <h4>Modifica presentazione</h4>
         <IoMdClose
-          className="fs-3 text-white-50"
+          className="fs-3 text-white-50 clickable"
           onClick={(e) => {
             e.preventDefault();
             close();
@@ -35,7 +35,7 @@ const FormModProfile = ({ close, changes }) => {
       </Modal.Header>
       <Modal.Body className="p-0 modal-body">
         <Form
-          className="pb-3 px-4 text-light modali formProfile"
+          className="px-3 text-light modali formProfile"
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.keyCode === 13) {
               dispatch(modifyProfile(prof));
@@ -44,67 +44,84 @@ const FormModProfile = ({ close, changes }) => {
             }
           }}
         >
-          <Form.Group className="mb-3 text-white-50" controlId="formGridName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              value={prof.name}
-              type="name"
-              placeholder="Enter name"
-              onChange={(e) => handleChange("name", e)}
-            />
-          </Form.Group>
+          <div className="d-flex align-items-center">
 
-          <Form.Group
-            className="mb-3 text-white-50"
-            controlId="formGridSurname"
-          >
-            <Form.Label>Surname</Form.Label>
-            <Form.Control
-              value={prof.surname}
-              type="surname"
-              placeholder="Enter Surname"
-              onChange={(e) => handleChange("surname", e)}
-            />
-          </Form.Group>
+            <Form.Group className="mb-3 text-white-50 w-50 pe-2" controlId="formGridName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                value={prof.name}
+                type="name"
+                placeholder="Enter name"
+                onChange={(e) => handleChange("name", e)}
+              />
+            </Form.Group>
 
-          <Form.Group className="mb-3 text-white-50" controlId="formGridEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              value={prof.email}
-              placeholder="mario@rossi.example"
-              onChange={(e) => handleChange("email", e)}
-            />
-          </Form.Group>
-          <Form.Group
-            className="mb-3 text-white-50"
-            controlId="formGridUsername"
-          >
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              value={prof.username}
-              placeholder="Usern@me here"
-              onChange={(e) => handleChange("username", e)}
-            />
-          </Form.Group>
+            <Form.Group
+              className="mb-3 text-white-50 w-50 ps-2"
+              controlId="formGridSurname"
+            >
+              <Form.Label>Surname</Form.Label>
+              <Form.Control
+                value={prof.surname}
+                type="surname"
+                placeholder="Enter Surname"
+                onChange={(e) => handleChange("surname", e)}
+              />
+            </Form.Group>
+          </div>
 
-          <Form.Group className="mb-3 text-white-50" controlId="formBio">
-            <Form.Label>Bio</Form.Label>
-            <Form.Control
-              value={prof.bio}
-              placeholder="Enter your bio..."
-              onChange={(e) => handleChange("bio", e)}
-            />
-          </Form.Group>
+          <div className="d-flex align-items-center">
+            <Form.Group className="mb-3 text-white-50 w-50 pe-2" controlId="formGridEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                value={prof.email}
+                placeholder="mario@rossi.example"
+                onChange={(e) => handleChange("email", e)}
+              />
+            </Form.Group>
 
-          <Form.Group className="mb-3 text-white-50" controlId="formGridArea">
-            <Form.Label>Area</Form.Label>
-            <Form.Control
-              value={prof.area}
-              placeholder="Enter your area"
-              onChange={(e) => handleChange("area", e)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3 text-white-50" controlId="formGridImg">
+            <Form.Group
+              className="mb-3 text-white-50 w-50 ps-2"
+              controlId="formGridUsername"
+            >
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                value={prof.username}
+                placeholder="Usern@me here"
+                onChange={(e) => handleChange("username", e)}
+              />
+            </Form.Group>
+          </div>
+
+
+
+
+
+
+          <div className="d-flex align-items-center">
+            <Form.Group className="mb-3 text-white-50 w-50 pe-2" controlId="formBio">
+              <Form.Label>Bio</Form.Label>
+              <Form.Control
+                value={prof.bio}
+                placeholder="Enter your bio..."
+                onChange={(e) => handleChange("bio", e)}
+              />
+            </Form.Group>
+
+
+            <Form.Group className="mb-3 text-white-50 w-50 ps-2" controlId="formGridArea">
+              <Form.Label>Area</Form.Label>
+              <Form.Control
+                value={prof.area}
+                placeholder="Enter your area"
+                onChange={(e) => handleChange("area", e)}
+              />
+            </Form.Group>
+          </div>
+
+
+
+          <Form.Group className="text-white-50" controlId="formGridImg">
             <Form.Label>Img</Form.Label>
             <Form.Control
               value={prof.image}
@@ -114,18 +131,22 @@ const FormModProfile = ({ close, changes }) => {
           </Form.Group>
         </Form>
       </Modal.Body>
-      <Modal.Footer className="modali text-light justify-content-end ">
-        <Button
-          variant="info py-1 rounded-pill my-3"
-          size="md"
-          onClick={() => {
-            dispatch(modifyProfile(prof));
-            close();
-            changes();
-          }}
-        >
-          Submit
-        </Button>
+      <Modal.Footer className=" p-0 modali text-light justify-content-end border-0 ">
+        <div className="py-3 px-3 m-0">
+
+          <Button
+            variant="outline-secondary"
+            size="md"
+            type="submit"
+            onClick={() => {
+              dispatch(modifyProfile(prof));
+              close();
+              changes();
+            }}
+          >
+            Submit
+          </Button>
+        </div>
       </Modal.Footer>
     </Modal>
   );

@@ -3,7 +3,7 @@ import { CREATE_NEW_POST, GET_ALL_POSTS, MODIFY_POST } from "../actions";
 const initialState = {
     allPosts: [],
     newPost: {},
-    singlePost: {},
+    myPosts: [],
     modifiedPost: {}
 }
 
@@ -22,7 +22,6 @@ const postReducers = (state = initialState, action) => {
             return {
                 ...state,
                 allPosts: [...state.allPosts, action.payload],
-                newPost: action.payload
 
             }
         }

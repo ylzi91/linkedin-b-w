@@ -39,7 +39,7 @@ const CustomNavbar = () => {
   return (
     <div
       id="custom-navbar"
-      className="d-flex justify-content-around align-items-center"
+      className="d-flex justify-content-around align-items-center px-3 py-1"
     >
       <Nav className="d-flex align-items-center justify-content-between w-100">
         <div className="d-flex align-items-center "> 

@@ -45,21 +45,22 @@ const PostCard = ({ id }) => {
   return (
     <>
       {add2 ? (
-            <FormPost id={id} close={close} post={posts} />
+        <FormPost id={id} close={close} post={posts} />
       ) : (
         <Card className="experience-section mb-4 bg-dark text-light rounded-3">
           <Card.Body>
             <Card.Title className="mb-4">
-              <div className="d-flex flex-row justify-content-between flex-nowrap">
-                <p>Attività</p>
+              <div className="d-flex align-items-center justify-content-between">
+                <div>
+                  <p>Attività</p>
+                </div>
                 <div className="clickable"
                   onClick={() => {
                     setAdd2(true);
                     setPosts([]);
                   }}
                 >
-                  <Button className="btnn btn_info_out me-3 px-3">Crea un post</Button>
-                  <HiOutlinePencil />
+                  <Button className="btnn btn_info_out px-3">Crea un post</Button>
                 </div>
               </div>
             </Card.Title>
@@ -81,7 +82,7 @@ const PostCard = ({ id }) => {
           </Card.Body>
           <div className="show-all-experiences">
             <button className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold">
-              Show all {reduxPosts.filter((p) =>  {if (p.user._id == id) return p}).length}{" "}
+              Show all {reduxPosts.filter((p) => { if (p.user._id == id) return p }).length}{" "}
               Posts <span className="ms-1">&rarr;</span>
             </button>
           </div>
