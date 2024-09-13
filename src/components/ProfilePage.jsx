@@ -18,23 +18,33 @@ import PostCard from "./profileComp/PostCard";
 import { HiOutlinePencil } from "react-icons/hi";
 import { TbPointFilled } from "react-icons/tb";
 import EditIcon from "./profileComp/icons/EditIcon";
+import SpinnerDots from "./spinners/SpinnerDots"; 
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const myprofile = useSelector((s) => s.profile.myProfile);
   const [modProfile, setModProfile] = useState(false);
   const [change, setChange] = useState(true);
+  const [loading, setLoading] = useState(true);  // Stato di caricamento
+
   const closeForm = () => {
     setModProfile(false);
   };
+
   const changes = () => {
     setChange(false);
   };
 
   useEffect(() => {
-    dispatch(getProfile("me", TAKE_MY_PROFILE));
+    setLoading(true);  // Inizia a caricare
+    dispatch(getProfile("me", TAKE_MY_PROFILE))
+      .finally(() => setLoading(false));  
     setChange(true);
   }, [change]);
+
+  if (loading) {  
+    return <SpinnerDots />;
+  }
 
   return (
     <>
@@ -139,3 +149,4 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
