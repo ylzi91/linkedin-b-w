@@ -44,6 +44,12 @@ function LeftBar({ setJobQuery }) {
           >
             Category
           </a>
+          <a
+            href="#Company"
+            className="list-group-item border-0 py-2 bg-dark text-white ps-3"
+          >
+            Company
+          </a>
         </ListGroup>
       </Card.Body>
     </Card>
