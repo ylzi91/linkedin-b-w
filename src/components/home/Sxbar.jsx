@@ -16,26 +16,25 @@ export const Sxbar = () => {
 
   return (
     <>
-      <Card data-bs-theme='dark'>
+      <Card data-bs-theme='dark' className="position-relative">
         <Card.Img
           variant="top"
           src="https://pbs.twimg.com/media/DgZOQPkX0AA_YT1.jpg"
+          className="mb-4"
         />
-        <div className=" card-box">
+        <div className="card-box">
           <img
             src={myProfile.image}
             className="rounded-circle border border-white"
-            // style={{ transform: "translateY(-40px)" }}
             alt="foto profilo"
           />
 
         </div>
-        <Card.Body className=" d-flex flex-column align-items-center justify-content-center p-0">
+        <Card.Body className=" d-flex flex-column align-items-center justify-content-center p-0 py-3">
           <Link to='/myprofile' className=" list-group-item card-Title text-center fs-6 fw-bolder">
             {myProfile.name} {myProfile.surname}
           </Link>
-          <Card.Text className=" text-center opacity-75" style={{ fontSize: '0.6em' }}>{myProfile.title}</Card.Text>
-          <Card.Text className=" text-center opacity-75" style={{ fontSize: '0.6em' }}>{myProfile.title}</Card.Text>
+          <Card.Text className=" text-center opacity-75" style={{ fontSize: '0.7em' }}>{myProfile.title}</Card.Text>
         </Card.Body>
         <ListGroup onClick={() => { setSpider(!spider) }} className="list-group-flush">
           <ListGroup.Item action style={{ fontSize: "0.7em" }}>

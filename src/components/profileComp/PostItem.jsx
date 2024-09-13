@@ -1,13 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import { BiRepost } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { FaTrashAlt } from "react-icons/fa";
-import { FaRegThumbsUp } from "react-icons/fa6";
-import { GoComment } from "react-icons/go";
-import { IoIosSend } from "react-icons/io";
-import { IoPencilOutline } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -33,8 +28,9 @@ const PostItem = ({
 
   const getProfileNameSurname = (username) => {
     const profile = profiles.find((profile) => profile.username === username);
-    console.log('pppppppppppp', username)
-    return profile;
+
+    return profile ? profile : { name: "Unknown", surname: "" };
+
   };
 
   const timeAgo = (timestamp) => {
@@ -63,28 +59,6 @@ const PostItem = ({
     }
   };
 
-  useEffect(() => {
-    const user = { ...getProfileNameSurname(post.username) };
-    console.log("user", user);
-
-    setPostProf({
-      name: user.name,
-      surname: user.surname,
-      img: user.image,
-    });
-  }, [post]);
-  useEffect(() => {
-    const user = { ...getProfileNameSurname(post.username) };
-    console.log("user", user);
-
-    setPostProf({
-      name: user.name,
-      surname: user.surname,
-      username: user.username,
-      img: user.image,
-    });
-  }, []);
-
 
 
   return (
@@ -93,33 +67,25 @@ const PostItem = ({
         <div className="card-create px-3 py-3 rounded-0" key={post._id}>
           <div className="body-input mb-3">
             <div className="post-img">
-              <img
-                className="rounded-circle profileo"
-                src={postProf.img}
-                alt={post.username}
+              <img className="rounded-circle profileo" src={getProfileImage(post.username)} alt={post.username}
               />
             </div>
             <div className="user-post w-100 h-100">
               <div>
-                {postProf.name}{" "}
-                {postProf.surname}
+                {getProfileNameSurname(post.username).name}{" "}
+                {getProfileNameSurname(post.user).surname}
               </div>
               <div>{timeAgo(post.createdAt)}</div>
             </div>
             <div className="edit-icon d-flex align-items-center">
-              <BsThreeDots
-                className="me-3"
-                onClick={() => {
-                  openForm(post);
-                }}
+              <BsThreeDots className="me-3" onClick={() => {
+                openForm(post);
+              }}
               />
-              {getProfileNameSurname(post.username) && getProfileNameSurname(post.username).username ===
-              post.username ? (
+              {myProfile.username === post.username ? (
                 <RxCross2
                   onClick={() => {
-                    dispatch(
-                      getOrModifyPost("DELETE", DELETE_POST, "", post._id)
-                    );
+                    dispatch(getOrModifyPost("DELETE", DELETE_POST, "", post._id));
                     dispatch(getOrModifyPost());
                   }}
                 />
@@ -138,50 +104,6 @@ const PostItem = ({
           <div className="text-light py-2 border-bottom-custom d-flex align-items-center">
             {post.text}
           </div>
-          <Container className="p-0">
-            <Row className="pt-1">
-              <Col
-                xs={3}
-                md={3}
-                lg={3}
-                xl={3}
-                className="button-media text-light d-flex justify-content-center align-items-center p-2"
-              >
-                <FaRegThumbsUp className="like-icon" />
-                <p className="d-md-none d-lg-none d-xl-block"> Consiglia</p>
-              </Col>
-              <Col
-                xs={3}
-                md={3}
-                lg={3}
-                xl={3}
-                className="button-media text-light d-flex  justify-content-center align-items-center p-2"
-              >
-                <GoComment className="like-icon" />
-                <p className="d-md-none d-lg-none d-xl-block"> Commenta</p>
-              </Col>
-              <Col
-                xs={3}
-                md={3}
-                lg={3}
-                xl={4}
-                className="button-media text-light d-flex  justify-content-center align-items-center p-2"
-              >
-                <BiRepost className="like-icon" />
-                <p className="d-md-none d-lg-none d-xl-block"> Diffondi post</p>
-              </Col>
-              <Col
-                xs={3}
-                md={3}
-                lg={3}
-                xl={2}
-                className="button-media text-light d-flex  justify-content-center align-items-center"
-              >
-                <IoIosSend className="like-icon" />
-                <p className="d-md-none d-lg-none d-xl-block"> Invia</p>
-              </Col>
-            </Row>
-          </Container>
         </div>
       </Col>
     </Row>

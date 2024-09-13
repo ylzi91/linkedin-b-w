@@ -29,9 +29,10 @@ const ExpCard = ({ id }) => {
   };
 
   const openForm = (exp) => {
-    setExp({ ...exp });
-    setAdd(true);
-  };
+    setExp({ ...exp })
+    setAdd(true)
+  }
+
 
   useEffect(() => {
     console.log(experiences);
@@ -45,28 +46,27 @@ const ExpCard = ({ id }) => {
         <Card className="rounded-3 experience-section mb-4 bg-dark text-light">
           <Card.Body>
             <Card.Title className="mb-4">
-              <div className="d-flex flex-row justify-content-between flex-nowrap">
+              <div className="d-flex justify-content-between">
                 <p>Experience</p>
-                {id === myProfile._id && (
-                  <div
-                    className="me-2 clickable"
-                    onClick={() => {
-                      setAdd(true);
-                      setExp({});
-                    }}
-                  >
-                    <span className="me-2">
-                      <IoMdAdd />
-                    </span>{" "}
-                    <nbsp />
-                    <HiOutlinePencil />{" "}
-                  </div>
-                )}
+                <div className="clickable"
+                  onClick={() => {
+                    setAdd(true)
+                    setExp({})
+                  }
+                  }>
+                  <span><IoMdAdd /></span>
+                </div>
               </div>
             </Card.Title>
 
-            {experiences.slice(0, expExpand).map((exp, idx) => {
-              return <ExpItem key={exp._id} exp={exp} openForm={openForm} />;
+            {experiences.map((exp, idx) => {
+              return (
+                <ExpItem
+                  key={exp._id}
+                  exp={exp}
+                  openForm={openForm}
+                />
+              );
             })}
           </Card.Body>
           {expand ? (<div className="show-all-experiences">
