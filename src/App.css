@@ -212,6 +212,7 @@ a {
 /* MEDIA QUERY */
 
 @media screen and (min-width: 400px) {
+
   #home,
   #custom-navbar,
   #profilePage {
@@ -220,6 +221,7 @@ a {
 }
 
 @media screen and (min-width: 576px) {
+
   #home,
   #custom-navbar,
   #profilePage {
@@ -228,23 +230,25 @@ a {
 }
 
 @media screen and (min-width: 768px) {
+
   #home,
   #profilePage,
-  #custom-navbar
- {
+  #custom-navbar {
     width: 85% !important;
   }
 }
 
 @media screen and (min-width: 960px) {
+
   #home,
   #custom-navbar,
-  #profilePage{
+  #profilePage {
     width: 80% !important;
   }
 }
 
 @media screen and (min-width: 992px) {
+
   #home,
   #custom-navbar,
   #profilePage {
@@ -253,6 +257,7 @@ a {
 }
 
 @media screen and (min-width: 1000px) {
+
   #home,
   #profilePage {
     width: 95% !important;
@@ -264,6 +269,7 @@ a {
 }
 
 @media screen and (min-width: 1200px) {
+
   #home,
   #profilePage,
   #custom-navbar {
@@ -275,8 +281,8 @@ a {
   #footer {
     display: none;
   }
-  
-} 
+
+}
 
 @media (min-width: 768px) {
   .divider {
@@ -294,7 +300,7 @@ a {
   width: 72px;
   height: 72px;
   position: absolute;
-  top: 30% !important;
+  top: -35% !important;
   left: 50% !important;
   transform: translate(-50%, -50%);
 
@@ -345,7 +351,7 @@ a {
   margin-top: 0;
 }
 
-.user-dropdown > .dropdown-toggle::after {
+.user-dropdown>.dropdown-toggle::after {
   display: none !important;
 }
 
@@ -652,6 +658,15 @@ input::placeholder {
 
 .profile-img-box {
   width:  140px !important;
+  width: 140px !important;
+  height: 140px !important;
+  position: absolute;
+  top: -35% !important;
+  left: 2% !important;
+}
+
+.other-profile-img-box {
+  width: 140px !important;
   height: 140px !important;
   position: absolute;
   top: 120px;
@@ -691,66 +706,82 @@ input::placeholder {
 }
 
 /* FOOTER */
+.customComment {
+  background-color: rgba(104, 104, 104, 0.172);
+  border-radius: 8px;
+}
 
-.fsFooter {
-  font-size: 0.7rem;
+.no-caret .dropdown-toggle::after {
+  display: none !important;
+
+}
+
+  /* FOOTER */
+
+  .fsFooter {
+    font-size: 0.7rem;
   }
 
-.listItem,
-.listItem a{
-  background-color: black;
-  border: none;
-  color :rgba(255, 255, 255, 0.5);
-  text-decoration: none;
-  padding: 0.3rem;
-  cursor: pointer;
-}
+  .listItem,
+  .listItem a {
+    background-color: black;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    padding: 0.3rem;
+    cursor: pointer;
+  }
 
 
-.listItem :hover,
-.listItem a:hover {
-  cursor: pointer;
-  color :#71b7fb;
-  text-decoration: underline;
-}
+  .listItem :hover,
+  .listItem a:hover {
+    cursor: pointer;
+    color: #71b7fb;
+    text-decoration: underline;
+  }
 
 
-.listItem :visited,
-.listItem a:visited{
-  color: #C8A1F6;
-}
+  .listItem :visited,
+  .listItem a:visited {
+    color: #C8A1F6;
+  }
 
 
 
-.listItemDropdown {
-  background-color: black;
-  border: none;
-  color :rgba(255, 255, 255, 0.5);
-  text-decoration: none;
-  padding: 0.3rem;
-  cursor: pointer;
-}
+  .listItemDropdown {
+    background-color: black;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    padding: 0.3rem;
+    cursor: pointer;
+  }
 
-.listItemDropdown :hover:not(.listItemDropdown)  {
-  cursor: pointer;
-  color :#71b7fb;
-  
-}
+  .listItemDropdown :hover:not(.listItemDropdown) {
+    cursor: pointer;
+    color: #71b7fb;
+
+  }
 
 
-.dropdownItem {
-  background-color: #1B1F23 ;
-  border: none;
-  color :white;
-  text-decoration: none !important;
-  padding:0.3rem 1rem !important;
-  font-weight: bold;
-  font-size: small;
-  cursor: pointer;
-}
+  .dropdownItem {
+    background-color: #1B1F23;
+    border: none;
+    color: white;
+    text-decoration: none !important;
+    padding: 0.3rem 1rem !important;
+    font-weight: bold;
+    font-size: small;
+    cursor: pointer;
+  }
 
 .dropdownItem:hover {
   background-color: rgb(93, 93, 93);
   text-decoration: none !important;
   
 }
+  .dropdownItem:hover {
+    background-color: rgb(93, 93, 93);
+    text-decoration: none !important;
+
+  }

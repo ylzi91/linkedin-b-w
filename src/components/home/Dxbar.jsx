@@ -4,7 +4,7 @@ import { getSearch } from "../../redux/actions"
 import { Button, Card, ListGroup } from "react-bootstrap"
 import { MdOutlineExpandLess, MdOutlineExpandMore } from "react-icons/md"
 import SpinnerDots from "../spinners/SpinnerDots"
-import MyFooter from "../MyFooter"
+import MyFooterDx from "../MyFooterDx"
 
 
 
@@ -15,15 +15,15 @@ export const Dxbar = () => {
     const [myOpen, setMyOpen] = useState(false)
     const jobs = useSelector((state) => state.job.querySearch)
     const dispatch = useDispatch()
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(getSearch('developer'))
     }, [dispatch])
 
     return (
-        
+
         <>
-        {!jobs[0] &&  <SpinnerDots/>}
-        {jobs[0] && (
+            {!jobs[0] && <SpinnerDots />}
+            {jobs[0] && (
              <Card data-bs-theme='dark'>
              <ListGroup className=" pt-2">
                  <h4 className=" text-center">Linkedin Jobs</h4>
@@ -47,8 +47,11 @@ export const Dxbar = () => {
              </Card>
              
 
-        )}
-       <MyFooter />
+            )}
+
+             <div>
+                <MyFooterDx />
+             </div>
 
         </>
     )

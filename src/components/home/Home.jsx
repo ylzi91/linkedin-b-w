@@ -5,6 +5,7 @@ import CreatePost from "./CreatePost";
 import AllPosts from "./AllPosts";
 import MyFooter from "../MyFooter";
 
+
 const Home = () => {
 
     return (
@@ -23,17 +24,13 @@ const Home = () => {
                             </Row>
                             <Row>
                                 <AllPosts />
+                                <MyFooter />
                             </Row>
                         </Container>
                     </Col>
                     <Col lg={4} xl={3} className=" ps-1 d-none d-md-none d-lg-block">
                         <Dxbar />
                     </Col>
-                    <Col>
-                        <MyFooter/>
-                    </Col>
-
-
                 </Row>
             </Container>
         </>)

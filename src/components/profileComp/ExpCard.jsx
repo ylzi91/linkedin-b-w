@@ -31,16 +31,8 @@ const ExpCard = ({ id }) => {
 
   const openForm = (exp) => {
     setExp({ ...exp })
-    setAdd(true)
-  }
-
-
-  useEffect(() => {
-    console.log(experiences);
-  }, []);
-    setExp({ ...exp })
     setAdd(true);
-  
+  };
 
   return (
     <>

@@ -18,10 +18,10 @@ function JobPage() {
   return (
     <Container fluid className="p-0 mt-3" id="home">
       <Row className="d-flex justify-content-center">
-        <Col xs={0} sm={4} md={2} lg={3} className=" p-1">
+        <Col xs={0} sm={4} md={2} lg={3}>
           <LeftBar setJobQuery={setJobQuery} />
         </Col>
-        <Col xs={12} sm={8} md={5} lg={6} className=" p-1">
+        <Col xs={12} sm={8} md={5} lg={6}>
           <Container>
             <Row>
               <Col>
@@ -45,7 +45,7 @@ function JobPage() {
           sm={0}
           md={3}
           lg={3}
-          className=" p-1 d-none d-lg-block border-top border-secondary pt-1"
+          className="d-none d-lg-block"
         >
           <OtherProfile />
         </Col>
