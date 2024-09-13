@@ -19,6 +19,7 @@ import { FaRegCommentDots } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend } from "react-icons/io";
 import { GoComment } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 
 const AllPosts = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const AllPosts = () => {
   const [myClick, setMyClick] = useState("");
   const [showComment, setShowComment] = useState("");
   const [modify, setModify] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getOrModifyPost());
@@ -179,16 +181,24 @@ const AllPosts = () => {
               key={post._id}
             >
               <div className="body-input mb-3 w-100">
-                <div className="post-img">
+                <div className="post-img ">
                   <img
-                    className="rounded-circle"
+                    className="rounded-circle "
                     src={getProfileImage(post.username)}
                     alt={post.username}
                   />
                 </div>
                 <div className="user-post h-100">
-                  <div>
-                    {getProfileFromPost(post.username)?.name}{" "}
+                  <div className=" clickable" onClick={(e) => {
+                    e.preventDefault()
+                    if(post.username === myProf.username){
+                      navigate(`/myprofile`)
+                    }
+                    else {
+                      navigate(`/profile/${getProfileFromPost(post.username)._id}`)
+                    }
+                  }}>
+                    {getProfileFromPost(post.username)?.name}
                     {getProfileFromPost(post.username)?.surname}
                   </div>
                   <div>{timeAgo(post.createdAt)}</div>
@@ -335,7 +345,18 @@ const AllPosts = () => {
                           </Col>
                           <Col className=" text-light bg-secondary p-2 rounded-2 align-items-center" xs={10}>
                           <p className=" d-flex justify-content-between mb-2"> 
-                                <span className=" fw-bold">{getProfileFromComment(cacca.author)?.name} {getProfileFromComment(cacca.author)?.surname}</span>
+                                <span className=" fw-bold clickable" onClick={(e) => {
+                                  e.preventDefault()
+                                  if(cacca.author === 'yuri@lenzi.com'){
+                                    navigate('/myprofile')
+                                  }
+                                  else if (!getProfileFromComment(cacca.author)?._id){
+                                    alert('Non posso andare alla pagina')
+                                  }
+                                  else {
+                                    navigate(navigate(`/profile/${getProfileFromComment(cacca.author)._id}`))
+                                  }
+                                }}>{getProfileFromComment(cacca.author)?.name} {getProfileFromComment(cacca.author)?.surname}</span>
                                 <span>{timeAgo(cacca.createdAt)}</span>
                           </p>
                             <p className="text-light d-flex justify-content-between align-items-center">
