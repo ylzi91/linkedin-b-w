@@ -61,10 +61,9 @@ const PostCard = ({ id }) => {
                       setPosts([]);
                     }}
                   >
-                    <Button className="btnn btn_info_out me-3 px-3">
+                    <Button className="btnn btn_info_out px-3">
                       Crea un post
                     </Button>
-                    <HiOutlinePencil />
                   </div>
                 )}
               </div>

@@ -174,7 +174,6 @@ a {
 
 .experience-section .show-all-experiences {
   transition: background-color 0.3s ease;
-  border-top: 1px solid #e0e0e0;
 }
 
 .experience-section .show-all-experiences:hover {
@@ -270,7 +269,7 @@ a {
 
   #home,
   #profilePage {
-    width: 92% !important;
+    width: 95% !important;
   }
 
   #custom-navbar {
@@ -307,7 +306,7 @@ a {
   width: 72px;
   height: 72px;
   position: absolute;
-  top: 30% !important;
+  top: -35% !important;
   left: 50% !important;
   transform: translate(-50%, -50%);
 
@@ -678,8 +677,16 @@ input::placeholder {
   width:  140px !important;
   height: 140px !important;
   position: absolute;
-  top: 120px;
-  left: 15px;
+  top: -35% !important;
+  left: 2% !important;
+}
+
+.other-profile-img-box {
+  width:  140px !important;
+  height: 140px !important;
+  position: absolute;
+  top: -48% !important;
+  left: 2% !important;
 }
 
 .profileo {
