@@ -15,5 +15,4 @@ const LinkedinIcon = () => {
     )
 }
 
-
 export default LinkedinIcon;
