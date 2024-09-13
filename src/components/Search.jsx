@@ -7,6 +7,7 @@ import { useEffect } from "react";
 
 function Search (){
     const params = useParams()
+    
 
     return(
         <Container fluid className="p-0 px-3 mt-3" id="home">

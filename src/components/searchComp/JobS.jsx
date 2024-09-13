@@ -4,7 +4,7 @@ import { IoMdBriefcase } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearch } from "../../redux/actions";
 
-const JobS = ({ query }) => {
+const JobS = ({ query, setCategoryQuery }) => {
   const allJobs = useSelector((state) => state.job.querySearch);
   const dispatch = useDispatch();
   const [jobExpand, setJobExpand] = useState(5);
@@ -13,8 +13,9 @@ const JobS = ({ query }) => {
   // Effettua la ricerca dei lavori al caricamento iniziale del componente
   useEffect(() => {
     dispatch(getSearch(query));
-  }, [dispatch, query]);
-
+    setCategoryQuery(allJobs[0]?.category);
+  }, [allJobs]);
+  
   // Funzione per controllare se ci sono risultati
   const filteredJobs = allJobs;
 

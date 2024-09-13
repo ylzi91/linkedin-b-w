@@ -5,6 +5,7 @@ import { GrMultimedia } from "react-icons/gr";
 import { MdEvent } from "react-icons/md";
 import { Container, Col, Row, Modal, Button, Form } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
@@ -15,6 +16,7 @@ const CreatePost = () => {
   const [showModal, setShowModal] = useState(false);
   const [contentText, setContentText] = useState('')
   const [writePost, setWritePost] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getProfile('me', TAKE_MY_PROFILE))
@@ -62,6 +64,8 @@ const CreatePost = () => {
           </Row>
         </Container>
       </div>
+
+
 
 
       {/* FORM PER IL POST  */}
