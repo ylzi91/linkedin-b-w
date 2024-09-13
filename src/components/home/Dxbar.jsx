@@ -4,6 +4,7 @@ import { getSearch } from "../../redux/actions"
 import { Button, Card, ListGroup } from "react-bootstrap"
 import { MdOutlineExpandLess, MdOutlineExpandMore } from "react-icons/md"
 import SpinnerDots from "../spinners/SpinnerDots"
+import MyFooterDx from "../MyFooterDx"
 
 
 
@@ -19,10 +20,10 @@ export const Dxbar = () => {
     }, [dispatch])
 
     return (
-        
+
         <>
-        {!jobs[0] &&  <SpinnerDots/>}
-        {jobs[0] && (
+            {!jobs[0] && <SpinnerDots />}
+            {jobs[0] && (
              <Card data-bs-theme='dark'>
              <ListGroup className=" pt-2">
                  <h4 className=" text-center">Linkedin Jobs</h4>
@@ -45,8 +46,11 @@ export const Dxbar = () => {
      
              </Card>
 
-        )}
-       
+            )}
+
+             <div>
+                <MyFooterDx />
+             </div>
 
         </>
     )
