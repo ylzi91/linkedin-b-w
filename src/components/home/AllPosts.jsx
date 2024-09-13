@@ -303,6 +303,7 @@ const AllPosts = () => {
                     </Col>
                     <Col className=" text-light" xs={10}>
                       <Form
+            
                         onSubmit={(e) => {
                           e.preventDefault();
                           if (modify !== "") {
@@ -319,6 +320,7 @@ const AllPosts = () => {
                         }}
                       >
                         <Form.Control
+                          autoFocus
                           value={writeComment}
                           style={{ fontSize: "0.9em" }}
                           className=" bg-dark rounded-5 text-light"
