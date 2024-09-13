@@ -4,11 +4,16 @@ import LeftBar from "./jobComp/LeftBar";
 import { useState } from "react";
 import JobS from "./searchComp/JobS";
 import CategoryS from "./searchComp/CategoryS";
+import CompanySearched from "./searchComp/CompanySearched";
 
 function JobPage() {
   const [query, setQuery] = useState("");
+  const [catQuery, setCatQuery] = useState('')
 
   const setJobQuery = (s) => setQuery(s);
+  const setCategoryQuery = (s) => setCatQuery(s);
+
+  
 
   return (
     <Container fluid className="p-0 mt-3" id="home">
@@ -20,12 +25,17 @@ function JobPage() {
           <Container>
             <Row>
               <Col>
-                <JobS query={query} />
+                <JobS query={query} setCategoryQuery={setCategoryQuery}/>
               </Col>
             </Row>
             <Row>
               <Col>
-                <CategoryS query={query} />
+                <CategoryS query={catQuery} />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <CompanySearched query={query} />
               </Col>
             </Row>
           </Container>

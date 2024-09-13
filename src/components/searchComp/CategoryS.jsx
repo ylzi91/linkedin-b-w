@@ -5,17 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategory, getSearch } from "../../redux/actions";
 
 const CategoryS = ({ query }) => {
-  const allJobs = useSelector((state) => state.job.querySearch);
+  const allJobs = useSelector((state) => state.job.categorySearch);
   const dispatch = useDispatch();
   const [jobExpand, setJobExpand] = useState(5);
   const [expand, setExpand] = useState(false);
 
   useEffect(() => {
     dispatch(getCategory(query));
+    console.log('category', allJobs)
   }, []);
-
+  
   useEffect(() => {
     dispatch(getCategory(query));
+    console.log('category', allJobs)
   }, [query]);
 
   return (
@@ -26,7 +28,7 @@ const CategoryS = ({ query }) => {
         id="Category"
       >
         <Card.Title className="ms-3 py-3">
-          Offerte di lavoro inerenti alla tua categoria
+          Offerte di lavoro inerenti a {allJobs[0]?.category}
         </Card.Title>
         <ListGroup className="p-0 m-0 border-0 border-bottom border-secondary pb-0 rounded-0">
           {allJobs.slice(0, jobExpand).map((job, i) => {

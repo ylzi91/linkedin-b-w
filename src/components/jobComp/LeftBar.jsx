@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 import { IoMdSearch } from "react-icons/io";
 
-function LeftBar({setJobQuery}) {
+function LeftBar({ setJobQuery }) {
   return (
     <Card bg="dark" text="white">
       <Card.Header className="border-0 fs-5">
@@ -20,7 +20,16 @@ function LeftBar({setJobQuery}) {
           <InputGroup.Text>
             <IoMdSearch className="fs-5" />
           </InputGroup.Text>
-          <Form.Control placeholder="Cerca" aria-label="Search" onChange={(e)=> setJobQuery(e.target.value)} />
+          <Form.Control
+            onChange={(e) => setJobQuery(e.target.value)}
+            placeholder="Cerca"
+            aria-label="Search"
+            // onKeyDown={(e) => {
+            //   if (e.key === "Enter" || e.keyCode === "13") {
+            //     setJobQuery(e.target.value);
+            //   }
+            // }}
+          />
         </InputGroup>
         <ListGroup variant="flush" className="fs-6">
           <a
@@ -35,7 +44,6 @@ function LeftBar({setJobQuery}) {
           >
             Category
           </a>
-          
         </ListGroup>
       </Card.Body>
     </Card>

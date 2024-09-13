@@ -3,20 +3,25 @@ import CompanySearched from "./CompanySearched"
 import PeopleS from "./PeopleS"
 import JobS from "./JobS"
 import PostSearched from "./PostSearched"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import CategoryS from "./CategoryS"
 
 const Searched = ({query}) => {
+
+  const [catQuery, setCatQuery] = useState('')
+
+  const setCategoryQuery = (s) => setCatQuery(s);
+
     return(<>
     <Row>
         <Col xs={12}>
-          <JobS query={query} /> 
+          <JobS query={query} setCategoryQuery={setCategoryQuery}/> 
         </Col>
         <Col xs={12}>
         <CompanySearched query={query} />
         </Col>
         <Col xs={12}>
-        <CategoryS query={query} />
+        <CategoryS query={catQuery} />
         </Col>
         <Col xs={12}>
         <PeopleS query={query} />
