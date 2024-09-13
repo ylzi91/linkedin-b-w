@@ -5,8 +5,10 @@ import { GrMultimedia } from "react-icons/gr";
 import { MdEvent } from "react-icons/md";
 import { Container, Col, Row, Modal, Button, Form } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import SpinnerCircle from "../spinners/SpinnerCircle";
+import SpinnerBars from "../spinners/SpinnerBars";
+import SpinnerDots from "../spinners/SpinnerDots";
 
 
 const CreatePost = () => {
@@ -16,7 +18,6 @@ const CreatePost = () => {
   const [showModal, setShowModal] = useState(false);
   const [contentText, setContentText] = useState('')
   const [writePost, setWritePost] = useState("");
-  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getProfile('me', TAKE_MY_PROFILE))
@@ -36,8 +37,10 @@ const CreatePost = () => {
 
   return (
     <>
-      <div className="card-create px-3 pt-2 mb-3">
-        <div className="body-input my-2">
+      { !profile.image && <SpinnerDots/> }
+      {profile.image && ( 
+        <div className="card-create px-3 pt-2 mb-3">
+        <div className="body-input mb-2">
           <div className="post-img">
             <Link to="/myprofile">
               <img src={profile.image} alt="profile-image" className="rounded-pill" />
@@ -65,7 +68,8 @@ const CreatePost = () => {
         </Container>
       </div>
 
-
+      )}
+      
 
 
       {/* FORM PER IL POST  */}

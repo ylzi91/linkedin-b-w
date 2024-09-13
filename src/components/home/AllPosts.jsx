@@ -18,6 +18,9 @@ import { Container, Row, Col, Modal, Button, Form } from "react-bootstrap";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend } from "react-icons/io";
 import { GoComment } from "react-icons/go";
+import SpinnerBars from "../spinners/SpinnerBars";
+import SpinnerDots from "../spinners/SpinnerDots";
+
 import { useNavigate } from "react-router-dom";
 
 import { Dropdown } from 'react-bootstrap';
@@ -168,7 +171,7 @@ const AllPosts = () => {
 
   return (
     <>
-      {posts && posts.length > 0 ? (
+      {(posts && posts.length > 0) ? (
         posts
           .slice(-10)
           .reverse()
@@ -504,7 +507,7 @@ const AllPosts = () => {
             </div>
           ))
       ) : (
-        <p className="text-light">No posts available</p>
+        <p className="text-light"><SpinnerDots/></p>
       )}
 
       {/* MODALE POST NASCOSTO O CANCELLATO */}

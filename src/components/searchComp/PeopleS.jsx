@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const PeopleS = ({ query }) => {
   const AllProfile = useSelector((s) => s.profile.allProfiles);
   const [peopleExpand, setPeopleExpand] = useState(5);
   const [expand, setExpand] = useState(false);
-
+const navigate = useNavigate()
   // Funzione di filtraggio per i profili che corrispondono alla query
   const filteredProfiles = AllProfile.filter(
     (p) =>
@@ -26,26 +27,29 @@ const PeopleS = ({ query }) => {
           <Card.Body>
             <Card.Title className="mb-4">People</Card.Title>
             <ListGroup className="p-0 m-0 border-0 border-bottom border-secondary pb-0 rounded-0">
-              {filteredProfiles.slice(0, peopleExpand).map((p) => (
-                <ListGroup.Item
-                  key={p._id}
-                  className="bg-dark px-3 py-2 d-flex align-items-center pe-0 border-0"
-                >
-                  <div>
-                    <img
-                      src={p.image}
-                      className="profileo rounded-circle"
-                      alt="profile"
-                    />
-                  </div>
-                  <div className="text-white flex-column w-100 me-0 ps-3 border-0">
-                    <p>
-                      {p.name} {p.surname}
-                    </p>
-                    <p className="py-1 text-secondary">{p.title}</p>
-                  </div>
-                </ListGroup.Item>
-              ))}
+              {/* Mostra le persone filtrate in base a peopleExpand */}
+              {filteredProfiles.slice(0, peopleExpand).map((p) => {
+                return (
+                  <ListGroup.Item
+                    key={p._id}
+                    className="bg-dark px-3 py-2 d-flex align-items-center pe-0 border-0"
+                  >
+                    <div  onClick={()=> navigate(`/profile/${p._id}`)} className="clickable">
+                      <img
+                        src={p.image}
+                        className="profileo rounded-circle"
+                        alt="profile"
+                      />
+                    </div>
+                    <div className="text-white flex-column w-100 me-0 ps-3 border-0 clickable"  onClick={()=> navigate(`/profile/${p._id}`)}>
+                      <p>
+                        {p.name} {p.surname}
+                      </p>
+                      <p className="py-1 text-secondary">{p.title}</p>
+                    </div>
+                  </ListGroup.Item>
+                );
+              })}
             </ListGroup>
 
             {/* Bottone per espandere o nascondere le persone */}

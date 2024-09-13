@@ -12,12 +12,12 @@ const CategoryS = ({ query }) => {
 
   useEffect(() => {
     dispatch(getCategory(query));
-    console.log('category', allJobs)
+    console.log("category", allJobs);
   }, []);
-  
+
   useEffect(() => {
     dispatch(getCategory(query));
-    console.log('category', allJobs)
+    console.log("category", allJobs);
   }, [query]);
 
   return (
@@ -27,56 +27,66 @@ const CategoryS = ({ query }) => {
         className="text-white rounded-3 text-wrap mb-2 "
         id="Category"
       >
-        <Card.Title className="ms-3 py-3">
-          Offerte di lavoro inerenti a {allJobs[0]?.category}
-        </Card.Title>
-        <ListGroup className="p-0 m-0 border-0 border-bottom border-secondary pb-0 rounded-0">
-          {allJobs.slice(0, jobExpand).map((job, i) => {
-            return (
-              <ListGroup.Item
-                key={i}
-                className="bg-dark pt-2 d-flex pb-2 border-0 pb-0 justify-content-between mx-4 d-flex align-items-center"
-              >
-                <div className="text-white flex-column w-100 me-0 ps-1">
-                  <p className="fw-bold">{job.title}</p>
-                </div>
-                <Button
-                  variant="link"
-                  className="text-white p-0"
-                  aria-label="Apply for job"
-                >
-                  <IoMdBriefcase size={20} />
-                </Button>
-              </ListGroup.Item>
-            );
-          })}
-        </ListGroup>
-        {expand ? (
-          <div className="show-all-jobs">
-            <button
-              className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
-              onClick={() => {
-                setExpand(false);
-                setJobExpand(5);
-              }}
-            >
-              Hide jobs{" "}
-              <span className="ms-1">&larr;</span>
-            </button>
+        {allJobs.length === 0 ? (
+          <div
+            className="d-flex align-items-center px-3 text-secondary"
+            style={{ height: "70px" }}
+          >
+            <p> Nessuna azienda trovata. </p>
           </div>
         ) : (
-          <div className="show-all-jobs">
-            <button
-              className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
-              onClick={() => {
-                setExpand(true);
-                setJobExpand(allJobs.length);
-              }}
-            >
-              Show all {allJobs.length} jobs{" "}
-              <span className="ms-1">&rarr;</span>
-            </button>
-          </div>
+          <>
+            <Card.Title className="ms-3 py-3">
+              Offerte di lavoro inerenti a {allJobs[0]?.category}
+            </Card.Title>
+            <ListGroup className="p-0 m-0 border-0 border-bottom border-secondary pb-0 rounded-0">
+              {allJobs.slice(0, jobExpand).map((job, i) => {
+                return (
+                  <ListGroup.Item
+                    key={i}
+                    className="bg-dark pt-2 d-flex pb-2 border-0 pb-0 justify-content-between mx-4 d-flex align-items-center"
+                  >
+                    <div className="text-white flex-column w-100 me-0 ps-1">
+                      <p className="fw-bold">{job.title}</p>
+                    </div>
+                    <Button
+                      variant="link"
+                      className="text-white p-0"
+                      aria-label="Apply for job"
+                    >
+                      <IoMdBriefcase size={20} />
+                    </Button>
+                  </ListGroup.Item>
+                );
+              })}
+            </ListGroup>
+            {expand ? (
+              <div className="show-all-jobs">
+                <button
+                  className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
+                  onClick={() => {
+                    setExpand(false);
+                    setJobExpand(5);
+                  }}
+                >
+                  Hide jobs <span className="ms-1">&larr;</span>
+                </button>
+              </div>
+            ) : (
+              <div className="show-all-jobs">
+                <button
+                  className="btn btn-link text-decoration-none w-100 py-3 text-secondary fw-semibold"
+                  onClick={() => {
+                    setExpand(true);
+                    setJobExpand(allJobs.length);
+                  }}
+                >
+                  Show all {allJobs.length} jobs{" "}
+                  <span className="ms-1">&rarr;</span>
+                </button>
+              </div>
+            )}
+          </>
         )}
       </Card>
     </>

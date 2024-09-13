@@ -1,16 +1,24 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Button, Form, Dropdown } from "react-bootstrap";
 import { BiRepost } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaEllipsisH, FaPen, FaTrash, FaTrashAlt } from "react-icons/fa";
 import { FaRegThumbsUp } from "react-icons/fa6";
 import { GoComment } from "react-icons/go";
 import { IoIosSend } from "react-icons/io";
 import { IoPencilOutline } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { DELETE_POST, getOrModifyPost } from "../../redux/actions";
+import {
+  addComment,
+  DELETE_POST,
+  deleteComment,
+  getOrModifyPost,
+  modifyComment,
+  takeComments,
+} from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
 
 const PostItemS = ({ post }) => {
   const [postProf, setPostProf] = useState({
@@ -19,15 +27,20 @@ const PostItemS = ({ post }) => {
     img: "",
     username: "",
   });
+  const [myClick, setMyClick] = useState("");
+  const [modify, setModify] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [writeComment, setWriteComment] = useState("");
+  const [showComment, setShowComment] = useState("");
+  const comments = useSelector((store) => store.comment.allComment);
   const profiles = useSelector((store) => store.profile.allProfiles);
   const myProfile = useSelector((store) => store.profile.myProfile);
-
   const getProfileNameSurname = (u) => {
-      const profile = profiles.find((profile) => profile.username === u);
+    const profile = profiles.find((profile) => profile.username === u);
 
-      console.log("Profile", profile);
-      return profile;
-    
+    console.log("Profile", profile);
+    return profile;
   };
 
   const timeAgo = (timestamp) => {
@@ -53,6 +66,23 @@ const PostItemS = ({ post }) => {
       return `${diffInMonths} mesi fa`;
     } else {
       return `${diffInYears} anni fa`;
+    }
+  };
+
+  const getProfileFromComment = (author) => {
+    if (author === "yuri@lenzi.com") {
+      return myProfile;
+    } else {
+      let profile = profiles.find((profile) => profile.email === author);
+      if (!profile) {
+        profile = {
+          name: "Nome",
+          surname: "Cognome",
+          image:
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+        };
+      }
+      return profile;
     }
   };
 
@@ -82,33 +112,58 @@ const PostItemS = ({ post }) => {
     <Row className="experience-item mb-4 gutter" id="Post">
       <Col>
         <div className="card-create px-3 py-3 rounded-0" key={post._id}>
-          {postProf.name && <div className="body-input mb-3">
-            {postProf.img && (
-              <div className="post-img">
-                <img
-                  className="rounded-circle profileo"
-                  src={postProf.img}
-                  alt={post.username}
-                />
-              </div>
-            )}
-            <div className="user-post w-50 h-100">
-              <div>
-                  {postProf.name} {postProf.surname} </div> <div>{postProf.username}
-              </div>
-              <div className="text-secondary py-1">{timeAgo(post.createdAt)}</div>
-            </div>
-            <div className="edit-icon d-flex align-items-center">
-              <BsThreeDots className="me-3" />
-              {myProfile.username === post.username ? (
-                <RxCross2 />
-              ) : (
-                <RxCross2 />
+          {postProf.name && (
+            <div className="body-input mb-3">
+              {postProf.img && (
+                <div
+                  className="post-img clickable"
+                  onClick={() => navigate(`/profile/${post.user._id}`)}
+                >
+                  <img
+                    className="rounded-circle profileo"
+                    src={postProf.img}
+                    alt={post.username}
+                  />
+                </div>
               )}
+              <div className="user-post w-50 h-100 ">
+                <div
+                  className="clickable"
+                  onClick={() => navigate(`/profile/${post.user._id}`)}
+                >
+                  {postProf.name} {postProf.surname}{" "}
+                </div>{" "}
+                <div>{postProf.username}</div>
+                <div className="text-secondary py-1">
+                  {timeAgo(post.createdAt)}
+                </div>
+              </div>
+              <div className="edit-icon d-flex align-items-center">
+                <BsThreeDots className="me-3" />
+                {myProfile.username === post.username ? (
+                  <RxCross2 />
+                ) : (
+                  <RxCross2 />
+                )}
+              </div>
             </div>
-          </div>}
-          <div className="text-light py-3 px-3 border-bottom-custom d-flex align-items-center text-wrap">
+          )}
+          <div className="text-light py-3 px-3 border-bottom-custom d-flex justify-content-between align-items-center text-wrap">
             {post.text}
+            <div
+              className=" text-end clickable text-nowrap"
+              style={{ fontSize: "0.8em" }}
+              onClick={() =>
+                showComment !== post._id
+                  ? setShowComment(post._id)
+                  : setShowComment("")
+              }
+            >
+              {comments.filter((comment) => comment.elementId === post._id)
+                .length > 0 &&
+                comments.filter((comment) => comment.elementId === post._id)
+                  .length + " commenti"}
+            </div>
           </div>
           <Container className="p-0">
             <Row className="pt-1">
@@ -128,6 +183,11 @@ const PostItemS = ({ post }) => {
                 lg={3}
                 xl={3}
                 className="button-media text-light d-flex  justify-content-center align-items-center p-2"
+                onClick={() => {
+                  myClick !== post._id ? setMyClick(post._id) : setMyClick("");
+                  setWriteComment("");
+                  setModify("");
+                }}
               >
                 <GoComment className="like-icon" />
                 <p className="d-md-none d-lg-none d-xl-block"> Commenta</p>
@@ -153,6 +213,147 @@ const PostItemS = ({ post }) => {
                 <p className="d-md-none d-lg-none d-xl-block"> Invia</p>
               </Col>
             </Row>
+            {myClick === post._id && (
+              <Row className=" align-items-center mt-2">
+                <Col xs={2}>
+                  <div className="post-img">
+                    <img
+                      src={myProfile.image}
+                      alt="profile-image"
+                      className="rounded-pill"
+                    />
+                  </div>
+                </Col>
+                <Col className=" text-light" xs={10}>
+                  <Form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      if (modify !== "") {
+                        dispatch(modifyComment(modify, writeComment));
+                        setModify("");
+                        setTimeout(() => {
+                          dispatch(takeComments());
+                        }, 500);
+                      } else {
+                        dispatch(addComment(post._id, writeComment));
+                        setModify("");
+                        setShowComment(post._id);
+                      }
+                      setWriteComment("");
+                    }}
+                  >
+                    <Form.Control
+                      value={writeComment}
+                      style={{ fontSize: "0.9em" }}
+                      className=" bg-dark rounded-5 text-light"
+                      placeholder="Scrivi commento..."
+                      type="text"
+                      onChange={(e) => {
+                        setWriteComment(e.target.value);
+                      }}
+                    />
+                  </Form>
+                </Col>
+              </Row>
+            )}
+
+            {showComment === post._id &&
+              comments
+                .filter((comment) => comment.elementId === post._id)
+                .map((cacca) => {
+                  return (
+                    <Row className="mt-2 customComment" key={cacca._id}>
+                      <Col
+                        xs={2}
+                        className="d-flex align-items-center justify-content-center"
+                      >
+                        <div className="post-img m-0">
+                          <img
+                            className="rounded-circle"
+                            src={getProfileFromComment(cacca.author).image}
+                            alt="foto"
+                          />
+                        </div>
+                      </Col>
+                      <Col
+                        className="text-light p-2 rounded-2 align-items-center"
+                        xs={10}
+                      >
+                        <p className="d-flex justify-content-between">
+                          <span
+                            className="fw-bold clickable"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              if (cacca.author === "yuri@lenzi.com") {
+                                navigate("/myprofile");
+                              } else if (
+                                !getProfileFromComment(cacca.author)?._id
+                              ) {
+                                alert("Non posso andare alla pagina");
+                              } else {
+                                navigate(
+                                  `/profile/${
+                                    getProfileFromComment(cacca.author)._id
+                                  }`
+                                );
+                              }
+                            }}
+                          >
+                            {getProfileFromComment(cacca.author)?.name}{" "}
+                            {getProfileFromComment(cacca.author)?.surname}
+                          </span>
+                          <div className="d-flex align-items-center">
+                            <span className="pe-2">
+                              {timeAgo(cacca.createdAt)}
+                            </span>
+                            <Dropdown align="end">
+                              <Dropdown.Toggle
+                                noCaret
+                                className="p-0 no-caret text-light bg-transparent border-0"
+                                id="dropdown-basic"
+                              >
+                                <FaEllipsisH />
+                              </Dropdown.Toggle>
+                              <Dropdown.Menu className="border border-secondary user-dropdown">
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setMyClick(post._id);
+                                    setWriteComment(cacca.comment);
+                                    setModify(cacca._id);
+                                  }}
+                                >
+                                  <div className="d-flex align-items-center justify-content-center py-3">
+                                    <FaPen className="text-light me-2" />
+                                    <p className="text-light px-1">Modifica</p>
+                                  </div>
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() => {
+                                    dispatch(deleteComment(cacca._id));
+                                    setTimeout(() => {
+                                      dispatch(takeComments());
+                                    }, 1000);
+                                  }}
+                                >
+                                  <div className="d-flex align-items-center justify-content-center py-3">
+                                    <FaTrash className="me-2 text-light" />
+                                    <p className="text-light px-1">Elimina</p>
+                                  </div>
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                          </div>
+                        </p>
+                        <div className="text-light d-flex justify-content-between align-items-center">
+                          <span>{cacca.comment}</span>
+                        </div>
+                      </Col>
+                    </Row>
+                  );
+                })}
           </Container>
         </div>
       </Col>
